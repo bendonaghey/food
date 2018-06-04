@@ -1,1 +1,25 @@
-<h1>Food</h1>
+<td-layout>
+    <td-layout-nav>
+      <div td-toolbar-content layout="row" layout-align="start center" flex>
+        <button mat-icon-button class="td-menu-button" (click)="sidenav.toggle()" mdTooltip="Main menu">
+          <mat-icon>menu</mat-icon>
+        </button>
+        <span>Food</span>
+        <span flex></span>
+        <button mat-icon-button><mat-icon>more_vert</mat-icon></button>
+      </div>
+  
+      <mat-sidenav-container fullscreen>
+        <mat-sidenav #sidenav mode="over" opened="false" style="width: 250px;">
+          <div flex class="mat-content">
+            <mat-nav-list>
+
+            </mat-nav-list>
+          </div>
+        </mat-sidenav>
+        <div tdMediaToggle="gt-xs">
+
+        </div>
+      </mat-sidenav-container>
+    </td-layout-nav>
+  </td-layout>
