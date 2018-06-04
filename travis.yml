@@ -14,7 +14,7 @@ env:
     - CHROME_BIN=chromium-browser
 
 before_install: 
-  - cd client
+  - cd food-client
 
 before_script: 
    - "sudo chown root /opt/google/chrome/chrome-sandbox"
