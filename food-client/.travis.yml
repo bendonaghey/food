@@ -1,0 +1,33 @@
+language: node_js
+sudo: required
+dist: trusty
+addons:
+    chrome: stable
+
+node_js:
+   - node
+
+env:
+  global:
+    - DBUS_SESSION_BUS_ADDRESS=/dev/null
+    - DISPLAY=:99.0
+    - CHROME_BIN=chromium-browser
+
+before_install: 
+  - cd client
+
+before_script: 
+   - "sudo chown root /opt/google/chrome/chrome-sandbox"
+   - "sudo chmod 4755 /opt/google/chrome/chrome-sandbox"
+   - sh -e /etc/init.d/xvfb start
+   - npm install -g --silent @angular/cli
+   - npm install
+
+script:
+   - ng test --watch=false
+   - ng build
+
+notifications:
+  email: 
+    on_failure: change
+    on_success: change  
