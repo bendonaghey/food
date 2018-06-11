@@ -1,0 +1,11 @@
+{
+	"folders": [
+		{
+			"path": "food-client"
+		},
+		{
+			"path": "food-service"
+		}
+	],
+	"settings": {}
+}
