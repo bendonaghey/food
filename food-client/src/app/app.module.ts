@@ -10,9 +10,9 @@ import { ToolbarComponent } from './toolbar/toolbar.component';
 
 @NgModule({
   declarations: [
-    CardComponent
-    ToolbarComponent
-    AppComponent,
+    CardComponent,
+    ToolbarComponent,
+    AppComponent
   ],
   imports: [
     BrowserModule,
