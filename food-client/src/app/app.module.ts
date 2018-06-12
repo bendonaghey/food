@@ -6,11 +6,13 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CovalentModule } from './modules/covalent/covalent.module';
 import { CardComponent } from './card/card.component';
+import { ToolbarComponent } from './toolbar/toolbar.component';
 
 @NgModule({
   declarations: [
-    AppComponent,
     CardComponent
+    ToolbarComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
