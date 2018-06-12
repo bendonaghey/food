@@ -9,7 +9,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "build:prod": "ng build --prod",
-    "server" : "cd ../ && cd food-service && npm start",
+    "server": "cd ../ && cd food-service && npm start",
     "all": "ng serve | npm run server"
   },
   "private": true,
