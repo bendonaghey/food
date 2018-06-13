@@ -1,3 +1,4 @@
+import { CardComponent } from './card/card.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CovalentModule } from './modules/covalent/covalent.module';
 import { BrowserModule } from '@angular/platform-browser';
@@ -11,7 +12,8 @@ describe('AppComponent', () => {
     TestBed.configureTestingModule({
       declarations: [
         AppComponent,
-        ToolbarComponent
+        ToolbarComponent,
+        CardComponent
       ],
       imports: [
         MaterialModule,
