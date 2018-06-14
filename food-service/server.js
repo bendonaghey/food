@@ -8,6 +8,9 @@ var http = require('http');
 app.use(bodyParser.json({ strict: 'false' }));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(function (req, res, next) {
+
+    //add middleware here - api key.
+    
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   next();
