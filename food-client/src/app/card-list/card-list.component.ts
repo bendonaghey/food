@@ -4,7 +4,7 @@ import { Post } from '../models/post.model';
 @Component({
   selector: 'app-card-list',
   templateUrl: './card-list.component.html',
-  styleUrls: ['./card-list.component.scss']
+  styleUrls: ['./card-list.component.scss'],
 })
 
 export class CardListComponent implements OnInit {
