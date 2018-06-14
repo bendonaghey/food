@@ -1,9 +1,10 @@
 .card {
     max-width: 400px;
     color: black;
-  }
+}
+
+.mat-card-image{
+  max-width: 400px;
+  max-height: 300px;
+}
   
-  .header-image {
-    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
-    background-size: cover;
-  }

@@ -7,12 +7,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CovalentModule } from './modules/covalent/covalent.module';
 import { CardComponent } from './card/card.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
+import { CardListComponent } from './card-list/card-list.component';
 
 @NgModule({
   declarations: [
     CardComponent,
     ToolbarComponent,
-    AppComponent
+    AppComponent,
+    CardListComponent
   ],
   imports: [
     BrowserModule,
