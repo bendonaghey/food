@@ -9,25 +9,23 @@ export class ToolbarComponent implements OnInit {
   @Output() layoutOption: string;
   @Output() sortOption: string;
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit() {
+  ngOnInit() {}
+
+  toList() {
+    this.layoutOption = 'listView';
   }
 
-  toList(){
-    this.layoutOption = "listView";
+  toCard() {
+    this.layoutOption = 'cardView';
   }
 
-  toCard(){
-    this.layoutOption = "cardView";
+  sortByLocation() {
+    this.sortOption = 'location';
   }
 
-  sortByLocation(){
-    this.sortOption = "location";
+  sortByTime() {
+    this.layoutOption = 'time';
   }
-
-  sortByTime(){
-    this.layoutOption = "time";
-  }
-
 }

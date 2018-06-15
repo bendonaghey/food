@@ -1,27 +1,25 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { CardComponent } from './card.component';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { Post } from '../models/post.model';
 
-describe('CardComponent', () => {
-  let component: CardComponent;
-  let fixture: ComponentFixture<CardComponent>;
+import { CardListComponent } from './card-list.component';
+
+describe('CardListComponent', () => {
+  let component: CardListComponent;
+  let fixture: ComponentFixture<CardListComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CardComponent ],
-      schemas: [CUSTOM_ELEMENTS_SCHEMA]
+      declarations: [ CardListComponent ],
+      schemas: [
+        CUSTOM_ELEMENTS_SCHEMA
+      ],
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CardComponent);
+    fixture = TestBed.createComponent(CardListComponent);
     component = fixture.componentInstance;
-
-    component.card = <Post>{};
-
     fixture.detectChanges();
   });
 
