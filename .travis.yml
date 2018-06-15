@@ -25,6 +25,7 @@ before_script:
 
 script:
    - ng test --watch=false
+   - ng lint
    - ng build
 
 notifications:
