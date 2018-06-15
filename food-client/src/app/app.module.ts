@@ -8,6 +8,7 @@ import { CovalentModule } from './modules/covalent/covalent.module';
 import { CardComponent } from './card/card.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { CardListComponent } from './card-list/card-list.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { CardListComponent } from './card-list/card-list.component';
     BrowserModule,
     BrowserAnimationsModule,
     MaterialModule,
-    CovalentModule
+    CovalentModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
