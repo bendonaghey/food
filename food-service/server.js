@@ -4,9 +4,14 @@ var router = express.Router();
 var app = express();
 var port = process.env.PORT || 8190;
 var http = require('http');
+var databaseService = require('./services/database.service');
 
+databaseService.initialise();
 app.use(bodyParser.json({ strict: 'false' }));
 app.use(bodyParser.urlencoded({ extended: true }));
+
+
+
 app.use(function (req, res, next) {
 
     //add middleware here - api key.
