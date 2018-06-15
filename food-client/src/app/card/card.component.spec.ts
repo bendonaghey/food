@@ -21,7 +21,7 @@ describe('CardComponent', () => {
     component = fixture.componentInstance;
 
     component.card = <Post>{};
-    
+
     fixture.detectChanges();
   });
 
