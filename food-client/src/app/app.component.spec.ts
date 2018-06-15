@@ -6,6 +6,7 @@ import { MaterialModule } from './modules/material/material.module';
 import { TestBed, async } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
+import { CardListComponent } from './card-list/card-list.component';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -13,7 +14,8 @@ describe('AppComponent', () => {
       declarations: [
         AppComponent,
         ToolbarComponent,
-        CardComponent
+        CardComponent,
+        CardListComponent,
       ],
       imports: [
         MaterialModule,
