@@ -9,13 +9,15 @@ import { CardComponent } from './card/card.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { CardListComponent } from './card-list/card-list.component';
 import { HttpClientModule } from '@angular/common/http';
+import { ViewPostComponent } from './view-post/view-post.component';
 
 @NgModule({
   declarations: [
     CardComponent,
     ToolbarComponent,
     AppComponent,
-    CardListComponent
+    CardListComponent,
+    ViewPostComponent
   ],
   imports: [
     BrowserModule,
