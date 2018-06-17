@@ -6,16 +6,23 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   providedIn: 'root'
 })
 export class PostService {
-
   private headers: HttpHeaders;
 
   private BASE_URL: String = 'http://localhost:8190/api';
 
   constructor(private http: HttpClient) {
-    this.headers =  new HttpHeaders().set('Content-Type', 'application/json');
+    this.headers = new HttpHeaders().set('Content-Type', 'application/json');
   }
 
   getAll(): Observable<Post[]> {
-    return this.http.get<Post[]>(`${this.BASE_URL}/posts`, {headers: this.headers});
+    return this.http.get<Post[]>(`${this.BASE_URL}/posts`, {
+      headers: this.headers
+    });
+  }
+
+  getPostById(): Observable<Post> {
+    return this.http.get<Post>(`${this.BASE_URL}/posts/:id`, {
+      headers: this.headers
+    });
   }
 }
