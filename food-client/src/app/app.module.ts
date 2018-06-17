@@ -9,22 +9,26 @@ import { CardComponent } from './card/card.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { CardListComponent } from './card-list/card-list.component';
 import { HttpClientModule } from '@angular/common/http';
+import { RoutingModule } from './modules/routing/routing.module';
+import { PostsComponent } from './posts/posts.component';
 
 @NgModule({
   declarations: [
     CardComponent,
     ToolbarComponent,
     AppComponent,
-    CardListComponent
+    CardListComponent,
+    PostsComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     MaterialModule,
     CovalentModule,
-    HttpClientModule
+    HttpClientModule,
+    RoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}
