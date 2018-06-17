@@ -10,6 +10,7 @@ import { ToolbarComponent } from './toolbar/toolbar.component';
 import { CardListComponent } from './card-list/card-list.component';
 import { HttpClientModule } from '@angular/common/http';
 import { RoutingModule } from './modules/routing/routing.module';
+import { ViewPostComponent } from './view-post/view-post.component';
 import { PostsComponent } from './posts/posts.component';
 
 @NgModule({
@@ -17,6 +18,7 @@ import { PostsComponent } from './posts/posts.component';
     CardComponent,
     ToolbarComponent,
     AppComponent,
+    ViewPostComponent
     CardListComponent,
     PostsComponent
   ],
