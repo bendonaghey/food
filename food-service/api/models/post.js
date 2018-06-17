@@ -1,8 +1,9 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-var postSchema = new Schema ({
+var postSchema = new Schema({
   _id: Object,
+  postId: String,
   userId: String,
   title: String,
   description: String,
