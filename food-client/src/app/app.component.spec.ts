@@ -1,3 +1,5 @@
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
 import { CardComponent } from './card/card.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CovalentModule } from './modules/covalent/covalent.module';
@@ -16,7 +18,7 @@ describe('AppComponent', () => {
         AppComponent,
         ToolbarComponent,
         CardComponent,
-        CardListComponent,
+        CardListComponent
       ],
       imports: [
         MaterialModule,
@@ -24,7 +26,8 @@ describe('AppComponent', () => {
         CovalentModule,
         BrowserAnimationsModule,
         HttpClientModule
-      ]
+      ],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA]
     }).compileComponents();
   }));
   it('should create the app', async(() => {

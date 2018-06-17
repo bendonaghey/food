@@ -18,7 +18,7 @@ import { PostsComponent } from './posts/posts.component';
     CardComponent,
     ToolbarComponent,
     AppComponent,
-    ViewPostComponent
+    ViewPostComponent,
     CardListComponent,
     PostsComponent
   ],
