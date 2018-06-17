@@ -9,5 +9,15 @@ module.exports = {
       }
       callback(posts);
     });
+  },
+
+  getPostById: function(postId, callback) {
+    post.find({ postId }, function(error, posts) {
+      if (error) {
+        console.log(error);
+        return;
+      }
+      callback(posts);
+    });
   }
 };
