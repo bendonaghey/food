@@ -8,6 +8,10 @@ import { AppComponent } from './app.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { CardListComponent } from './card-list/card-list.component';
 import { HttpClientModule } from '@angular/common/http';
+import { CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/compiler/src/core';
+import { RoutingModule, routes} from './modules/routing/routing.module';
+import {RouterTestingModule} from '@angular/router/testing';
+import { PostsComponent } from './posts/posts.component';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -17,13 +21,16 @@ describe('AppComponent', () => {
         ToolbarComponent,
         CardComponent,
         CardListComponent,
+        PostsComponent
       ],
       imports: [
         MaterialModule,
         BrowserModule,
         CovalentModule,
         BrowserAnimationsModule,
-        HttpClientModule
+        HttpClientModule,
+        RoutingModule,
+        RouterTestingModule.withRoutes(routes)
       ]
     }).compileComponents();
   }));
