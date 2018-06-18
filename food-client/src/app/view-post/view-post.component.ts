@@ -9,7 +9,7 @@ import { PostService } from '../services/post.service';
   styleUrls: ['./view-post.component.scss']
 })
 export class ViewPostComponent implements OnInit {
-  public card: Post;
+  public post: Post;
 
   constructor(
     private route: ActivatedRoute,
@@ -20,7 +20,7 @@ export class ViewPostComponent implements OnInit {
     this.postService
       .getPostById(this.route.snapshot.params.id)
       .subscribe(res => {
-        this.card = res;
+        this.post = res;
       });
   }
 }

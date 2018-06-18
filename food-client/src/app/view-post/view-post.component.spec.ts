@@ -22,7 +22,7 @@ describe('ViewPostComponent', () => {
             data: {
               subscribe: (fn: (value: any) => void) =>
                 fn({
-                  yourData: '1000'
+                  id: '1000'
                 })
             }
           }
