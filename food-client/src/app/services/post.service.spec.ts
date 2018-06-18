@@ -58,7 +58,8 @@ describe('PostService', () => {
   describe('getPostById', () => {
     it('should request a single post', async(() => {
       let response: any[];
-      postService.getPostById().subscribe((res: any) => {
+      const id = 1000;
+      postService.getPostById(id).subscribe((res: any) => {
         response = res;
       });
       const mockRequest = httpMock.expectOne(url + '/posts/:id');
@@ -74,8 +75,9 @@ describe('PostService', () => {
       let response: Post;
       const mockResponse = [{ postId: '1000' }];
       const mockRequest = [{ postId: '1000' }];
+      const id = 1000;
 
-      postService.getPostById().subscribe((res: any) => {
+      postService.getPostById(id).subscribe((res: any) => {
         response = res;
       });
 

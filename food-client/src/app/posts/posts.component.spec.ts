@@ -5,7 +5,6 @@ import { PostsComponent } from './posts.component';
 import { ToolbarComponent } from '../toolbar/toolbar.component';
 import { CardListComponent } from '../card-list/card-list.component';
 import { CardComponent } from '../card/card.component';
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 
 describe('PostsComponent', () => {
@@ -20,9 +19,7 @@ describe('PostsComponent', () => {
         CardListComponent,
         CardComponent
       ],
-      imports: [
-        HttpClientModule
-      ],
+      imports: [HttpClientModule],
       schemas: [CUSTOM_ELEMENTS_SCHEMA]
     }).compileComponents();
   }));
