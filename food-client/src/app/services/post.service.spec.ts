@@ -62,8 +62,8 @@ describe('PostService', () => {
       postService.getPostById(id).subscribe((res: any) => {
         response = res;
       });
-      const mockRequest = httpMock.expectOne(url + '/posts/:id');
-      expect(mockRequest.request.url).toBe(url + '/posts/:id');
+      const mockRequest = httpMock.expectOne(url + '/posts/' + id);
+      expect(mockRequest.request.url).toBe(url + '/posts/' + id);
       expect(mockRequest.request.method).toBe('GET');
       expect(mockRequest.request.headers.get('Content-Type')).toBe(
         'application/json'
@@ -81,7 +81,7 @@ describe('PostService', () => {
         response = res;
       });
 
-      httpMock.expectOne(url + '/posts/:id').flush(mockRequest, mockResponse);
+      httpMock.expectOne(url + '/posts/' + id).flush(mockRequest, mockResponse);
       expect(mockResponse.length).toBe(1);
       expect(response.postId).toBe(mockRequest.values[0]);
       httpMock.verify();
