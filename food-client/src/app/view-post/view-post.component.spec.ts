@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ViewPostComponent } from './view-post.component';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { Post } from '../models/post.model';
 
 describe('ViewPostComponent', () => {
   let component: ViewPostComponent;
@@ -8,9 +10,9 @@ describe('ViewPostComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ViewPostComponent ]
-    })
-    .compileComponents();
+      declarations: [ViewPostComponent],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA]
+    }).compileComponents();
   }));
 
   beforeEach(() => {

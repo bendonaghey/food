@@ -20,8 +20,8 @@ export class PostService {
     });
   }
 
-  getPostById(): Observable<Post> {
-    return this.http.get<Post>(`${this.BASE_URL}/posts/:id`, {
+  getPostById(id: number): Observable<Post> {
+    return this.http.get<Post>(`${this.BASE_URL}/posts/${id}`, {
       headers: this.headers
     });
   }

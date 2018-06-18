@@ -1,3 +1,37 @@
-<p>
-  view-post works!
-</p>
+<div class="container" layout="column" layout-align="center center" flex>
+  <div class="imageRow">
+    <img src="http://via.placeholder.com/200x250" alt="Image">
+  </div>
+  <mat-card class="card" layout-fill flex>
+    <div class="row" layout="row" layout="center">
+      <mat-card-header>
+        <mat-card-title>Some information</mat-card-title>
+      </mat-card-header>
+    </div>
+    <div class="row" layout="row">
+      <div class="col" flex="50">
+        <img mat-card-image src="http://via.placeholder.com/500x350" alt="Image">
+      </div>
+      <div class="col" flex="50">
+        <mat-card-content>
+          <p>
+            Description
+          </p>
+        </mat-card-content>
+      </div>
+    </div>
+  </mat-card>
+</div>
+
+
+<!-- <mat-card class="card" routerLink="{{card.postId}}">
+
+
+
+    <mat-card-actions>
+      <div mat-card-avatar class="header-image"></div>
+      <button mat-button>LIKE</button>
+      <button mat-button>SHARE</button>
+    </mat-card-actions>
+  </mat-card>
+  <p>{{card.postId}}</p> -->
