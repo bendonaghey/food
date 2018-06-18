@@ -12,7 +12,7 @@ module.exports = {
   },
 
   getPostById: function(postId, callback) {
-    post.find({ postId }, function(error, posts) {
+    post.findOne({ postId }, function(error, posts) {
       if (error) {
         console.log(error);
         return;
