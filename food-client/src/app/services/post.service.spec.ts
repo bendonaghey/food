@@ -73,17 +73,15 @@ describe('PostService', () => {
 
     it('should return a single post', async(() => {
       let response: Post;
-      const mockResponse = [{ postId: '1000' }];
-      const mockRequest = [{ postId: '1000' }];
+      const mockResponse = <Post>{ postId: '1000' };
       const id = 1000;
 
       postService.getPostById(id).subscribe((res: any) => {
         response = res;
       });
 
-      httpMock.expectOne(url + '/posts/' + id).flush(mockRequest, mockResponse);
-      expect(mockResponse.length).toBe(1);
-      expect(response.postId).toBe(mockRequest.values[0]);
+      httpMock.expectOne(url + '/posts/' + id).flush(mockResponse);
+      expect(response).toBe(mockResponse);
       httpMock.verify();
     }));
   });

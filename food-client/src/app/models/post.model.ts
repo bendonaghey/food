@@ -1,13 +1,13 @@
 export interface Post {
-  userId: String;
-  postId: String;
-  title: String;
-  description: String;
-  location: String;
-  datePosted: Number;
-  likes: Number;
-  interest: Number;
-  active: Boolean;
-  expirationDate: Number;
-  image: String;
+  userId: string;
+  postId: string;
+  title: string;
+  description: string;
+  location: string;
+  datePosted: number;
+  likes: number;
+  interest: number;
+  active: boolean;
+  expirationDate: number;
+  image: string;
 }
