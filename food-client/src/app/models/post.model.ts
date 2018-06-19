@@ -1,5 +1,6 @@
 export interface Post {
   userId: String;
+  postId: String;
   title: String;
   description: String;
   location: String;
