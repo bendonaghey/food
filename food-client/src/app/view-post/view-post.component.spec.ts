@@ -9,24 +9,18 @@ import { Observable, observable } from 'rxjs';
 describe('ViewPostComponent', () => {
   let component: ViewPostComponent;
   let fixture: ComponentFixture<ViewPostComponent>;
+  let mockActivatedRoute: any;
 
   beforeEach(async(() => {
+
+    mockActivatedRoute = { snapshot: { params: { id: 1000 } } };
+
     TestBed.configureTestingModule({
       declarations: [ViewPostComponent],
       imports: [HttpClientModule],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
       providers: [
-        {
-          provide: ActivatedRoute,
-          useValue: {
-            data: {
-              subscribe: (fn: (value: any) => void) =>
-                fn({
-                  id: '1000'
-                })
-            }
-          }
-        }
+        {provide: ActivatedRoute, useValue: mockActivatedRoute}
       ]
     }).compileComponents();
   }));
