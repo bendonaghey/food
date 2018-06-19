@@ -5,7 +5,7 @@
   <mat-card class="card push-top-md" layout-fill flex>
     <div class="row" layout="row" layout="center">
       <mat-card-header>
-        <mat-card-title>{{post?.title}}</mat-card-title>
+        <mat-card-title>{{post?.title}} {{post?.postId}}</mat-card-title>
       </mat-card-header>
     </div>
     <div class="row" layout="row">
@@ -25,16 +25,3 @@
     </div>
   </mat-card>
 </div>
-
-
-<!-- <mat-card class="card" routerLink="{{card.postId}}">
-
-
-
-    <mat-card-actions>
-      <div mat-card-avatar class="header-image"></div>
-      <button mat-button>LIKE</button>
-      <button mat-button>SHARE</button>
-    </mat-card-actions>
-  </mat-card>
-  <p>{{card.postId}}</p> -->
