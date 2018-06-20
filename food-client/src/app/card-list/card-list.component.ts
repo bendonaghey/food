@@ -18,3 +18,4 @@ export class CardListComponent implements OnInit {
     });
   }
 }
+
