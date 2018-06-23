@@ -1,11 +1,17 @@
-import {Component} from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Post } from '../models/post.model';
 
-/**
- * @title Card with multiple sections
- */
 @Component({
   selector: 'app-card',
   templateUrl: './card.component.html',
   styleUrls: ['./card.component.scss'],
 })
-export class CardComponent {}
+export class CardComponent implements OnInit {
+  @Input() card: Post;
+
+  constructor() { }
+
+  ngOnInit() {
+
+  }
+}

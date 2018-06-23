@@ -1,3 +1,4 @@
+import { CardComponent } from './card/card.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CovalentModule } from './modules/covalent/covalent.module';
 import { BrowserModule } from '@angular/platform-browser';
@@ -5,19 +6,32 @@ import { MaterialModule } from './modules/material/material.module';
 import { TestBed, async } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
+import { CardListComponent } from './card-list/card-list.component';
+import { HttpClientModule } from '@angular/common/http';
+import { RoutingModule, routes } from './modules/routing/routing.module';
+import { RouterTestingModule } from '@angular/router/testing';
+import { PostsComponent } from './posts/posts.component';
+import { ViewPostComponent } from './view-post/view-post.component';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
         AppComponent,
-        ToolbarComponent
+        ToolbarComponent,
+        CardComponent,
+        PostsComponent,
+        CardListComponent,
+        ViewPostComponent
       ],
       imports: [
         MaterialModule,
         BrowserModule,
         CovalentModule,
-        BrowserAnimationsModule
+        BrowserAnimationsModule,
+        HttpClientModule,
+        RoutingModule,
+        RouterTestingModule.withRoutes(routes)
       ]
     }).compileComponents();
   }));
