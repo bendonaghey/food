@@ -28,6 +28,7 @@
     "@covalent/core": "2.0.0-beta.2",
     "bulma": "^0.7.1",
     "core-js": "^2.5.4",
+    "firebase": "^5.1.0",
     "font-awesome": "^4.7.0",
     "hoek": "^4.2.1",
     "material-design-icons": "^3.0.1",
