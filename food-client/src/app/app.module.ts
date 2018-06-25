@@ -12,6 +12,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { RoutingModule } from './modules/routing/routing.module';
 import { ViewPostComponent } from './view-post/view-post.component';
 import { PostsComponent } from './posts/posts.component';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,14 @@ import { PostsComponent } from './posts/posts.component';
     HttpClientModule,
     RoutingModule
   ],
-  providers: [],
+  providers: [
+    {provide: 'apiKey', useValue: environment.apiKey},
+    {provide: 'authDomain', useValue: environment.authDomain},
+    {provide: 'databaseURL', useValue: environment.databaseURL},
+    {provide: 'projectId', useValue: environment.projectId},
+    {provide: 'storageBucket', useValue: environment.storageBucket},
+    {provide: 'messagingSenderId', useValue: environment.messagingSenderId}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

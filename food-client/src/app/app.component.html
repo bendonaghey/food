@@ -6,7 +6,8 @@
       </button>
       <span>Food</span>
       <span flex></span>
-      <button mat-raised-button color="accent">Login</button>
+      <button mat-raised-button color="accent" (click)="login()">Login</button>
+      <button mat-raised-button color="accent" (click)="logout()">logout</button>
     </div>
     <mat-sidenav-container fullscreen>
       <mat-sidenav #sidenav mode="over" opened="false">
