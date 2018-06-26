@@ -25,4 +25,17 @@ export class UserService {
       }
     );
   }
+
+  addUser(username: string, email: string) {
+    return this.http.post<User>(
+      `${this.BASE_URL}/signup`,
+      {
+        username,
+        email
+      },
+      {
+        headers: this.headers
+      }
+    );
+  }
 }

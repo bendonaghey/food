@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material';
+import { UserService } from '../../services/user-services/user.service';
+import { User } from '../../models/user.model';
 
 @Component({
   selector: 'app-signup-dialog',
@@ -7,13 +9,22 @@ import { MatDialogRef } from '@angular/material';
   styleUrls: ['./signup-dialog.component.scss']
 })
 export class SignupDialogComponent implements OnInit {
-  constructor(public dialogRef: MatDialogRef<SignupDialogComponent>) {}
+  public newUser: User;
+  constructor(
+    private userService: UserService,
+    public dialogRef: MatDialogRef<SignupDialogComponent>
+  ) {}
 
   onCloseCancel(): void {
     this.dialogRef.close();
   }
 
-  onSignup(): void {}
+  onSignup(username: HTMLInputElement, email: HTMLInputElement): void {
+    this.userService.addUser(username.value, email.value).subscribe(res => {
+      this.newUser = res;
+      console.log(res);
+    });
+  }
 
   ngOnInit() {}
 }

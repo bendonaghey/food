@@ -14,10 +14,6 @@ export class SignupComponent implements OnInit {
     const dialogRef = this.dialog.open(SignupDialogComponent, {
       width: '400px'
     });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-    });
   }
 
   ngOnInit() {}
