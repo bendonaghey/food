@@ -12,6 +12,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { RoutingModule } from './modules/routing/routing.module';
 import { ViewPostComponent } from './view-post/view-post.component';
 import { PostsComponent } from './posts/posts.component';
+import { LoginComponent } from './login/login.component';
+import { LoginDialogComponent } from './login/login-dialog/login-dialog.component';
+import { SignupComponent } from './signup/signup.component';
+import { SignupDialogComponent } from './signup/signup-dialog/signup-dialog.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +24,11 @@ import { PostsComponent } from './posts/posts.component';
     AppComponent,
     ViewPostComponent,
     CardListComponent,
-    PostsComponent
+    PostsComponent,
+    LoginComponent,
+    LoginDialogComponent,
+    SignupComponent,
+    SignupDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -31,6 +39,7 @@ import { PostsComponent } from './posts/posts.component';
     RoutingModule
   ],
   providers: [],
+  entryComponents: [LoginDialogComponent, SignupDialogComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

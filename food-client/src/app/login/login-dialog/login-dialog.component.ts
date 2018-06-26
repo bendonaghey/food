@@ -9,9 +9,11 @@ import { MatDialogRef } from '@angular/material';
 export class LoginDialogComponent implements OnInit {
   constructor(public dialogRef: MatDialogRef<LoginDialogComponent>) {}
 
-  onNoClick(): void {
+  onCloseCancel(): void {
     this.dialogRef.close();
   }
+
+  onLogin(): void {}
 
   ngOnInit() {}
 }
