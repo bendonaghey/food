@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { LoginDialogComponent } from './login-dialog/login-dialog.component';
+import { User } from '../models/user.model';
 
 @Component({
   selector: 'app-login',
@@ -8,6 +9,8 @@ import { LoginDialogComponent } from './login-dialog/login-dialog.component';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
+  @Input() public user: User;
+
   constructor(public dialog: MatDialog) {}
 
   ngOnInit() {}
@@ -15,10 +18,6 @@ export class LoginComponent implements OnInit {
   openDialog(): void {
     const dialogRef = this.dialog.open(LoginDialogComponent, {
       width: '400px'
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
     });
   }
 }

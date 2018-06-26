@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { User } from '../../models/user.model';
 
 @Injectable({
   providedIn: 'root'
@@ -11,5 +12,17 @@ export class UserService {
 
   constructor(private http: HttpClient) {
     this.headers = new HttpHeaders().set('Content-Type', 'application/json');
+  }
+
+  getUserByEmail(email: string): Observable<User> {
+    return this.http.post<User>(
+      `${this.BASE_URL}/login`,
+      {
+        email
+      },
+      {
+        headers: this.headers
+      }
+    );
   }
 }

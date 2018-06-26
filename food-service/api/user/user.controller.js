@@ -12,10 +12,7 @@ module.exports = {
       if (!user) {
         console.log('User not found');
         return res.status(404).send();
-      } else {
-        console.log(user);
       }
-
       res.send(user);
     });
   }
