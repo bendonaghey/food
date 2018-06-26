@@ -10,5 +10,6 @@ router.get('/posts', posts.getAllPosts);
 router.get('/posts/:id', posts.getPostById);
 router.get('/users', users.getAllUsers);
 router.post('/login', users.getUserByEmail);
+router.post('/signup', users.addUser);
 
 module.exports = router;

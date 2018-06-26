@@ -19,5 +19,15 @@ module.exports = {
       }
       callback(user);
     });
+  },
+
+  addUser: function(callback) {
+    user.create(function(error) {
+      if (error) {
+        console.log(error);
+        return status(500).send();
+      }
+      callback();
+    });
   }
 };
