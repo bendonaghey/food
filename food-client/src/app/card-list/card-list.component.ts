@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Post } from '../models/post.model';
-import { PostService } from '../services/post.service';
+import { PostService } from '../services/post-services/post.service';
 
 @Component({
   selector: 'app-card-list',
@@ -18,4 +18,3 @@ export class CardListComponent implements OnInit {
     });
   }
 }
-
