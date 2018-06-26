@@ -19,8 +19,13 @@ module.exports = {
   },
 
   addUser: function(req, res) {
-    userService.addUser(function() {
+    userService.addUser(req.body.email, function(newUser) {
       var addUser = new user();
+
+      if (!newUser) {
+        console.log('User not found');
+        return res.status(404).send();
+      }
 
       addUser.username = req.body.username;
       addUser.email = req.body.email;
@@ -29,7 +34,7 @@ module.exports = {
         if (err) {
           console.log(err);
         }
-        res.send('Successfully added: ' + addUser.username + '\n' + result.ops);
+        res.send(newUser);
       });
     });
   }

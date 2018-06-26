@@ -21,13 +21,13 @@ module.exports = {
     });
   },
 
-  addUser: function(callback) {
-    user.create(function(error) {
+  addUser: function(email, callback) {
+    user.findOne({ email }, function(error, newUser) {
       if (error) {
         console.log(error);
         return status(500).send();
       }
-      callback();
+      callback(newUser);
     });
   }
 };
