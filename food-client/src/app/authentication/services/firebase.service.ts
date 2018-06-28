@@ -1,10 +1,13 @@
 import { Injectable, Inject } from '@angular/core';
 import * as firebase from 'firebase';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FirebaseService {
+  public authState$ = new BehaviorSubject<boolean>(false);
+
   constructor(
     @Inject('apiKey') private apiKey: string,
     @Inject('authDomain') private authDomain: string,
@@ -21,12 +24,9 @@ export class FirebaseService {
       storageBucket: this.storageBucket,
       messagingSenderId: this.messagingSenderId
     };
-
-    // firebase.initializeApp(config);
     !firebase.apps.length ? firebase.initializeApp(config) : firebase.app();
-
     firebase.auth().onAuthStateChanged(user => {
-      console.log(user);
+      this.authState$.next(true);
     });
   }
 
