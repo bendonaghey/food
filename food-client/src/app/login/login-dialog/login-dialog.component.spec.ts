@@ -13,16 +13,24 @@ import { LoginDialogComponent } from './login-dialog.component';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { LoginComponent } from '../login.component';
 import { HttpClientModule } from '@angular/common/http';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 
 describe('LoginDialogComponent', () => {
   let component: LoginDialogComponent;
   let fixture: ComponentFixture<LoginDialogComponent>;
-
+  let mockDialogData: any;
+  let mockDialogRef: any;
+  mockDialogData = {};
+  mockDialogRef = jasmine.createSpyObj('dialog', ['close', 'updatePosition', 'updateSize']);
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [LoginDialogComponent],
       imports: [HttpClientModule],
-      providers: [LoginComponent],
+      providers: [
+        LoginComponent,
+        { provide: MAT_DIALOG_DATA, useValue: mockDialogData },
+        { provide: MatDialogRef, useValue: mockDialogRef }
+      ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA]
     }).compileComponents();
   }));
@@ -32,10 +40,6 @@ describe('LoginDialogComponent', () => {
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
-
-  it('should be created', inject([LoginComponent], (comp: LoginComponent) => {
-    expect(comp).toBeTruthy();
-  }));
 
   it('should create', () => {
     expect(component).toBeTruthy();
