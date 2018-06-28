@@ -21,7 +21,9 @@ export class FirebaseService {
       storageBucket: this.storageBucket,
       messagingSenderId: this.messagingSenderId
     };
-    firebase.initializeApp(config);
+
+    // firebase.initializeApp(config);
+    !firebase.apps.length ? firebase.initializeApp(config) : firebase.app();
 
     firebase.auth().onAuthStateChanged(user => {
       console.log(user);
