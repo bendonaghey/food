@@ -12,6 +12,8 @@ import { RoutingModule, routes } from './modules/routing/routing.module';
 import { RouterTestingModule } from '@angular/router/testing';
 import { PostsComponent } from './posts/posts.component';
 import { ViewPostComponent } from './view-post/view-post.component';
+import { LoginComponent } from './login/login.component';
+import { SignupComponent } from './signup/signup.component';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -22,7 +24,9 @@ describe('AppComponent', () => {
         CardComponent,
         PostsComponent,
         CardListComponent,
-        ViewPostComponent
+        ViewPostComponent,
+        LoginComponent,
+        SignupComponent
       ],
       imports: [
         MaterialModule,
