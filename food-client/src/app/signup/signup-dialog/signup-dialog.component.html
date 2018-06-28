@@ -1,0 +1,19 @@
+<div>
+  <mat-dialog-content>
+    <mat-form-field class="full-width">
+      <input type="text" class="form-control" matInput placeholder="Enter username" #usernameInput>
+    </mat-form-field>
+    <mat-form-field class="full-width">
+      <input type="text" class="form-control" matInput placeholder="Enter email" #emailInput>
+    </mat-form-field>
+    <mat-form-field class="full-width">
+      <input type="text" class="form-control" matInput placeholder="Enter password" #passwordInput>
+    </mat-form-field>
+  </mat-dialog-content>
+  <mat-dialog-actions align="center">
+    <button mat-raised-button color="primary" (click)="onSignup(usernameInput, emailInput, passwordInput)">Signup</button>&nbsp;
+    <button mat-raised-button color="primary" (click)="onCloseCancel()">Cancel</button>
+  </mat-dialog-actions>
+  <p class="push-top-md"> {{newUser?.username}} </p>
+  <p> {{newUser?.email}} </p>
+</div>

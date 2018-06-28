@@ -4,7 +4,7 @@ import {
   HttpTestingController
 } from '@angular/common/http/testing';
 import { PostService } from './post.service';
-import { Post } from '../models/post.model';
+import { Post } from '../../models/post.model';
 
 describe('PostService', () => {
   const url: String = 'http://localhost:8190/api';

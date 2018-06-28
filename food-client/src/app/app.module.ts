@@ -13,6 +13,11 @@ import { RoutingModule } from './modules/routing/routing.module';
 import { ViewPostComponent } from './view-post/view-post.component';
 import { PostsComponent } from './posts/posts.component';
 import { environment } from '../environments/environment';
+import { LoginComponent } from './login/login.component';
+import { LoginDialogComponent } from './login/login-dialog/login-dialog.component';
+import { SignupComponent } from './signup/signup.component';
+import { SignupDialogComponent } from './signup/signup-dialog/signup-dialog.component';
+
 
 @NgModule({
   declarations: [
@@ -21,7 +26,11 @@ import { environment } from '../environments/environment';
     AppComponent,
     ViewPostComponent,
     CardListComponent,
-    PostsComponent
+    PostsComponent,
+    LoginComponent,
+    LoginDialogComponent,
+    SignupComponent,
+    SignupDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -39,6 +48,7 @@ import { environment } from '../environments/environment';
     {provide: 'storageBucket', useValue: environment.storageBucket},
     {provide: 'messagingSenderId', useValue: environment.messagingSenderId}
   ],
+  entryComponents: [LoginDialogComponent, SignupDialogComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

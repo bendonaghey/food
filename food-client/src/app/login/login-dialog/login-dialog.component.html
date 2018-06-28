@@ -1,0 +1,17 @@
+<div>
+  <mat-dialog-content>
+    <mat-form-field class="full-width">
+      <input type="text" class="form-control" matInput placeholder="Enter email" #emailInput>
+    </mat-form-field>
+    <mat-form-field class="full-width">
+      <input type="text" class="form-control" matInput placeholder="Enter password" #passwordInput>
+    </mat-form-field>
+  </mat-dialog-content>
+  <mat-dialog-actions align="center">
+    <button mat-raised-button color="primary" (click)="onLogin(emailInput, passwordInput)">Login</button>&nbsp;
+    <button mat-raised-button color="primary" (click)="onCloseCancel()">Cancel</button>
+  </mat-dialog-actions>
+  <p class="push-top-md"> {{user?.email}} </p>
+  <p> {{user?.forename}} </p>
+  <p> {{user?.surname}} </p>
+</div>
