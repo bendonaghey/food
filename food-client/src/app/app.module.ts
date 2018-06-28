@@ -12,6 +12,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { RoutingModule } from './modules/routing/routing.module';
 import { ViewPostComponent } from './view-post/view-post.component';
 import { PostsComponent } from './posts/posts.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { PostsComponent } from './posts/posts.component';
     AppComponent,
     ViewPostComponent,
     CardListComponent,
-    PostsComponent
+    PostsComponent,
+    UserProfileComponent
   ],
   imports: [
     BrowserModule,

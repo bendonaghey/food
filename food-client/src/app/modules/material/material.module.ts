@@ -11,12 +11,13 @@ import {MatIconModule,
   MatProgressSpinnerModule,
   MatDialogModule,
   MatInputModule,
-  MatToolbarModule} from '@angular/material';
+  MatToolbarModule,
+  MatChipsModule} from '@angular/material';
 
 const modules = [MatIconModule, MatSidenavModule, MatListModule,
   MatButtonModule, MatSlideToggleModule, MatCardModule,
   MatExpansionModule, MatMenuModule, MatTabsModule,
-  MatProgressSpinnerModule, MatDialogModule, MatInputModule, MatToolbarModule];
+  MatProgressSpinnerModule, MatDialogModule, MatInputModule, MatToolbarModule, MatChipsModule];
 
 @NgModule({
   imports: modules,
