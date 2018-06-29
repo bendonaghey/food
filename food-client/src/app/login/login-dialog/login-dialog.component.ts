@@ -2,7 +2,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { MatDialogRef } from '@angular/material';
 import { UserService } from '../../services/user-services/user.service';
 import { User } from '../../models/user.model';
-import { filter } from 'rxjs/operators';
+import { filter, catchError } from 'rxjs/operators';
 import {
   FormBuilder,
   FormGroup,
@@ -10,6 +10,7 @@ import {
   FormControl
 } from '@angular/forms';
 import { FirebaseService } from '../../authentication/services/firebase.service';
+import { of } from 'rxjs';
 
 @Component({
   selector: 'app-login-dialog',
@@ -28,15 +29,15 @@ export class LoginDialogComponent implements OnInit {
     private dialogRef: MatDialogRef<LoginDialogComponent>,
     private formBuilder: FormBuilder,
     private firebaseService: FirebaseService
-  ) {}
+  ) {
+    console.log('listening to auth state');
+    this.firebaseService.authState$.subscribe(res => {
+
+    });
+  }
 
   ngOnInit() {
     this.buildForm();
-    this.firebaseService.authState$
-      .pipe(filter(res => res === true))
-      .subscribe(res => {
-        console.log('authState sub', res);
-      });
   }
 
   login(): void {
