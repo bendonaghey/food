@@ -1,6 +1,7 @@
 import { Component, HostListener } from '@angular/core';
 import { FirebaseService } from './authentication/services/firebase.service';
-declare const window: any;
+import { filter, tap } from 'rxjs/operators';
+import { UserService } from './services/user-services/user.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -10,17 +11,32 @@ export class AppComponent {
   title = 'app';
   email = 'a';
   password = 'a';
-  constructor(private firebase: FirebaseService) {
 
-  }
+  userEmail: string;
 
-  login() {
-    this.firebase.login(this.email, this.password);
+  constructor(
+    private firebaseService: FirebaseService,
+    private userService: UserService
+  ) {
+    this.firebaseService.authState$.subscribe(res => {
+      this.userEmail = res;
+      if (this.userEmail) {
+        this.getUserDetails();
+      }
+    });
   }
 
   logout() {
-    this.firebase.logout();
+    this.firebaseService.logout();
+  }
+
+  isUserLoggedIn(): boolean {
+    return this.userEmail !== null;
+  }
+
+  private getUserDetails() {
+    this.userService.getUserByEmail(this.userEmail).subscribe(res => {
+      this.userService.user = res;
+    });
   }
 }
-
-

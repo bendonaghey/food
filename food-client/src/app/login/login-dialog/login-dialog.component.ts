@@ -10,7 +10,6 @@ import {
   FormControl
 } from '@angular/forms';
 import { FirebaseService } from '../../authentication/services/firebase.service';
-import { of } from 'rxjs';
 
 @Component({
   selector: 'app-login-dialog',
@@ -29,31 +28,20 @@ export class LoginDialogComponent implements OnInit {
     private dialogRef: MatDialogRef<LoginDialogComponent>,
     private formBuilder: FormBuilder,
     private firebaseService: FirebaseService
-  ) {
-    console.log('listening to auth state');
-    this.firebaseService.authState$.subscribe(res => {
-
-    });
-  }
+  ) {}
 
   ngOnInit() {
     this.buildForm();
+    this.firebaseService.authState$
+      .pipe(filter(res => res !== null))
+      .subscribe(res => {
+        this.dialogRef.close();
+      });
   }
 
   login(): void {
     this.firebaseService.login(this.email.value, this.password.value);
   }
-
-  // onCloseCancel(): void {
-  //   this.dialogRef.close();
-  // }
-
-  // onLogin(email: HTMLInputElement): void {
-  //   this.userService.getUserByEmail(email.value).subscribe(res => {
-  //     this.user = res;
-  //     console.log(this.user);
-  //   });
-  // }
 
   private buildForm(): void {
     this.email = new FormControl('', Validators.required);

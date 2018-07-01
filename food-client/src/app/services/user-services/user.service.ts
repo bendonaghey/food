@@ -9,7 +9,7 @@ import { User } from '../../models/user.model';
 export class UserService {
   private headers: HttpHeaders;
   private BASE_URL: String = 'http://localhost:8190/api';
-
+  _user: User;
   constructor(private http: HttpClient) {
     this.headers = new HttpHeaders().set('Content-Type', 'application/json');
   }
@@ -37,5 +37,14 @@ export class UserService {
         headers: this.headers
       }
     );
+  }
+
+  get user() {
+    return this._user;
+  }
+
+  set user(user: User) {
+    this._user = user;
+    console.log('set', this._user);
   }
 }

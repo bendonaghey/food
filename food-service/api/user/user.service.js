@@ -12,6 +12,7 @@ module.exports = {
   },
 
   getUserByEmail: function(email, callback) {
+    console.log('here', email);
     user.findOne({ email }, function(error, user) {
       if (error) {
         console.log(error);

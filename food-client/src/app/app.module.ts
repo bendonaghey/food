@@ -18,6 +18,7 @@ import { LoginDialogComponent } from './login/login-dialog/login-dialog.componen
 import { SignupComponent } from './signup/signup.component';
 import { SignupDialogComponent } from './signup/signup-dialog/signup-dialog.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { UserOptionsComponent } from './authentication/user-options/user-options.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
     LoginComponent,
     LoginDialogComponent,
     SignupComponent,
-    SignupDialogComponent
+    SignupDialogComponent,
+    UserOptionsComponent
   ],
   imports: [
     BrowserModule,

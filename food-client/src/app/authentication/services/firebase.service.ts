@@ -6,7 +6,7 @@ import { BehaviorSubject, Observable, of } from 'rxjs';
   providedIn: 'root'
 })
 export class FirebaseService {
-  public authState$ = new BehaviorSubject<boolean>(false);
+  public authState$ = new BehaviorSubject<any>(null);
 
   constructor(
     @Inject('apiKey') private apiKey: string,
@@ -26,12 +26,11 @@ export class FirebaseService {
     };
     !firebase.apps.length ? firebase.initializeApp(config) : firebase.app();
     firebase.auth().onAuthStateChanged(user => {
-
       // temp debugging
       if (user) {
-        console.log('auth state', user.email);
+        this.authState$.next(user.email);
       } else {
-        console.log('auth state', user);
+        this.authState$.next(null);
       }
     });
   }
@@ -42,7 +41,6 @@ export class FirebaseService {
     firebase.auth().signInWithEmailAndPassword(email, password);
   }
   public logout() {
-    console.log('logout');
     firebase.auth().signOut();
   }
 }
