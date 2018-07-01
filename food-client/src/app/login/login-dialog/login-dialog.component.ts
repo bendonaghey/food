@@ -17,14 +17,13 @@ import { FirebaseService } from '../../authentication/services/firebase.service'
   styleUrls: ['./login-dialog.component.scss']
 })
 export class LoginDialogComponent implements OnInit {
-  @Output() public user: User;
+  // @Output() public user: User;
 
   public loginForm: FormGroup;
   public email: FormControl;
   public password: FormControl;
 
   constructor(
-    private userService: UserService,
     private dialogRef: MatDialogRef<LoginDialogComponent>,
     private formBuilder: FormBuilder,
     private firebaseService: FirebaseService

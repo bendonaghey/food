@@ -26,6 +26,7 @@ export class FirebaseService {
     };
     !firebase.apps.length ? firebase.initializeApp(config) : firebase.app();
     firebase.auth().onAuthStateChanged(user => {
+      console.log(user);
       // temp debugging
       if (user) {
         this.authState$.next(user.email);
@@ -35,7 +36,9 @@ export class FirebaseService {
     });
   }
 
-  public signup(email: string, password: string) {}
+  public signup(email: string, password: string) {
+    firebase.auth().createUserWithEmailAndPassword(email, password);
+  }
 
   public login(email: string, password: string) {
     firebase.auth().signInWithEmailAndPassword(email, password);

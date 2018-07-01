@@ -45,6 +45,5 @@ export class UserService {
 
   set user(user: User) {
     this._user = user;
-    console.log('set', this._user);
   }
 }
