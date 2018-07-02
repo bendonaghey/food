@@ -19,23 +19,26 @@ module.exports = {
   },
 
   addUser: function(req, res) {
-    userService.addUser(req.body.email, function(newUser) {
-      var addUser = new user();
+    const addUser = new user({
+      username: req.body.username,
+      email: req.body.email
+    });
 
+    user.db.collection('users').save(addUser, (err, result) => {
+      if (err) {
+        console.log('Save user error: ' + err);
+      } else {
+        console.log('User added');
+      }
+    });
+
+    userService.addUser(req.body.email, function(newUser) {
       if (!newUser) {
         console.log('User not found');
         return res.status(404).send();
       }
-
-      addUser.username = req.body.username;
-      addUser.email = req.body.email;
-
-      user.db.collection('users').save(addUser, (err, result) => {
-        if (err) {
-          console.log(err);
-        }
-        res.send(newUser);
-      });
+      console.log(newUser);
+      res.send(newUser);
     });
   }
 };
