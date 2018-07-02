@@ -12,12 +12,22 @@ module.exports = {
   },
 
   getPostById: function(postId, callback) {
-    post.findOne({ postId }, function(error, posts) {
+    post.findOne({ postId }, function(error, post) {
       if (error) {
         console.log(error);
         return;
       }
-      callback(posts);
+      callback(post);
+    });
+  },
+
+  addPost: function(postId, callback) {
+    post.findOne({ postId }, function(error, newPost) {
+      if (error) {
+        console.log(error);
+        return status(500).send();
+      }
+      callback(newPost);
     });
   }
 };
