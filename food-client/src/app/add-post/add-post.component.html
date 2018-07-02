@@ -1,0 +1,73 @@
+<div class="container">
+  <div layout="column" align="center">
+    <form [formGroup]="addPostForm">
+      <!--Upload div-->
+      <div flex>
+        <mat-card align="center" class="image">
+          <mat-card-header>
+            <mat-card-title>Upload photo</mat-card-title>
+          </mat-card-header>
+          <td-file-upload class="push-left-sm push-right-sm" #fileInput (change)="selectEvent($event)" required>
+            <ng-template td-file-input-label>
+              <mat-icon class="material-icons">add_a_photo</mat-icon>
+              <span [hidden]="!fileInput?.required"></span>
+            </ng-template>
+            <img [src]="url">
+          </td-file-upload>
+        </mat-card>
+      </div>
+      <!--Title div-->
+      <div flex>
+        <mat-card>
+          <mat-card-header>
+            <mat-card-title>Title</mat-card-title>
+          </mat-card-header>
+          <mat-form-field class="pad-left-md pad-right-md" appearance="outline">
+            <input type="text" formControlName="title" matInput>
+          </mat-form-field>
+          <mat-card-header>
+            <mat-card-title>Description</mat-card-title>
+          </mat-card-header>
+          <mat-form-field class="pad-left-md pad-right-md" appearance="outline">
+            <input type="text" formControlName="description" matInput placeholder="e.g Quality, quantity, use by date">
+          </mat-form-field>
+        </mat-card>
+      </div>
+      <!--Location div-->
+      <div flex>
+        <mat-card>
+          <mat-card-header>
+            <mat-card-title>Location</mat-card-title>
+          </mat-card-header>
+          <mat-form-field class="pad-left-md pad-right-md" appearance="outline">
+            <input type="text" formControlName="location" matInput>
+          </mat-form-field>
+          <mat-card-header>
+            <mat-card-title>Pick-up times {{post?.title}} {{post?.postId}} </mat-card-title>
+          </mat-card-header>
+          <mat-form-field class="pad-left-md pad-right-md" appearance="outline">
+            <input type="text" formControlName="pickUpTime" matInput placeholder="e.g Weekdays, evenings only">
+          </mat-form-field>
+        </mat-card>
+      </div>
+      <!--ListedFor div-->
+      <div flex>
+        <mat-card>
+          <mat-form-field class="dropHeight pad-left-md pad-right-md pad-top-sm">
+            <mat-select placeholder="Keep listed for" formControlName="expirationDate">
+              <mat-option *ngFor="let day of days" [value]="day.value">
+                {{day.viewValue}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </mat-card>
+      </div>
+      <!--Submit button-->
+      <div flex align="center center">
+        <button class="submit push-bottom-md push-top-md" mat-raised-button color="accent" (click)="addPost()">
+          Submit
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

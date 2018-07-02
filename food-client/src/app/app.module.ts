@@ -1,6 +1,7 @@
 import { MaterialModule } from './modules/material/material.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -16,6 +17,7 @@ import { LoginComponent } from './login/login.component';
 import { LoginDialogComponent } from './login/login-dialog/login-dialog.component';
 import { SignupComponent } from './signup/signup.component';
 import { SignupDialogComponent } from './signup/signup-dialog/signup-dialog.component';
+import { AddPostComponent } from './add-post/add-post.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,8 @@ import { SignupDialogComponent } from './signup/signup-dialog/signup-dialog.comp
     LoginComponent,
     LoginDialogComponent,
     SignupComponent,
-    SignupDialogComponent
+    SignupDialogComponent,
+    AddPostComponent
   ],
   imports: [
     BrowserModule,
@@ -36,7 +39,9 @@ import { SignupDialogComponent } from './signup/signup-dialog/signup-dialog.comp
     MaterialModule,
     CovalentModule,
     HttpClientModule,
-    RoutingModule
+    RoutingModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   entryComponents: [LoginDialogComponent, SignupDialogComponent],

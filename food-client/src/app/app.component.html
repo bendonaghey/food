@@ -4,8 +4,14 @@
       <button mat-icon-button class="td-menu-button" (click)="sidenav.toggle()" mdTooltip="Main menu">
         <mat-icon>menu</mat-icon>
       </button>
-      <span>Food</span>
+      <span class="cursor-pointer" routerLink="/">Food</span>
       <span flex></span>
+      <div>
+        <button class="push-right-sm no-padding" mat-raised-button color="accent" routerLink="add-post">
+          <mat-icon class="left">playlist_add</mat-icon>
+          <span>Add post</span>
+        </button>
+      </div>
       <app-login></app-login>
       <app-signup></app-signup>
     </div>
