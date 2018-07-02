@@ -4,10 +4,11 @@ export interface Post {
   title: string;
   description: string;
   location: string;
+  pickUpTime: string;
   datePosted: number;
   likes: number;
   interest: number;
   active: boolean;
-  expirationDate: number;
+  expirationDate: string;
   image: string;
 }
