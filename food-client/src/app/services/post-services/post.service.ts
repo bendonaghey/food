@@ -27,6 +27,7 @@ export class PostService {
   }
 
   addPost(
+    postId: string,
     userId: string,
     title: string,
     description: string,
@@ -42,6 +43,7 @@ export class PostService {
     return this.http.post<Post>(
       `${this.BASE_URL}/add-post`,
       {
+        postId,
         userId,
         title,
         description,

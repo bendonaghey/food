@@ -20,6 +20,7 @@ export interface Day {
 })
 export class AddPostComponent implements OnInit {
   public post: Post;
+  public postId: string;
   public url: string;
   public userId: string;
 
@@ -60,6 +61,7 @@ export class AddPostComponent implements OnInit {
   addPost(): void {
     // !Removed when getting logged in userId
     this.userId = '1000';
+    this.postId = '10000';
     // Tried pasting through an post object instead of all this
     // this.post.title = this.title.value;
     // this.post.description = this.description.value;
@@ -74,6 +76,7 @@ export class AddPostComponent implements OnInit {
 
     this.postService
       .addPost(
+        this.postId,
         this.userId,
         this.title.value,
         this.description.value,

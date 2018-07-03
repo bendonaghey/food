@@ -15,6 +15,7 @@ module.exports = {
   },
 
   addPost: function(req, res) {
+    // this will be when we get the nextId of all posts
     var nextId;
     postService.getAllPosts(function(posts) {
       nextId = 1000 + posts.length;
@@ -22,7 +23,7 @@ module.exports = {
     });
 
     const addPost = new post({
-      postId: nextId,
+      postId: req.body.postId,
       userId: req.body.userId,
       title: req.body.title,
       description: req.body.description,
@@ -47,7 +48,7 @@ module.exports = {
       }
     });
 
-    postService.addPost(nextId, function(newPost) {
+    postService.addPost(req.body.postId, function(newPost) {
       if (!newPost) {
         console.log('Post not found');
         return res.status(404).send();
