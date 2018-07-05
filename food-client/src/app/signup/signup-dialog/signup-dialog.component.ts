@@ -30,23 +30,12 @@ export class SignupDialogComponent implements OnInit {
     private firebaseService: FirebaseService
   ) {}
 
-  // onCloseCancel(): void {
-  //   this.dialogRef.close();
-  // }
-
-  // onSignup(username: HTMLInputElement, email: HTMLInputElement): void {
-  //   this.userService.addUser(username.value, email.value).subscribe(res => {
-  //     this.newUser = res;
-  //     console.log(res);
-  //   });
-  // }
-
   ngOnInit() {
     this.buildForm();
   }
 
   signup(): void {
-    this.firebaseService.signup(this.email.value, this.password.value);
+    this.firebaseService.signup(this.email.value, this.password.value, this.username.value);
   }
 
   private buildForm() {

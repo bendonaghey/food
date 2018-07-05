@@ -10,33 +10,17 @@ export class UserService {
   private headers: HttpHeaders;
   private BASE_URL: String = 'http://localhost:8190/api';
   _user: User;
+
   constructor(private http: HttpClient) {
     this.headers = new HttpHeaders().set('Content-Type', 'application/json');
   }
 
   getUserByEmail(email: string): Observable<User> {
-    return this.http.post<User>(
-      `${this.BASE_URL}/login`,
-      {
-        email
-      },
-      {
-        headers: this.headers
-      }
-    );
+    return this.http.post<User>(`${this.BASE_URL}/login`, {email}, {headers: this.headers});
   }
 
-  addUser(username: string, email: string) {
-    return this.http.post<User>(
-      `${this.BASE_URL}/signup`,
-      {
-        username,
-        email
-      },
-      {
-        headers: this.headers
-      }
-    );
+  createUser(username: string, email: string) {
+    return this.http.post<User>(`${this.BASE_URL}/signup`, {username, email}, {headers: this.headers});
   }
 
   get user() {
