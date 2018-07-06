@@ -9,3 +9,7 @@
   width: 450px;
   height: 350px;
 }
+
+:host /deep/.mat-card:not([class*='mat-elevation-z']) {
+  border-radius: 5px;
+}

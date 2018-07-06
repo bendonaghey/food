@@ -53,7 +53,6 @@ export class AddPostComponent implements OnInit {
       fileReader.readAsDataURL(file.target.files[0]);
       fileReader.onload = (event: Event) => {
         this.url = fileReader.result;
-        console.log(this.url);
       };
     }
   }

@@ -9,7 +9,7 @@ export const routes: Routes = [
   { path: 'posts', component: PostsComponent },
   { path: 'posts/:id', component: ViewPostComponent },
   { path: 'add-post', component: AddPostComponent },
-  { path: '**', redirectTo: 'listings', pathMatch: 'full' }
+  { path: '**', redirectTo: 'posts', pathMatch: 'full' }
 ];
 
 @NgModule({

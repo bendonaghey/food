@@ -27,6 +27,16 @@
   max-width: 650px;
 }
 
+:host /deep/.td-file-upload[_ngcontent-c13] {
+  background-color: white;
+}
+
+:host /deep/ .mat-card-subtitle,
+.mat-card-content,
+.mat-card-header .mat-card-title {
+  font-size: 16px;
+}
+
 :host /deep/.mat-form-field-appearance-outline .mat-form-field-outline-thick {
   color: #a7d2cb;
 }
@@ -50,4 +60,15 @@
 
 :host /deep/.mat-form-field.mat-form-field-invalid .mat-form-field-label {
   color: rgb(232, 135, 135);
+}
+
+:host /deep/.mat-card-actions,
+.mat-card-content,
+.mat-card-subtitle,
+.mat-card-title {
+  margin-bottom: 0px;
+}
+
+:host /deep/.mat-card:not([class*='mat-elevation-z']) {
+  border-radius: 5px;
 }
