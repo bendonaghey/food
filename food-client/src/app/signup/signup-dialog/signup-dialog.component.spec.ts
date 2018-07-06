@@ -5,6 +5,7 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { SignupComponent } from '../signup.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 describe('SignupDialogComponent', () => {
   let component: SignupDialogComponent;
@@ -16,12 +17,18 @@ describe('SignupDialogComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [SignupDialogComponent],
-      imports: [HttpClientModule],
+      imports: [HttpClientModule, FormsModule, ReactiveFormsModule],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
       providers: [
         SignupComponent,
         { provide: MAT_DIALOG_DATA, useValue: mockDialogData },
-        { provide: MatDialogRef, useValue: mockDialogRef }
+        { provide: MatDialogRef, useValue: mockDialogRef },
+        { provide: 'apiKey', useValue: 'test' },
+        { provide: 'authDomain', useValue: 'test' },
+        { provide: 'databaseURL', useValue: 'test' },
+        { provide: 'projectId', useValue: 'test' },
+        { provide: 'storageBucket', useValue: 'test' },
+        { provide: 'messagingSenderId', useValue: 'test' }
       ]
     }).compileComponents();
   }));

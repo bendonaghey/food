@@ -6,19 +6,11 @@
       </button>
       <span>Food</span>
       <span flex></span>
-
       <div *ngIf="!isUserLoggedIn()">
         <app-login></app-login>
         <app-signup></app-signup>
       </div>
-
-
       <app-user-options *ngIf="isUserLoggedIn()"></app-user-options>
-
-
-
-      <!-- <button mat-raised-button color="accent" (click)="logout()">Logout</button> -->
-
     </div>
     <mat-sidenav-container fullscreen>
       <mat-sidenav #sidenav mode="over" opened="false">
