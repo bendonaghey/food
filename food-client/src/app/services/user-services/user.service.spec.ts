@@ -7,7 +7,7 @@ import {
 import { User } from '../../models/user.model';
 
 describe('UserService', () => {
-  const url: String = 'http:localhost:8190/api';
+  const url: String = 'http://localhost:8190/api';
   let userService: UserService;
   let httpMock: any;
 
@@ -35,7 +35,7 @@ describe('UserService', () => {
 
       const mockRequest = httpMock.expectOne(url + '/login');
       expect(mockRequest.request.method).toBe('POST');
-      expect(mockRequest.request.headers.POST('Content-Type')).toBe(
+      expect(mockRequest.request.headers.get('Content-Type')).toBe(
         'application/json'
       );
       mockRequest.flush([]);

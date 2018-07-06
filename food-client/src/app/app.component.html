@@ -6,8 +6,11 @@
       </button>
       <span>Food</span>
       <span flex></span>
-      <app-login></app-login>
-      <app-signup></app-signup>
+      <div *ngIf="!isUserLoggedIn()">
+        <app-login></app-login>
+        <app-signup></app-signup>
+      </div>
+      <app-user-options *ngIf="isUserLoggedIn()"></app-user-options>
     </div>
     <mat-sidenav-container fullscreen>
       <mat-sidenav #sidenav mode="over" opened="false">
