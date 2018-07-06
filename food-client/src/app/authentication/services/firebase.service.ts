@@ -8,6 +8,7 @@ import { UserService } from '../../services/user-services/user.service';
 })
 export class FirebaseService {
   public authState$ = new BehaviorSubject<any>(null);
+  public userState$ = new BehaviorSubject<any>(null);
 
 
   constructor(
@@ -21,7 +22,6 @@ export class FirebaseService {
   ) {
     this.configureFirebase();
     firebase.auth().onAuthStateChanged(user => {
-      // temp debugging
       if (user) {
         this.authState$.next(user.email);
       } else {
@@ -31,12 +31,11 @@ export class FirebaseService {
   }
 
   public signup(email: string, password: string, username: string) {
-
-    // return of(firebase.auth().createUserWithEmailAndPassword(email, password));
-
-    firebase.auth().createUserWithEmailAndPassword(email, password).then(res => {
+    firebase.auth().createUserWithEmailAndPassword(email, password).then(() => {
       this.userService.createUser(username, email).subscribe(user => {
-        console.log(res);
+        if (user) {
+          this.userState$.next(user);
+        }
       });
     }, (error) => {
       console.warn('Error: ', error.message);
@@ -44,7 +43,15 @@ export class FirebaseService {
   }
 
   public login(email: string, password: string) {
-    firebase.auth().signInWithEmailAndPassword(email, password)
+    firebase.auth().signInWithEmailAndPassword(email, password).then(() => {
+      this.userService.getUserByEmail(email).subscribe(user => {
+        if (user) {
+          this.userState$.next(user);
+        }
+      });
+    }, (error) => {
+      console.warn('Error: ', error.message);
+    });
   }
   public logout() {
     firebase.auth().signOut();

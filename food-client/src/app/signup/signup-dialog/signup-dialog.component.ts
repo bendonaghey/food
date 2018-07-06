@@ -1,14 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material';
-import { UserService } from '../../services/user-services/user.service';
 import { User } from '../../models/user.model';
-import {
-  FormControl,
-  FormGroup,
-  FormBuilder,
-  Validators
-} from '@angular/forms';
+import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { FirebaseService } from '../../authentication/services/firebase.service';
+import { filter } from 'rxjs/operators';
+import { combineLatest } from 'rxjs';
 
 @Component({
   selector: 'app-signup-dialog',
@@ -22,9 +18,10 @@ export class SignupDialogComponent implements OnInit {
   public username: FormControl;
   public email: FormControl;
   public password: FormControl;
+  private authState$: any;
+  private userState$: any;
 
   constructor(
-    private userService: UserService,
     private dialogRef: MatDialogRef<SignupDialogComponent>,
     private formBuilder: FormBuilder,
     private firebaseService: FirebaseService
@@ -32,6 +29,11 @@ export class SignupDialogComponent implements OnInit {
 
   ngOnInit() {
     this.buildForm();
+    this.authState$ = this.firebaseService.authState$.pipe(filter(res => res !== null));
+    this.userState$ = this.firebaseService.userState$.pipe(filter(res => res !== null));
+    combineLatest(this.authState$, this.userState$).subscribe(() => {
+      this.dialogRef.close();
+    });
   }
 
   signup(): void {

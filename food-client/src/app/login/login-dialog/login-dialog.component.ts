@@ -1,15 +1,9 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material';
-import { UserService } from '../../services/user-services/user.service';
-import { User } from '../../models/user.model';
-import { filter, catchError } from 'rxjs/operators';
-import {
-  FormBuilder,
-  FormGroup,
-  Validators,
-  FormControl
-} from '@angular/forms';
+import { filter } from 'rxjs/operators';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { FirebaseService } from '../../authentication/services/firebase.service';
+import { combineLatest } from 'rxjs';
 
 @Component({
   selector: 'app-login-dialog',
@@ -17,25 +11,26 @@ import { FirebaseService } from '../../authentication/services/firebase.service'
   styleUrls: ['./login-dialog.component.scss']
 })
 export class LoginDialogComponent implements OnInit {
-  // @Output() public user: User;
-
   public loginForm: FormGroup;
   public email: FormControl;
   public password: FormControl;
 
+  private authState$: any;
+  private userState$: any;
+
   constructor(
     private dialogRef: MatDialogRef<LoginDialogComponent>,
     private formBuilder: FormBuilder,
-    private firebaseService: FirebaseService
+    private firebaseService: FirebaseService,
   ) {}
 
   ngOnInit() {
     this.buildForm();
-    this.firebaseService.authState$
-      .pipe(filter(res => res !== null))
-      .subscribe(res => {
-        this.dialogRef.close();
-      });
+    this.authState$ = this.firebaseService.authState$.pipe(filter(res => res !== null));
+    this.userState$ = this.firebaseService.userState$.pipe(filter(res => res !== null));
+    combineLatest(this.authState$, this.userState$).subscribe(() => {
+      this.dialogRef.close();
+    });
   }
 
   login(): void {
