@@ -18,26 +18,9 @@ module.exports = {
     });
   },
 
-  addUser: function(req, res) {
-    const addUser = new user({
-      username: req.body.username,
-      email: req.body.email
-    });
+  createUser: function(req, res) {
 
-    user.db.collection('users').save(addUser, (err, result) => {
-      if (err) {
-        console.log('Save user error: ' + err);
-      } else {
-        console.log('User added');
-      }
-    });
-
-    userService.addUser(req.body.email, function(newUser) {
-      if (!newUser) {
-        console.log('User not found');
-        return res.status(404).send();
-      }
-      console.log(newUser);
+    userService.createUser(req.body.email, req.body.username, function(newUser) {
       res.send(newUser);
     });
   }

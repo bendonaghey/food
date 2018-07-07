@@ -28,7 +28,7 @@ router.get('/about', system.getSystemInfo);
 //User operations
 router.get('/users', users.getAllUsers);
 router.post('/login', users.getUserByEmail);
-router.post('/signup', users.addUser);
+router.post('/signup', users.createUser);
 
 //Post operations
 router.get('/posts', posts.getAllPosts);

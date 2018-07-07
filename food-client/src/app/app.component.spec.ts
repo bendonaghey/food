@@ -14,6 +14,8 @@ import { PostsComponent } from './posts/posts.component';
 import { ViewPostComponent } from './view-post/view-post.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/compiler/src/core';
+import { UserOptionsComponent } from './authentication/user-options/user-options.component';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -26,7 +28,8 @@ describe('AppComponent', () => {
         CardListComponent,
         ViewPostComponent,
         LoginComponent,
-        SignupComponent
+        SignupComponent,
+        UserOptionsComponent
       ],
       imports: [
         MaterialModule,
@@ -36,6 +39,14 @@ describe('AppComponent', () => {
         HttpClientModule,
         RoutingModule,
         RouterTestingModule.withRoutes(routes)
+      ],
+      providers: [
+        { provide: 'apiKey', useValue: 'test' },
+        { provide: 'authDomain', useValue: 'test' },
+        { provide: 'databaseURL', useValue: 'test' },
+        { provide: 'projectId', useValue: 'test' },
+        { provide: 'storageBucket', useValue: 'test' },
+        { provide: 'messagingSenderId', useValue: 'test' }
       ]
     }).compileComponents();
   }));

@@ -6,14 +6,11 @@
       </button>
       <span class="cursor-pointer" routerLink="/">Food</span>
       <span flex></span>
-      <div>
-        <button class="push-right-sm no-padding" mat-raised-button color="accent" routerLink="add-post">
-          <mat-icon class="left">playlist_add</mat-icon>
-          <span>Add post</span>
-        </button>
+      <div *ngIf="!isUserLoggedIn()">
+        <app-login></app-login>
+        <app-signup></app-signup>
       </div>
-      <app-login></app-login>
-      <app-signup></app-signup>
+      <app-user-options *ngIf="isUserLoggedIn()"></app-user-options>
     </div>
     <mat-sidenav-container fullscreen>
       <mat-sidenav #sidenav mode="over" opened="false">
