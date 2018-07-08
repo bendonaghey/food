@@ -7,8 +7,7 @@
       <span class="cursor-pointer" routerLink="/">Food</span>
       <span flex></span>
       <div *ngIf="!isUserLoggedIn()">
-        <app-login></app-login>
-        <app-signup></app-signup>
+        <app-registration></app-registration>
       </div>
       <app-user-options *ngIf="isUserLoggedIn()"></app-user-options>
     </div>

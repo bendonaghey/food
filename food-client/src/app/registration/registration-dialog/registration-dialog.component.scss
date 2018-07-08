@@ -1,3 +1,20 @@
+.login-box,
+.signup-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-box {
+  height: 300px;
+  width: 100%;
+}
+
+.signup-box {
+  height: 400px;
+  width: 100%;
+}
+
 :host mat-form-field {
   width: 100%;
 }
