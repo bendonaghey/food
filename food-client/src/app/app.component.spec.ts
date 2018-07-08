@@ -15,6 +15,8 @@ import { ViewPostComponent } from './view-post/view-post.component';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/compiler/src/core';
 import { UserOptionsComponent } from './authentication/user-options/user-options.component';
 import { RegistrationComponent } from './registration/registration.component';
+import { AddPostComponent } from './add-post/add-post.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -26,6 +28,7 @@ describe('AppComponent', () => {
         PostsComponent,
         CardListComponent,
         ViewPostComponent,
+        AddPostComponent,
         UserOptionsComponent,
         RegistrationComponent
       ],
@@ -34,6 +37,8 @@ describe('AppComponent', () => {
         BrowserModule,
         CovalentModule,
         BrowserAnimationsModule,
+        FormsModule,
+        ReactiveFormsModule,
         HttpClientModule,
         RoutingModule,
         RouterTestingModule.withRoutes(routes)
