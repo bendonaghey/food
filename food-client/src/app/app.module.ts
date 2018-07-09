@@ -1,6 +1,7 @@
 import { MaterialModule } from './modules/material/material.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -13,12 +14,10 @@ import { RoutingModule } from './modules/routing/routing.module';
 import { ViewPostComponent } from './view-post/view-post.component';
 import { PostsComponent } from './posts/posts.component';
 import { environment } from '../environments/environment';
-import { LoginComponent } from './login/login.component';
-import { LoginDialogComponent } from './login/login-dialog/login-dialog.component';
-import { SignupComponent } from './signup/signup.component';
-import { SignupDialogComponent } from './signup/signup-dialog/signup-dialog.component';
-import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { AddPostComponent } from './add-post/add-post.component';
 import { UserOptionsComponent } from './authentication/user-options/user-options.component';
+import { RegistrationComponent } from './registration/registration.component';
+import { RegistrationDialogComponent } from './registration/registration-dialog/registration-dialog.component';
 
 @NgModule({
   declarations: [
@@ -28,11 +27,10 @@ import { UserOptionsComponent } from './authentication/user-options/user-options
     ViewPostComponent,
     CardListComponent,
     PostsComponent,
-    LoginComponent,
-    LoginDialogComponent,
-    SignupComponent,
-    SignupDialogComponent,
-    UserOptionsComponent
+    AddPostComponent,
+    UserOptionsComponent,
+    RegistrationComponent,
+    RegistrationDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -41,8 +39,8 @@ import { UserOptionsComponent } from './authentication/user-options/user-options
     CovalentModule,
     HttpClientModule,
     RoutingModule,
-    ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [
     { provide: 'apiKey', useValue: environment.apiKey },
@@ -52,7 +50,7 @@ import { UserOptionsComponent } from './authentication/user-options/user-options
     { provide: 'storageBucket', useValue: environment.storageBucket },
     { provide: 'messagingSenderId', useValue: environment.messagingSenderId }
   ],
-  entryComponents: [LoginDialogComponent, SignupDialogComponent],
+  entryComponents: [RegistrationDialogComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
