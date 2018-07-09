@@ -12,10 +12,11 @@ import { RoutingModule, routes } from './modules/routing/routing.module';
 import { RouterTestingModule } from '@angular/router/testing';
 import { PostsComponent } from './posts/posts.component';
 import { ViewPostComponent } from './view-post/view-post.component';
-import { LoginComponent } from './login/login.component';
-import { SignupComponent } from './signup/signup.component';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/compiler/src/core';
 import { UserOptionsComponent } from './authentication/user-options/user-options.component';
+import { RegistrationComponent } from './registration/registration.component';
+import { AddPostComponent } from './add-post/add-post.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -27,15 +28,17 @@ describe('AppComponent', () => {
         PostsComponent,
         CardListComponent,
         ViewPostComponent,
-        LoginComponent,
-        SignupComponent,
-        UserOptionsComponent
+        AddPostComponent,
+        UserOptionsComponent,
+        RegistrationComponent
       ],
       imports: [
         MaterialModule,
         BrowserModule,
         CovalentModule,
         BrowserAnimationsModule,
+        FormsModule,
+        ReactiveFormsModule,
         HttpClientModule,
         RoutingModule,
         RouterTestingModule.withRoutes(routes)

@@ -23,29 +23,5 @@ module.exports = {
     userService.createUser(req.body.email, req.body.username, function(newUser) {
       res.send(newUser);
     });
-
-    
-
-        
-    // userService.addUser(req.body.email, req.body.username, function(newUser) {
-    //   var addUser = new user();
-
-    //   console.log(addUser);
-
-    //   if (!newUser) {
-    //     console.log('User not found');
-    //     return res.status(404).send();
-    //   }
-
-    //   addUser.username = req.body.username;
-    //   addUser.email = req.body.email;
-
-    //   user.db.collection('users').save(addUser, (err, result) => {
-    //     if (err) {
-    //       console.log(err);
-    //     }
-    //     res.send(newUser);
-    //   });
-    // });
   }
 };

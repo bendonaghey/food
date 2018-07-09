@@ -13,7 +13,9 @@ import {
   MatDialogModule,
   MatInputModule,
   MatToolbarModule,
-  MatFormFieldModule
+  MatFormFieldModule,
+  MatOptionModule,
+  MatSelectModule
 } from '@angular/material';
 
 const modules = [
@@ -30,7 +32,9 @@ const modules = [
   MatDialogModule,
   MatInputModule,
   MatToolbarModule,
-  MatFormFieldModule
+  MatFormFieldModule,
+  MatOptionModule,
+  MatSelectModule
 ];
 
 @NgModule({

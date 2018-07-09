@@ -1,10 +1,15 @@
-.card {
-    max-width: 400px;
-    color: black;
+:host mat-card {
+  min-width: 450px;
+  min-height: 350px;
+  max-width: 450px;
+  color: black;
 }
 
-.mat-card-image{
-  max-width: 400px;
-  max-height: 300px;
+.mat-card-image {
+  width: 450px;
+  height: 350px;
 }
-  
+
+:host /deep/.mat-card:not([class*='mat-elevation-z']) {
+  border-radius: 5px;
+}
