@@ -6,6 +6,10 @@
       </button>
       <span class="cursor-pointer" routerLink="/">Food</span>
       <span flex></span>
+      <button class="push-right-sm no-padding" mat-raised-button color="accent" routerLink="add-post">
+        <mat-icon class="left">playlist_add</mat-icon>
+        <span>Add post</span>
+      </button>
       <div *ngIf="!isUserLoggedIn()">
         <app-registration></app-registration>
       </div>
