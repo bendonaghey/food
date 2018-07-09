@@ -3,7 +3,7 @@ import * as firebase from 'firebase/app';
 import 'firebase/app';
 import 'firebase/auth';
 import 'firebase/firestore';
-import { BehaviorSubject, Observable, of } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import { UserService } from '../../services/user-services/user.service';
 
 @Injectable({
@@ -12,7 +12,6 @@ import { UserService } from '../../services/user-services/user.service';
 export class FirebaseService {
   public authState$ = new BehaviorSubject<any>(null);
   public userState$ = new BehaviorSubject<any>(null);
-
 
   constructor(
     @Inject('apiKey') private apiKey: string,
@@ -34,27 +33,39 @@ export class FirebaseService {
   }
 
   public signup(email: string, password: string, username: string) {
-    firebase.auth().createUserWithEmailAndPassword(email, password).then(() => {
-      this.userService.createUser(username, email).subscribe(user => {
-        if (user) {
-          this.userState$.next(user);
+    firebase
+      .auth()
+      .createUserWithEmailAndPassword(email, password)
+      .then(
+        () => {
+          this.userService.createUser(username, email).subscribe(user => {
+            if (user) {
+              this.userState$.next(user);
+            }
+          });
+        },
+        error => {
+          console.warn('Error: ', error.message);
         }
-      });
-    }, (error) => {
-      console.warn('Error: ', error.message);
-    });
+      );
   }
 
   public login(email: string, password: string) {
-    firebase.auth().signInWithEmailAndPassword(email, password).then(() => {
-      this.userService.getUserByEmail(email).subscribe(user => {
-        if (user) {
-          this.userState$.next(user);
+    firebase
+      .auth()
+      .signInWithEmailAndPassword(email, password)
+      .then(
+        () => {
+          this.userService.getUserByEmail(email).subscribe(user => {
+            if (user) {
+              this.userState$.next(user);
+            }
+          });
+        },
+        error => {
+          console.warn('Error: ', error.message);
         }
-      });
-    }, (error) => {
-      console.warn('Error: ', error.message);
-    });
+      );
   }
   public logout() {
     firebase.auth().signOut();
