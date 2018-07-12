@@ -1,4 +1,4 @@
-import { Component, HostListener } from '@angular/core';
+import { Component, HostListener, HostBinding } from '@angular/core';
 import { FirebaseService } from './authentication/services/firebase.service';
 import { filter, tap } from 'rxjs/operators';
 import { UserService } from './services/user-services/user.service';
@@ -8,9 +8,11 @@ import { UserService } from './services/user-services/user.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'app';
-  email = 'a';
-  password = 'a';
+  isScrolled = false;
+
+  currentPosition = 0;
+  startPosition = 0;
+  changePosition = 100;
 
   userEmail: string;
 
@@ -32,6 +34,18 @@ export class AppComponent {
 
   isUserLoggedIn(): boolean {
     return this.userEmail !== null;
+  }
+
+  @HostListener('window:scroll', ['$event'])
+  updateHeader($event) {
+    this.currentPosition =
+      (window.pageYOffset || $event.target.scrollTop) -
+      ($event.target.clientTop || 0);
+    if (this.currentPosition >= this.changePosition) {
+      this.isScrolled = true;
+    } else {
+      this.isScrolled = false;
+    }
   }
 
   private getUserDetails() {

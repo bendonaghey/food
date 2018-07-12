@@ -17,6 +17,7 @@ import { UserOptionsComponent } from './authentication/user-options/user-options
 import { RegistrationComponent } from './registration/registration.component';
 import { AddPostComponent } from './add-post/add-post.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { StatsComponent } from './stats/stats.component';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -30,7 +31,8 @@ describe('AppComponent', () => {
         ViewPostComponent,
         AddPostComponent,
         UserOptionsComponent,
-        RegistrationComponent
+        RegistrationComponent,
+        StatsComponent
       ],
       imports: [
         MaterialModule,

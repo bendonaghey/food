@@ -18,6 +18,7 @@ import { AddPostComponent } from './add-post/add-post.component';
 import { UserOptionsComponent } from './authentication/user-options/user-options.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { RegistrationDialogComponent } from './registration/registration-dialog/registration-dialog.component';
+import { StatsComponent } from './stats/stats.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { RegistrationDialogComponent } from './registration/registration-dialog/
     AddPostComponent,
     UserOptionsComponent,
     RegistrationComponent,
-    RegistrationDialogComponent
+    RegistrationDialogComponent,
+    StatsComponent
   ],
   imports: [
     BrowserModule,
