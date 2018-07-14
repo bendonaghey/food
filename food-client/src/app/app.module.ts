@@ -13,6 +13,8 @@ import { RoutingModule } from './modules/routing/routing.module';
 import { ViewPostComponent } from './view-post/view-post.component';
 import { PostsComponent } from './posts/posts.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatDatepickerModule, MatNativeDateModule } from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,11 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
     MaterialModule,
     CovalentModule,
     HttpClientModule,
-    RoutingModule
+    RoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   providers: [],
   bootstrap: [AppComponent]

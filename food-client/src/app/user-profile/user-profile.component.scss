@@ -1,0 +1,79 @@
+.mat-card-image {
+  max-width: 200px;
+  max-height: 250px;
+}
+
+.material-icons {
+  font-size: 6rem;
+}
+
+.material-icons:hover {
+  color: black !important;
+}
+
+.submit {
+  color: white !important;
+}
+
+.dropHeight {
+  height: 75px;
+}
+
+:host mat-form-field {
+  width: 80%;
+}
+
+:host mat-card-title {
+  text-indent: 132px;
+}
+
+:host img {
+  max-height: 500px;
+  max-width: 650px;
+}
+
+:host /deep/.td-file-upload[_ngcontent-c13] {
+  background-color: white;
+}
+
+:host /deep/ .mat-card-subtitle,
+.mat-card-content,
+.mat-card-header .mat-card-title {
+  font-size: 16px;
+}
+
+:host /deep/.mat-form-field-appearance-outline .mat-form-field-outline-thick {
+  color: #a7d2cb;
+}
+
+:host /deep/.mat-raised-button.mat-primary {
+  background-color: white;
+  color: black;
+}
+
+:host /deep/.mat-raised-button:not([class*='mat-elevation-z']) {
+  box-shadow: 0 0px 0px 0px rgba(0, 0, 0, 0), 0 0px 0px 0 rgba(0, 0, 0, 0),
+    0 0px 0px 0 rgba(0, 0, 0, 0);
+  color: gray;
+}
+
+:host
+  /deep/.mat-form-field-appearance-outline.mat-form-field-invalid.mat-form-field-invalid
+  .mat-form-field-outline-thick {
+  color: rgb(232, 135, 135);
+}
+
+:host /deep/.mat-form-field.mat-form-field-invalid .mat-form-field-label {
+  color: rgb(232, 135, 135);
+}
+
+:host /deep/.mat-card-actions,
+.mat-card-content,
+.mat-card-subtitle,
+.mat-card-title {
+  margin-bottom: 0px;
+}
+
+:host /deep/.mat-card:not([class*='mat-elevation-z']) {
+  border-radius: 5px;
+}
