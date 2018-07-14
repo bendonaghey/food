@@ -1,13 +1,16 @@
 export interface Post {
+  // !Not needed
   userId: string;
   postId: string;
+
   title: string;
   description: string;
   location: string;
+  pickUpTime: string;
   datePosted: number;
   likes: number;
   interest: number;
   active: boolean;
-  expirationDate: number;
+  expirationDate: string;
   image: string;
 }

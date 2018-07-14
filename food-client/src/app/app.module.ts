@@ -1,6 +1,7 @@
 import { MaterialModule } from './modules/material/material.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -12,6 +13,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { RoutingModule } from './modules/routing/routing.module';
 import { ViewPostComponent } from './view-post/view-post.component';
 import { PostsComponent } from './posts/posts.component';
+import { environment } from '../environments/environment';
+import { AddPostComponent } from './add-post/add-post.component';
+import { UserOptionsComponent } from './authentication/user-options/user-options.component';
+import { RegistrationComponent } from './registration/registration.component';
+import { RegistrationDialogComponent } from './registration/registration-dialog/registration-dialog.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatDatepickerModule, MatNativeDateModule } from '@angular/material';
@@ -23,8 +29,12 @@ import { MatDatepickerModule, MatNativeDateModule } from '@angular/material';
     AppComponent,
     ViewPostComponent,
     CardListComponent,
-    PostsComponent,
     UserProfileComponent
+    PostsComponent,
+    AddPostComponent,
+    UserOptionsComponent,
+    RegistrationComponent,
+    RegistrationDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +48,15 @@ import { MatDatepickerModule, MatNativeDateModule } from '@angular/material';
     MatDatepickerModule,
     MatNativeDateModule
   ],
-  providers: [],
+  providers: [
+    { provide: 'apiKey', useValue: environment.apiKey },
+    { provide: 'authDomain', useValue: environment.authDomain },
+    { provide: 'databaseURL', useValue: environment.databaseURL },
+    { provide: 'projectId', useValue: environment.projectId },
+    { provide: 'storageBucket', useValue: environment.storageBucket },
+    { provide: 'messagingSenderId', useValue: environment.messagingSenderId }
+  ],
+  entryComponents: [RegistrationDialogComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

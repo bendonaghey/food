@@ -15,6 +15,9 @@ import {
   MatToolbarModule,
   MatChipsModule,
   MatDatepickerModule
+  MatFormFieldModule,
+  MatOptionModule,
+  MatSelectModule
 } from '@angular/material';
 
 const modules = [

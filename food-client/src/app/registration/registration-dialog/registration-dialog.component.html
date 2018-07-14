@@ -1,0 +1,52 @@
+<mat-tab-group (selectedTabChange)="tabChanged($event)" dynamicHeight>
+  <mat-tab label="Login">
+    <div class="login-box">
+      <form [formGroup]="loginForm" layout-padding>
+        <mat-dialog-content>
+          <mat-form-field appearance="outline">
+            <mat-label>Email</mat-label>
+            <input matInput type="text" placeholder="Email" formControlName="loginEmail">
+
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Password</mat-label>
+            <input matInput type="password" placeholder="Password" formControlName="loginPassword">
+          </mat-form-field>
+        </mat-dialog-content>
+
+        <mat-dialog-actions>
+          <button [disabled]="!loginForm.valid" flex mat-raised-button color="primary" (click)="login()">Login</button>
+        </mat-dialog-actions>
+      </form>
+    </div>
+  </mat-tab>
+  <mat-tab label="Signup">
+    <div class="signup-box">
+      <form [formGroup]="signupForm" layout-padding>
+        <mat-dialog-content>
+          <mat-form-field appearance="outline">
+            <mat-label>Username</mat-label>
+            <input matInput type="text" placeholder="Username" formControlName="username">
+
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Email</mat-label>
+            <input matInput type="text" placeholder="Email" formControlName="signupEmail">
+
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Password</mat-label>
+            <input matInput type="password" placeholder="Password" formControlName="signupPassword">
+          </mat-form-field>
+        </mat-dialog-content>
+
+        <mat-dialog-actions>
+          <button [disabled]="!signupForm.valid" flex mat-raised-button color="primary" (click)="signup()">Login</button>
+        </mat-dialog-actions>
+      </form>
+    </div>
+  </mat-tab>
+</mat-tab-group>

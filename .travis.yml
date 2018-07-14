@@ -21,7 +21,6 @@ before_script:
    - "sudo chmod 4755 /opt/google/chrome/chrome-sandbox"
    - sh -e /etc/init.d/xvfb start
    - npm install -g --silent @angular/cli
-   - npm install
 
 script:
    - ng test --watch=false

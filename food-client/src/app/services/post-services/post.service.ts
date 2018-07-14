@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { Post } from '../models/post.model';
+import { Post } from '../../models/post.model';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 @Injectable({
   providedIn: 'root'
@@ -24,5 +24,41 @@ export class PostService {
     return this.http.get<Post>(`${this.BASE_URL}/posts/${id}`, {
       headers: this.headers
     });
+  }
+
+  addPost(
+    postId: string,
+    userId: string,
+    title: string,
+    description: string,
+    location: string,
+    pickUpTime: string,
+    datePosted: number,
+    likes: number,
+    interest: number,
+    active: boolean,
+    expirationDate: string,
+    image: string
+  ): Observable<Post> {
+    return this.http.post<Post>(
+      `${this.BASE_URL}/add-post`,
+      {
+        postId,
+        userId,
+        title,
+        description,
+        location,
+        pickUpTime,
+        datePosted,
+        likes,
+        interest,
+        active,
+        expirationDate,
+        image
+      },
+      {
+        headers: this.headers
+      }
+    );
   }
 }

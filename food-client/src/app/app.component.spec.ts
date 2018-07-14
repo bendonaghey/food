@@ -12,6 +12,11 @@ import { RoutingModule, routes } from './modules/routing/routing.module';
 import { RouterTestingModule } from '@angular/router/testing';
 import { PostsComponent } from './posts/posts.component';
 import { ViewPostComponent } from './view-post/view-post.component';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/compiler/src/core';
+import { UserOptionsComponent } from './authentication/user-options/user-options.component';
+import { RegistrationComponent } from './registration/registration.component';
+import { AddPostComponent } from './add-post/add-post.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -22,16 +27,29 @@ describe('AppComponent', () => {
         CardComponent,
         PostsComponent,
         CardListComponent,
-        ViewPostComponent
+        ViewPostComponent,
+        AddPostComponent,
+        UserOptionsComponent,
+        RegistrationComponent
       ],
       imports: [
         MaterialModule,
         BrowserModule,
         CovalentModule,
         BrowserAnimationsModule,
+        FormsModule,
+        ReactiveFormsModule,
         HttpClientModule,
         RoutingModule,
         RouterTestingModule.withRoutes(routes)
+      ],
+      providers: [
+        { provide: 'apiKey', useValue: 'test' },
+        { provide: 'authDomain', useValue: 'test' },
+        { provide: 'databaseURL', useValue: 'test' },
+        { provide: 'projectId', useValue: 'test' },
+        { provide: 'storageBucket', useValue: 'test' },
+        { provide: 'messagingSenderId', useValue: 'test' }
       ]
     }).compileComponents();
   }));
