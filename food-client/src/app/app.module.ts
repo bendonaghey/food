@@ -19,7 +19,6 @@ import { UserOptionsComponent } from './authentication/user-options/user-options
 import { RegistrationComponent } from './registration/registration.component';
 import { RegistrationDialogComponent } from './registration/registration-dialog/registration-dialog.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatDatepickerModule, MatNativeDateModule } from '@angular/material';
 
 @NgModule({
@@ -29,7 +28,7 @@ import { MatDatepickerModule, MatNativeDateModule } from '@angular/material';
     AppComponent,
     ViewPostComponent,
     CardListComponent,
-    UserProfileComponent
+    UserProfileComponent,
     PostsComponent,
     AddPostComponent,
     UserOptionsComponent,
