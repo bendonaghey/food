@@ -1,15 +1,31 @@
 <mat-card class="card" routerLink="{{card.postId}}">
-  <mat-card-header>
+  <div class="card-badge-likes" layout="row" layout-align="center center">
+    <mat-icon style="font-size: 13px; margin-right: 4px">thumb_up</mat-icon>
+    <span>{{card.likes}} </span>
+  </div>
+
+  <div class="card-badge-location" layout="row" layout-align="center center">
+    <mat-icon style="font-size: 13px; margin-right: 4px">thumb_up</mat-icon>
+    <span>{{card.likes}} </span>
+  </div>
+  <!-- <mat-card-header>
     <mat-card-title>{{ card.title }}</mat-card-title>
-  </mat-card-header>
-  <!-- <img mat-card-image src="{{card.image}}" alt="Image"> -->
-  <img mat-card-image src="http://via.placeholder.com/350x350" alt="Image">
+  </mat-card-header> -->
+  <img mat-card-image src="../../assets/food2.jpg" alt="Image">
+
   <mat-card-content>
-    <p>{{ card.description }}</p>
+    <!-- <p>{{ card.description }}</p> -->
+    <mat-card-header>
+      <mat-card-title>{{ card.title }}</mat-card-title>
+    </mat-card-header>
+
+    <div>
+      user profile here
+    </div>
   </mat-card-content>
   <mat-card-actions>
-    <div mat-card-avatar class="header-image"></div>
-    <button mat-button>LIKE</button>
-    <button mat-button>SHARE</button>
+    <!-- <div mat-card-avatar class="header-image"></div> -->
+    <!-- <button mat-button>LIKE</button>
+    <button mat-button>SHARE</button> -->
   </mat-card-actions>
 </mat-card>
