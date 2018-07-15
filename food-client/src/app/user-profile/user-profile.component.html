@@ -28,7 +28,7 @@
               </mat-card-title>
             </mat-card-header>
             <mat-form-field class="pad-left-md pad-right-md" appearance="outline">
-              <input type="text" formControlName="emailAddress" matInput>
+              <input type="text" formControlName="emailAddress" [attr.disabled]="isDisabled" matInput>
             </mat-form-field>
             <mat-card-header>
               <mat-card-title flex>First Name
@@ -42,6 +42,12 @@
             </mat-card-header>
             <mat-form-field class="pad-left-md pad-right-md" appearance="outline">
               <input type="text" formControlName="surname" matInput>
+            </mat-form-field>
+            <mat-card-header>
+              <mat-card-title flex>Tel No.</mat-card-title>
+            </mat-card-header>
+            <mat-form-field class="pad-left-md pad-right-md" appearance="outline">
+              <input type="text" formControlName="telNo" matInput>
             </mat-form-field>
             <mat-card-header>
               <mat-card-title flex>Password</mat-card-title>
@@ -58,6 +64,40 @@
               <input type="text" formControlName="confirmPassword" [type]="hide ? 'password' : 'text'" matInput>
             </mat-form-field>
           </mat-card>
+
+          <mat-card class="bottomPanel">
+            <mat-card-header>
+              <mat-card-title flex>Address 1
+                <mat-icon class="material-icons" align="pad-right-md" align="end">create</mat-icon>
+              </mat-card-title>
+            </mat-card-header>
+            <mat-form-field class="pad-left-md pad-right-md" appearance="outline">
+              <input type="text" formControlName="address1" matInput>
+            </mat-form-field>
+            <mat-card-header>
+              <mat-card-title flex>Address 2</mat-card-title>
+            </mat-card-header>
+            <mat-form-field class="pad-left-md pad-right-md" appearance="outline">
+              <input type="text" formControlName="address2" matInput>
+            </mat-form-field>
+          <mat-card-header>
+            <mat-card-title flex>Address 3</mat-card-title>
+          </mat-card-header>
+          <mat-form-field class="pad-left-md pad-right-md" appearance="outline">
+            <input type="text" formControlName="address3" matInput>
+          </mat-form-field>
+          <mat-card-header>
+            <mat-card-title flex>Postcode</mat-card-title>
+          </mat-card-header>
+          <mat-form-field class="pad-left-md pad-right-md" appearance="outline">
+            <input type="text" formControlName="postCode" matInput>
+          </mat-form-field>
+          <div flex align="center center">
+            <button class="submit push-bottom-md push-top-md" mat-raised-button color="accent" (click)="disableField()">
+              Save
+            </button>
+          </div>
+        </mat-card>
 
         </div>
       </form>

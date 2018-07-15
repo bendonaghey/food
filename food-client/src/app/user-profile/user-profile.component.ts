@@ -33,10 +33,12 @@ export class UserProfileComponent implements OnInit {
     this.buildForm();
   }
 
-  addPost(): void {
+  disableField(): void {
+    this.emailAddress = new FormControl({disabled: "isDisabled", value: 'Ben'});
+
     // !Removed when getting logged in userId
-    this.userId = '1000';
-    this.postId = '10000';
+    //this.userId = '1000';
+    //this.postId = '10000';
     // Tried pasting through an post object instead of all this
     // this.post.title = this.title.value;
     // this.post.description = this.description.value;
