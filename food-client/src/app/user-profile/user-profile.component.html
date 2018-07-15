@@ -1,4 +1,76 @@
 <div class="container">
+  <div flex="20"></div>
+  <div layout="row" align="center">
+    <div flex>
+      <form [formGroup]="userProfileForm">
+        <div layout="column" align="center">
+
+          <div class="push-top-md">
+            <img src="http://via.placeholder.com/200x250" style="margin:20px" alt="Image">
+          </div>
+
+
+          <mat-card class="topPanel">
+            <mat-card-header>
+              <mat-card-title flex>Bio
+                <mat-icon class="material-icons" align="pad-right-md" align="end">create</mat-icon>
+              </mat-card-title>
+            </mat-card-header>
+            <mat-form-field class="pad-left-md pad-right-md" appearance="outline">
+              <textarea matInput formControlName="bio" matAutosizeMaxRows="10" matAutosizeMinRows="10" matTextareaAutosize placeholder="Insert bio"></textarea>
+            </mat-form-field>
+          </mat-card>
+
+          <mat-card class="midPanel">
+            <mat-card-header>
+              <mat-card-title flex>Email
+                <mat-icon class="material-icons" align="pad-right-md" align="end">create</mat-icon>
+              </mat-card-title>
+            </mat-card-header>
+            <mat-form-field class="pad-left-md pad-right-md" appearance="outline">
+              <input type="text" formControlName="emailAddress" matInput>
+            </mat-form-field>
+            <mat-card-header>
+              <mat-card-title flex>First Name
+              </mat-card-title>
+            </mat-card-header>
+            <mat-form-field class="pad-left-md pad-right-md" appearance="outline">
+              <input type="text" formControlName="firstName" matInput>
+            </mat-form-field>
+            <mat-card-header>
+              <mat-card-title flex>Surname</mat-card-title>
+            </mat-card-header>
+            <mat-form-field class="pad-left-md pad-right-md" appearance="outline">
+              <input type="text" formControlName="surname" matInput>
+            </mat-form-field>
+            <mat-card-header>
+              <mat-card-title flex>Password</mat-card-title>
+            </mat-card-header>
+            <mat-form-field class="pad-left-md pad-right-md" appearance="outline">
+              <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+              <input type="text" formControlName="password" [type]="hide ? 'password' : 'text'" matInput>
+            </mat-form-field>
+            <mat-card-header>
+              <mat-card-title flex>Confirm Password</mat-card-title>
+            </mat-card-header>
+            <mat-form-field class="pad-left-md pad-right-md" appearance="outline">
+              <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+              <input type="text" formControlName="confirmPassword" [type]="hide ? 'password' : 'text'" matInput>
+            </mat-form-field>
+          </mat-card>
+
+        </div>
+      </form>
+    </div>
+  </div>
+  <div flex="20"></div>
+</div>
+
+
+
+
+
+<!-- <div class="container">
   <div layout="column" align="center">
     <form [formGroup]="userProfileForm">
       <div flex>
@@ -6,88 +78,79 @@
           <div class="push-top-md">
             <img src="http://via.placeholder.com/200x250" style="margin:20px" alt="Image">
           </div>
-          <!--Email Address (cannot change)-->
+
           <mat-card-header>
             <mat-card-title>Email Address</mat-card-title>
           </mat-card-header>
           <mat-form-field class="pad-left-md pad-right-md" appearance="outline">
             <input type="text" formControlName="emailAddress" matInput>
           </mat-form-field>
-          <!--First Name-->
+
           <mat-card-header>
             <mat-card-title>First Name</mat-card-title>
           </mat-card-header>
           <mat-form-field class="pad-left-md pad-right-md" appearance="outline">
             <input type="text" formControlName="firstName" matInput>
           </mat-form-field>
-          <!--Surname-->
+
           <mat-card-header>
             <mat-card-title>Surname</mat-card-title>
           </mat-card-header>
           <mat-form-field class="pad-left-md pad-right-md" appearance="outline">
             <input type="text" formControlName="surname" matInput>
           </mat-form-field>
-          <!--TelNo-->
+
           <mat-card-header>
             <mat-card-title>Telephone Number</mat-card-title>
           </mat-card-header>
           <mat-form-field class="pad-left-md pad-right-md" appearance="outline">
             <input type="text" formControlName="telNo" matInput>
           </mat-form-field>
-          <!--DOB-->
-
-          <!-- <mat-card-header>
-            <mat-card-title>DOB</mat-card-title>
-          </mat-card-header>
-          <mat-form-field class="pad-left-md pad-right-md" appearance="outline">
-            <input matInput [matDatepicker]="dob" matInput placeholder="Choose a date">
-            <mat-datepicker-toggle matSuffix [for]="dob"></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
-          </mat-form-field> -->
 
           <mat-card-header>
             <mat-card-title>DOB</mat-card-title>
           </mat-card-header>
-          <mat-form-field class="pad-left-md pad-right-md" appearance="outline">
-            <input type="text" formControlName="dob" matInput>
+          <mat-form-field>
+            <input matInput [matDatepicker]="picker" width="50" formControlName="dob" placeholder="Choose a date">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
           </mat-form-field>
 
-          <!--Address1-->
           <mat-card-header>
             <mat-card-title>Address 1</mat-card-title>
           </mat-card-header>
           <mat-form-field class="pad-left-md pad-right-md" appearance="outline">
             <input type="text" formControlName="address1" matInput>
           </mat-form-field>
-          <!--Address2-->
+
           <mat-card-header>
             <mat-card-title>Address 2</mat-card-title>
           </mat-card-header>
           <mat-form-field class="pad-left-md pad-right-md" appearance="outline">
             <input type="text" formControlName="address2" matInput>
           </mat-form-field>
-          <!--Address3-->
+
           <mat-card-header>
             <mat-card-title>Address 3</mat-card-title>
           </mat-card-header>
           <mat-form-field class="pad-left-md pad-right-md" appearance="outline">
             <input type="text" formControlName="address3" matInput>
           </mat-form-field>
-          <!--PostCode-->
+
           <mat-card-header>
             <mat-card-title>Post Code</mat-card-title>
           </mat-card-header>
           <mat-form-field class="pad-left-md pad-right-md" appearance="outline">
             <input type="text" formControlName="postCode" matInput>
           </mat-form-field>
-          <!--Bio-->
+
           <mat-card-header>
             <mat-card-title>Bio</mat-card-title>
           </mat-card-header>
           <mat-form-field class="pad-left-md pad-right-md" appearance="outline">
             <input type="text" formControlName="bio" matInput>
           </mat-form-field>
-          <!--Posts-->
+
           <mat-card-header>
             <mat-card-title>Total Posts</mat-card-title>
           </mat-card-header>
@@ -103,4 +166,4 @@
       </div>
     </form>
   </div>
-</div>
+</div> -->

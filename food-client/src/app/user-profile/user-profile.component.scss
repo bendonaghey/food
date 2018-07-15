@@ -4,7 +4,7 @@
 }
 
 .material-icons {
-  font-size: 6rem;
+  font-size: 1.7rem;
 }
 
 .material-icons:hover {
@@ -20,12 +20,12 @@
 }
 
 :host mat-form-field {
-  width: 80%;
+  width: 100%;
 }
 
-:host mat-card-title {
-  text-indent: 132px;
-}
+// :host mat-card-title {
+//   text-indent: 132px;
+// }
 
 :host img {
   max-height: 500px;

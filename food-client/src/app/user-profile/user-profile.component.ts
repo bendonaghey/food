@@ -16,6 +16,8 @@ export class UserProfileComponent implements OnInit {
   public emailAddress: FormControl;
   public firstName: FormControl;
   public surname: FormControl;
+  public password: FormControl;
+  public confirmPassword: FormControl;
   public telNo: FormControl;
   public dob: MatDatepickerModule;
   public address1: FormControl;
@@ -52,6 +54,8 @@ export class UserProfileComponent implements OnInit {
     this.emailAddress = new FormControl('');
     this.firstName = new FormControl('');
     this.surname = new FormControl('');
+    this.password = new FormControl('');
+    this.confirmPassword = new FormControl('');
     this.telNo = new FormControl('');
     this.dob = new MatDatepickerModule();
     this.address1 = new FormControl('');
@@ -65,6 +69,8 @@ export class UserProfileComponent implements OnInit {
       emailAddress: this.emailAddress,
       firstName: this.firstName,
       surname: this.surname,
+      password: this.password,
+      confirmPassword: this.confirmPassword,
       telNo: this.telNo,
       dob: this.dob,
       address1: this.address1,
