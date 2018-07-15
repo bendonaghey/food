@@ -1,52 +1,17 @@
-.hero {
-  background-image: url('../assets/food.jpg');
-  background-repeat: no-repeat;
-  background-position: center center;
-  position: relative;
-  background-size: cover !important;
-  height: 616px;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 0;
-  box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14),
-    0 1px 5px 0 rgba(0, 0, 0, 0.12);
-  .shade {
-    width: 100%;
-    height: 100%;
-    background-color: rgba(66, 66, 66, 0.75);
-  }
+.active-link {
+  border-bottom: 4px solid #6d3458;
 }
 
 .nav {
   width: 100%;
   height: 96px;
-  border-bottom: 2px solid #e4ae43;
+  border-bottom: 1px solid #e4ae43;
   transition: background-color 500ms ease-out;
 }
 
 .brand {
   color: #dadada;
   font-size: 18px;
-}
-
-.hero-text {
-  color: #dadada;
-  font-size: 23px;
-  text-align: center;
-  font-weight: 400;
-  font-family: 'Roboto', sans-serif;
-  text-transform: uppercase;
-}
-
-input {
-  background-color: #ffffff;
-  color: #000000;
-  box-shadow: none;
-  max-width: 100%;
-  width: 100%;
-  height: 60px;
-  padding-left: 30px !important;
 }
 
 .scrolled {

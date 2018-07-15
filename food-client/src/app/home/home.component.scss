@@ -1,10 +1,10 @@
-:host .hero {
-  background-image: url('../../assets/food3.jpg');
+.hero {
+  background-image: url('../../assets/food.jpg');
   background-repeat: no-repeat;
   background-position: center center;
   position: relative;
   background-size: cover !important;
-  height: 416px;
+  height: 616px;
   top: 0;
   left: 0;
   width: 100%;
@@ -18,8 +18,33 @@
   }
 }
 
-:host .heading-title {
+.brand {
+  color: #dadada;
+  font-size: 18px;
+}
+
+.hero-text {
+  color: #dadada;
+  font-size: 23px;
   text-align: center;
+  font-weight: 400;
+  font-family: 'Roboto', sans-serif;
+  text-transform: uppercase;
+  margin-bottom: 67px;
+  margin-top: 146px;
+}
+
+.stat-container {
+  width: 100%;
+  height: 158px;
+  background-color: #27272770;
+}
+
+app-stats {
+  width: 100%;
+}
+
+.heading-title {
   font-size: 51px;
   font-family: 'Satisfy', cursive;
 }

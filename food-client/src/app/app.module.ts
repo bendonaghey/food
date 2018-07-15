@@ -19,6 +19,8 @@ import { UserOptionsComponent } from './authentication/user-options/user-options
 import { RegistrationComponent } from './registration/registration.component';
 import { RegistrationDialogComponent } from './registration/registration-dialog/registration-dialog.component';
 import { StatsComponent } from './stats/stats.component';
+import { HomeComponent } from './home/home.component';
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,9 @@ import { StatsComponent } from './stats/stats.component';
     UserOptionsComponent,
     RegistrationComponent,
     RegistrationDialogComponent,
-    StatsComponent
+    StatsComponent,
+    HomeComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
