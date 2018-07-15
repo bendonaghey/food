@@ -1,11 +1,15 @@
-<mat-card class="card" routerLink="{{card.postId}}">
-  <div class="card-badge-likes" layout="row" layout-align="center center">
+<mat-card class="card">
+
+  <div (click)="likePost(card)" class="z-1 card-badge-likes" layout="row" layout-align="center center">
     <mat-icon style="font-size: 13px; margin-right: 4px">thumb_up</mat-icon>
     <span>{{card.likes}} </span>
   </div>
 
 
-  <img class="main-image" mat-card-image src="../../assets/food2.jpg" alt="Image">
+
+  <div class="item" (click)="viewPost(card)">
+    <img class="main-image" mat-card-image src="../../assets/food2.jpg" alt="Image">
+  </div>
 
   <mat-card-header>{{ card.title }}</mat-card-header>
   <mat-card-content>

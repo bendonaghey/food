@@ -8,7 +8,23 @@
   object-fit: cover;
 }
 
+.item {
+  overflow: hidden;
+  height: 30vh;
+}
+.item img {
+  -moz-transition: all 0.5s;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+}
+.item:hover img {
+  -moz-transform: scale(1.1);
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
+}
+
 .card-badge-likes {
+  cursor: pointer;
   position: absolute;
   width: 72px;
   top: 10px;
@@ -19,6 +35,11 @@
   padding: 5px;
   border-radius: 26px;
   font-size: 13px;
+  transition: background-color 1000ms ease-out;
+}
+
+.card-badge-likes:hover {
+  background-color: #a46c8e;
 }
 
 .card-badge-location {

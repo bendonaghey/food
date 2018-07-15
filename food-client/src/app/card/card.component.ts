@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Post } from '../models/post.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-card',
@@ -9,7 +10,14 @@ import { Post } from '../models/post.model';
 export class CardComponent implements OnInit {
   @Input() card: Post;
 
-  constructor() {}
+  constructor(private router: Router) {}
 
   ngOnInit() {}
+
+  viewPost(post: Post) {
+    this.router.navigate(['/posts', post.postId]);
+    console.log(post);
+  }
+
+  likePost(post: Post) {}
 }
