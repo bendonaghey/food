@@ -16,7 +16,6 @@ export class CardComponent implements OnInit {
 
   viewPost(post: Post) {
     this.router.navigate(['/posts', post.postId]);
-    console.log(post);
   }
 
   likePost(post: Post) {}
