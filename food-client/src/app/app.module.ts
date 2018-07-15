@@ -21,7 +21,7 @@ import { RegistrationDialogComponent } from './registration/registration-dialog/
 import { StatsComponent } from './stats/stats.component';
 import { HomeComponent } from './home/home.component';
 import { HeaderComponent } from './header/header.component';
-
+import { StarRatingModule } from 'angular-star-rating';
 @NgModule({
   declarations: [
     CardComponent,
@@ -46,7 +46,8 @@ import { HeaderComponent } from './header/header.component';
     HttpClientModule,
     RoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    StarRatingModule.forRoot()
   ],
   providers: [
     { provide: 'apiKey', useValue: environment.apiKey },
