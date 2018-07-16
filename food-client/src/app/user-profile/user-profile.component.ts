@@ -157,5 +157,14 @@ export class UserProfileComponent implements OnInit {
 
   private setFormValues(currentUser: any) {
     this.emailAddress.setValue(this.currentUser.email);
-  }
+    this.bio.setValue(this.currentUser.bio);
+    this.firstName.setValue(this.currentUser.firstname);
+    this.surname.setValue(this.currentUser.surname);
+    //this.dob(this.currentUser.dob);
+    this.telNo.setValue(this.currentUser.telNo);
+    this.address1.setValue(this.currentUser.address.address1);
+    this.address2.setValue(this.currentUser.address.address2);
+    this.address3.setValue(this.currentUser.address.address3);
+    this.postCode.setValue(this.currentUser.address.postcode);
+    }
 }
