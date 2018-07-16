@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { MatDatepickerModule } from '@angular/material';
+import { UserService } from '../services/user-services/user.service';
+import { User } from '../models/user.model';
 
 @Component({
   selector: 'app-user-profile',
