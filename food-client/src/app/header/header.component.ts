@@ -35,7 +35,7 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
     this.router.events.subscribe(res => {
       if (res instanceof NavigationEnd) {
-        if (res.url === '/home') {
+        if (res.url === '/home' || res.url === '/') {
           this.isHome = true;
         } else {
           this.isHome = false;
