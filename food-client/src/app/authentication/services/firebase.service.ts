@@ -71,6 +71,10 @@ export class FirebaseService {
     firebase.auth().signOut();
   }
 
+  public getCurrentUser(): any {
+    return firebase.auth().currentUser;
+  }
+
   private configureFirebase() {
     const config = {
       apiKey: this.apiKey,
