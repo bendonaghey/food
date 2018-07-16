@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
-import { MatDatepickerModule, MatNativeDateModule } from '@angular/material';
+import { MatDatepickerModule } from '@angular/material';
 
 @Component({
   selector: 'app-user-profile',
@@ -11,6 +11,7 @@ export class UserProfileComponent implements OnInit {
   public postId: string;
   public url: string;
   public userId: string;
+  public isDisabled = false;
 
   public userProfileForm: FormGroup;
   public emailAddress: FormControl;
@@ -33,39 +34,97 @@ export class UserProfileComponent implements OnInit {
     this.buildForm();
   }
 
-  disableField(): void {
-    this.emailAddress = new FormControl({disabled: "isDisabled", value: 'Ben'});
+  toggleTopPanel(): void {
+    this.userProfileForm.get('bio')[!this.isDisabled ? 'enable' : 'disable']();
+    this.isDisabled = !this.isDisabled;
+  }
 
-    // !Removed when getting logged in userId
-    //this.userId = '1000';
-    //this.postId = '10000';
-    // Tried pasting through an post object instead of all this
-    // this.post.title = this.title.value;
-    // this.post.description = this.description.value;
-    // this.post.location = this.location.value;
-    // this.post.pickUpTime = this.pickUpTime.value;
-    // this.post.datePosted = Date.now();
-    // this.post.likes = 0;
-    // this.post.interest = 0;
-    // this.post.active = true;
-    // this.post.expirationDate = this.expirationDate.value;
-    // this.post.image = this.url;
+  toggleMidPanel(): void {
+    this.userProfileForm
+      .get('firstName')
+      [!this.isDisabled ? 'enable' : 'disable']();
+    this.userProfileForm
+      .get('surname')
+      [!this.isDisabled ? 'enable' : 'disable']();
+    this.userProfileForm.get('dob')[!this.isDisabled ? 'enable' : 'disable']();
+    this.userProfileForm
+      .get('telNo')
+      [!this.isDisabled ? 'enable' : 'disable']();
+    this.userProfileForm
+      .get('password')
+      [!this.isDisabled ? 'enable' : 'disable']();
+    this.userProfileForm
+      .get('confirmPassword')
+      [!this.isDisabled ? 'enable' : 'disable']();
+    this.isDisabled = !this.isDisabled;
+  }
+
+  toggleBottomPanel(): void {
+    this.userProfileForm
+      .get('address1')
+      [!this.isDisabled ? 'enable' : 'disable']();
+    this.userProfileForm
+      .get('address2')
+      [!this.isDisabled ? 'enable' : 'disable']();
+    this.userProfileForm
+      .get('address3')
+      [!this.isDisabled ? 'enable' : 'disable']();
+    this.userProfileForm
+      .get('postCode')
+      [!this.isDisabled ? 'enable' : 'disable']();
+    this.isDisabled = !this.isDisabled;
   }
 
   private buildForm(): void {
-    this.emailAddress = new FormControl('');
-    this.firstName = new FormControl('');
-    this.surname = new FormControl('');
-    this.password = new FormControl('');
-    this.confirmPassword = new FormControl('');
-    this.telNo = new FormControl('');
+    this.bio = new FormControl({
+      value: '',
+      disabled: !this.isDisabled
+    });
+    this.emailAddress = new FormControl({
+      value: '',
+      disabled: !this.isDisabled
+    });
+    this.firstName = new FormControl({
+      value: '',
+      disabled: !this.isDisabled
+    });
+    this.surname = new FormControl({
+      value: '',
+      disabled: !this.isDisabled
+    });
+    // this.dob = new MatDatepickerModule({
+    //   disabled: !this.isDisabled
+    // });
     this.dob = new MatDatepickerModule();
-    this.address1 = new FormControl('');
-    this.address2 = new FormControl('');
-    this.address3 = new FormControl('');
-    this.postCode = new FormControl('');
-    this.bio = new FormControl('');
-    this.totalPosts = new FormControl('');
+
+    this.telNo = new FormControl({
+      value: '',
+      disabled: !this.isDisabled
+    });
+    this.password = new FormControl({
+      value: '',
+      disabled: !this.isDisabled
+    });
+    this.confirmPassword = new FormControl({
+      value: '',
+      disabled: !this.isDisabled
+    });
+    this.address1 = new FormControl({
+      value: '',
+      disabled: !this.isDisabled
+    });
+    this.address2 = new FormControl({
+      value: '',
+      disabled: !this.isDisabled
+    });
+    this.address3 = new FormControl({
+      value: '',
+      disabled: !this.isDisabled
+    });
+    this.postCode = new FormControl({
+      value: '',
+      disabled: !this.isDisabled
+    });
 
     this.userProfileForm = this.formBuilder.group({
       emailAddress: this.emailAddress,

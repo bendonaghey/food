@@ -23,6 +23,20 @@
   width: 100%;
 }
 
+// .mat-button {
+//   height: 35px;
+//   min-width: 30px;
+// }
+:host /deep/.mat-button,
+.mat-flat-button,
+.mat-icon-button,
+.mat-stroked-button {
+  height: 50px;
+  min-width: 60px;
+  padding: 0px;
+  border-radius: 10px;
+}
+
 // :host mat-card-title {
 //   text-indent: 132px;
 // }
