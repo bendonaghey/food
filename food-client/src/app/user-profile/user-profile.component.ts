@@ -38,12 +38,12 @@ export class UserProfileComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    let firebaseUser = this.firebaseService.getCurrentUser();
-    //this.userService.getUserByEmail(firebaseUser.email).subscribe(res => {
-    //this.currentUser = res;
-    console.log(firebaseUser);
     this.buildForm();
-    //});
+    const firebaseUser = this.firebaseService.getCurrentUser();
+    this.userService.getUserByEmail(firebaseUser.email).subscribe(res => {
+      this.currentUser = res;
+      this.setFormValues(this.currentUser);
+    });
   }
 
   toggleTopPanel(): void {
@@ -153,5 +153,9 @@ export class UserProfileComponent implements OnInit {
       bio: this.bio,
       totalPosts: this.totalPosts
     });
+  }
+
+  private setFormValues(currentUser: any) {
+    this.emailAddress.setValue(this.currentUser.email);
   }
 }
