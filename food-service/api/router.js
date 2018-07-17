@@ -33,6 +33,6 @@ router.post('/signup', users.createUser);
 //Post operations
 router.get('/posts', posts.getAllPosts);
 router.get('/posts/:id', posts.getPostById);
-router.post('/add-post', posts.addPost);
+router.post('/add-post', posts.createPost);
 
 module.exports = router;

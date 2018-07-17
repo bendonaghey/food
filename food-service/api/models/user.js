@@ -2,27 +2,29 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var userSchema = new Schema({
-  email: String,
-  username: {type: String, default: 'Username'},
-  forename: {type: String, default: 'Forename'},
-  surname: {type: String, default: 'Surname'},
-  dob: {type: Date, default: Date.now()},
+  email: { type: String, required: true },
+  username: { type: String, default: 'Username' },
+  forename: { type: String, default: 'Forename' },
+  surname: { type: String, default: 'Surname' },
+  dob: { type: Date, default: Date.now() },
   address: {
-    street: {type: String, default: 'Street'},
-    number: {type: String, default: 'Number'},
-    postcode: {type: String, default: 'Postcode'},
-    additional: {type: String, default: 'Additional'}
+    street: { type: String, default: 'Street' },
+    number: { type: String, default: 'Number' },
+    postcode: { type: String, default: 'Postcode' },
+    additional: { type: String, default: 'Additional' }
   },
   posts: [
     {
       title: String,
       description: String,
-      location: Object,
-      datePosted: Number,
+      // !Needs changed
+      location: String,
+      pickUpTime: String,
+      datePosted: Date,
       likes: Number,
-      interst: Number,
+      interests: Number,
       active: Boolean,
-      expirationDate: Number,
+      expirationDate: String,
       image: String
     }
   ]
