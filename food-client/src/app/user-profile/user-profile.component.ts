@@ -155,6 +155,10 @@ export class UserProfileComponent implements OnInit {
     });
   }
 
+  private updateFields(UserService: any) {
+    
+  }
+
   private setFormValues(currentUser: any) {
     this.emailAddress.setValue(this.currentUser.email);
     this.bio.setValue(this.currentUser.bio);
