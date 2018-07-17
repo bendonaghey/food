@@ -42,7 +42,7 @@ describe('PostService', () => {
 
     it('should return a list of posts', async(() => {
       let response: Post[] = [];
-      const mockResponse = [{ userId: 'test' }];
+      const mockResponse = [{ title: 'test' }];
 
       postService.getAll().subscribe((res: any) => {
         response = res;
@@ -50,7 +50,7 @@ describe('PostService', () => {
 
       httpMock.expectOne(url + '/posts').flush(mockResponse);
       expect(response.length).toBe(1);
-      expect(response[0].userId).toBe('test');
+      expect(response[0].title).toBe('test');
       httpMock.verify();
     }));
   });
@@ -73,8 +73,8 @@ describe('PostService', () => {
 
     it('should return a single post', async(() => {
       let response: Post;
-      const mockResponse = <Post>{ postId: '1000' };
       const id = 1000;
+      const mockResponse = <Post>{ title: '1000' };
 
       postService.getPostById(id).subscribe((res: any) => {
         response = res;

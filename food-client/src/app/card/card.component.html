@@ -1,30 +1,37 @@
-<mat-card class="card" routerLink="{{card.postId}}">
-  <mat-card-header>
-    <mat-card-title>{{ card.title }}</mat-card-title>
-  </mat-card-header>
-  <!-- <img mat-card-image src="{{card.image}}" alt="Image"> -->
-  <img mat-card-image src="http://via.placeholder.com/350x350" alt="Image">
+<mat-card class="card">
+
+  <div (click)="likePost(card)" class="z-1 card-badge-likes" layout="row" layout-align="center center">
+    <mat-icon style="font-size: 13px; margin-right: 4px">thumb_up</mat-icon>
+    <span>{{card.likes}} </span>
+  </div>
+
+
+
+  <div class="item" (click)="viewPost(card)">
+    <img class="main-image" mat-card-image src="../../assets/food2.jpg" alt="Image">
+  </div>
+
+  <mat-card-header>{{ card.title }}</mat-card-header>
   <mat-card-content>
-    <p>
-      {{ card.description }}
-    </p>
-    <mat-chip-list layout="row" layout-align="end">
-        <span flex></span>
-        <mat-chip selected="true" color="primary" align="right">
-            <i class="material-icons">location_on</i>
-            1.8k away
-        </mat-chip>
-      </mat-chip-list>
-    <i class="material-icons">star</i>
-    <i class="material-icons">star</i>
-    <i class="material-icons">star</i>
-    <i class="material-icons">star</i>
-    <i class="material-icons">star_half</i>
+
+    <div layout="row">
+      <img class="avatar" src="../../assets/girl.jpg" alt="Image">
+      <div class="pad-left">
+        <span class="pad-sm">Username</span>
+        <star-rating [starType]="'svg'" [rating]="3" staticColor="default"></star-rating>
+      </div>
+      <div flex></div>
+      <div class="card-badge-location pad" layout="row" layout-align="center center">
+        <mat-icon style="font-size: 19px; margin-right: 4px">pin_drop</mat-icon>
+        <span>1.8km away </span>
+      </div>
+    </div>
+
   </mat-card-content>
   <mat-card-actions>
-    <div mat-card-avatar class="header-image"></div>
-    <button mat-raised-button>LIKE</button>
-    <button mat-raised-button>SHARE</button>
+    <!-- <div mat-card-avatar class="header-image"></div> -->
+    <!-- <button mat-button>LIKE</button>
+    <button mat-button>SHARE</button> -->
   </mat-card-actions>
 </mat-card>
 

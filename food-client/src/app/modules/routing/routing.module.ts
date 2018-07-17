@@ -3,13 +3,15 @@ import { RouterModule, Routes } from '@angular/router';
 import { PostsComponent } from '../../posts/posts.component';
 import { ViewPostComponent } from '../../view-post/view-post.component';
 import { AddPostComponent } from '../../add-post/add-post.component';
+import { HomeComponent } from '../../home/home.component';
 import { UserProfileComponent } from '../../user-profile/user-profile.component';
 
 export const routes: Routes = [
-  { path: '', redirectTo: 'posts', pathMatch: 'full' },
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'posts', component: PostsComponent },
   { path: 'posts/:id', component: ViewPostComponent },
   { path: 'add-post', component: AddPostComponent },
+  { path: 'home', component: HomeComponent },
   { path: 'profile', component: UserProfileComponent},
   { path: '**', redirectTo: 'posts', pathMatch: 'full' }
 ];
