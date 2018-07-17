@@ -26,35 +26,13 @@ export class PostService {
     });
   }
 
-  addPost(
-    postId: string,
-    userId: string,
-    title: string,
-    description: string,
-    location: string,
-    pickUpTime: string,
-    datePosted: number,
-    likes: number,
-    interest: number,
-    active: boolean,
-    expirationDate: string,
-    image: string
-  ): Observable<Post> {
+  createPost(email: string, post: any, url: string): Observable<Post> {
     return this.http.post<Post>(
       `${this.BASE_URL}/add-post`,
       {
-        postId,
-        userId,
-        title,
-        description,
-        location,
-        pickUpTime,
-        datePosted,
-        likes,
-        interest,
-        active,
-        expirationDate,
-        image
+        email,
+        post,
+        url
       },
       {
         headers: this.headers

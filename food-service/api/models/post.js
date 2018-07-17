@@ -2,20 +2,17 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var postSchema = new Schema({
-  _id: mongoose.Schema.Types.ObjectId,
-  postId: { type: String, required: true },
-  userId: String,
-  title: String,
-  description: String,
+  title: { type: String, required: true },
+  description: { type: String, default: 'Description' },
   // Needs changed when maps implemented
-  location: String,
-  pickUptime: String,
-  datePosted: Number,
-  likes: Number,
-  interest: Number,
-  active: Boolean,
-  expirationDate: String,
-  image: String
+  location: { type: String, default: 'Location' },
+  pickUptime: { type: String, default: 'PickUpTime' },
+  datePosted: { type: Date, default: Date.now() },
+  likes: { type: Number, default: 0 },
+  interests: { type: Number, default: 0 },
+  active: { type: Boolean, default: true },
+  expirationDate: { type: String, default: 'expirationDate' },
+  image: { type: String, default: 'image' }
 });
 
 var post = mongoose.model('Post', postSchema);

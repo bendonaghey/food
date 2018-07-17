@@ -1,4 +1,5 @@
 var post = require('../models/post');
+var user = require('../models/user');
 
 module.exports = {
   getAllPosts: function(callback) {
@@ -21,13 +22,34 @@ module.exports = {
     });
   },
 
-  addPost: function(postId, callback) {
-    post.findOne({ postId }, function(error, newPost) {
-      if (error) {
-        console.log(error);
-        return status(500).send();
-      }
-      callback(newPost);
+  createPost: function(email, postInfo, url, callback) {
+    var newPost = new post({
+      title: postInfo.title,
+      description: postInfo.description,
+      location: postInfo.location,
+      pickUpTime: postInfo.pickUpTime,
+      expirationDate: postInfo.expirationDate,
+      image: url
+    });
+    post.create(newPost, function(error, res) {
+      user.findOneAndUpdate(
+        { email: email },
+        {
+          $push: {
+            posts: {
+              title: newPost.title,
+              description: newPost.description,
+              location: newPost.location,
+              pickUpTime: newPost.pickUpTime,
+              expirationDate: newPost.expirationDate,
+              image: newPost.image
+            }
+          }
+        },
+        function(error, res) {
+          callback(res);
+        }
+      );
     });
   }
 };
