@@ -19,8 +19,9 @@ module.exports = {
   },
 
   createUser: function(req, res) {
-
-    userService.createUser(req.body.email, req.body.username, function(newUser) {
+    userService.createUser(req.body.email, req.body.username, function(
+      newUser
+    ) {
       res.send(newUser);
     });
   }
