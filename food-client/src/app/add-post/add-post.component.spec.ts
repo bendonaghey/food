@@ -10,6 +10,7 @@ import { RoutingModule, routes } from '../modules/routing/routing.module';
 import { RouterTestingModule } from '@angular/router/testing';
 import { PostsComponent } from '../posts/posts.component';
 import { ViewPostComponent } from '../view-post/view-post.component';
+import { HomeComponent } from '../home/home.component';
 
 describe('AddPostComponent', () => {
   let component: AddPostComponent;
@@ -17,7 +18,12 @@ describe('AddPostComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [AddPostComponent, PostsComponent, ViewPostComponent],
+      declarations: [
+        AddPostComponent,
+        PostsComponent,
+        ViewPostComponent,
+        HomeComponent
+      ],
       imports: [
         HttpClientModule,
         FormsModule,
