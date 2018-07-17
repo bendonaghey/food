@@ -29,7 +29,6 @@ import { StarRatingModule } from 'angular-star-rating';
     AppComponent,
     ViewPostComponent,
     CardListComponent,
-    UserProfileComponent
     PostsComponent,
     AddPostComponent,
     UserOptionsComponent,

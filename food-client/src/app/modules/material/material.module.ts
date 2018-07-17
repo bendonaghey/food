@@ -14,7 +14,7 @@ import {
   MatInputModule,
   MatToolbarModule,
   MatChipsModule,
-  MatDatepickerModule
+  MatDatepickerModule,
   MatFormFieldModule,
   MatOptionModule,
   MatSelectModule
@@ -35,7 +35,10 @@ const modules = [
   MatInputModule,
   MatToolbarModule,
   MatChipsModule,
-  MatDatepickerModule
+  MatDatepickerModule,
+  MatFormFieldModule,
+  MatOptionModule,
+  MatSelectModule
 ];
 
 @NgModule({
