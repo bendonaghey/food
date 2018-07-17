@@ -17,6 +17,10 @@ import { UserOptionsComponent } from './authentication/user-options/user-options
 import { RegistrationComponent } from './registration/registration.component';
 import { AddPostComponent } from './add-post/add-post.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { StatsComponent } from './stats/stats.component';
+import { HeaderComponent } from './header/header.component';
+import { HomeComponent } from './home/home.component';
+import { StarRatingModule } from '../../node_modules/angular-star-rating';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -30,7 +34,10 @@ describe('AppComponent', () => {
         ViewPostComponent,
         AddPostComponent,
         UserOptionsComponent,
-        RegistrationComponent
+        RegistrationComponent,
+        StatsComponent,
+        HomeComponent,
+        HeaderComponent
       ],
       imports: [
         MaterialModule,
@@ -41,7 +48,8 @@ describe('AppComponent', () => {
         ReactiveFormsModule,
         HttpClientModule,
         RoutingModule,
-        RouterTestingModule.withRoutes(routes)
+        RouterTestingModule.withRoutes(routes),
+        StarRatingModule.forRoot()
       ],
       providers: [
         { provide: 'apiKey', useValue: 'test' },

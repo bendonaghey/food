@@ -1,8 +1,5 @@
 export interface Post {
-  // !Not needed
-  userId: string;
   postId: string;
-
   title: string;
   description: string;
   location: string;

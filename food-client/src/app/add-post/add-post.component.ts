@@ -7,6 +7,10 @@ import {
 } from '@angular/forms';
 import { PostService } from '../services/post-services/post.service';
 import { Post } from '../models/post.model';
+// import 'firebase/auth';
+import * as firebase from 'firebase/app';
+import { UserService } from '../services/user-services/user.service';
+import { Router } from '@angular/router';
 
 export interface Day {
   value: string;
@@ -20,6 +24,7 @@ export interface Day {
 })
 export class AddPostComponent implements OnInit {
   public post: Post;
+  public email: string;
   public postId: string;
   public url: string;
   public userId: string;
@@ -40,7 +45,9 @@ export class AddPostComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private postService: PostService
+    private router: Router,
+    private postService: PostService,
+    private userService: UserService
   ) {}
 
   ngOnInit() {
@@ -58,39 +65,15 @@ export class AddPostComponent implements OnInit {
   }
 
   addPost(): void {
-    // !Removed when getting logged in userId
-    this.userId = '1000';
-    this.postId = '10000';
-    // Tried pasting through an post object instead of all this
-    // this.post.title = this.title.value;
-    // this.post.description = this.description.value;
-    // this.post.location = this.location.value;
-    // this.post.pickUpTime = this.pickUpTime.value;
-    // this.post.datePosted = Date.now();
-    // this.post.likes = 0;
-    // this.post.interest = 0;
-    // this.post.active = true;
-    // this.post.expirationDate = this.expirationDate.value;
-    // this.post.image = this.url;
+    const user = firebase.auth().currentUser;
 
     this.postService
-      .addPost(
-        this.postId,
-        this.userId,
-        this.title.value,
-        this.description.value,
-        this.location.value,
-        this.pickUpTime.value,
-        Date.now(),
-        0,
-        0,
-        true,
-        this.expirationDate.value,
-        this.url
-      )
+      .createPost(user.email, this.addPostForm.value, this.url)
       .subscribe(res => {
         this.post = res;
       });
+
+    this.router.navigate(['posts']);
   }
 
   private buildForm(): void {

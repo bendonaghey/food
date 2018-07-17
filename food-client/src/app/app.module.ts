@@ -18,10 +18,10 @@ import { AddPostComponent } from './add-post/add-post.component';
 import { UserOptionsComponent } from './authentication/user-options/user-options.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { RegistrationDialogComponent } from './registration/registration-dialog/registration-dialog.component';
-import { UserProfileComponent } from './user-profile/user-profile.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatDatepickerModule, MatNativeDateModule } from '@angular/material';
-
+import { StatsComponent } from './stats/stats.component';
+import { HomeComponent } from './home/home.component';
+import { HeaderComponent } from './header/header.component';
+import { StarRatingModule } from 'angular-star-rating';
 @NgModule({
   declarations: [
     CardComponent,
@@ -34,7 +34,10 @@ import { MatDatepickerModule, MatNativeDateModule } from '@angular/material';
     AddPostComponent,
     UserOptionsComponent,
     RegistrationComponent,
-    RegistrationDialogComponent
+    RegistrationDialogComponent,
+    StatsComponent,
+    HomeComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
@@ -45,8 +48,7 @@ import { MatDatepickerModule, MatNativeDateModule } from '@angular/material';
     RoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    MatDatepickerModule,
-    MatNativeDateModule
+    StarRatingModule.forRoot()
   ],
   providers: [
     { provide: 'apiKey', useValue: environment.apiKey },
