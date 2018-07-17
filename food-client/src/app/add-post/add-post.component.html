@@ -69,11 +69,11 @@
       </div>
       <!--ListedFor div-->
       <div flex>
-        <mat-card>
+        <mat-card class="pad-bottom-md">
           <mat-card-header>
             <mat-card-title>Listed for</mat-card-title>
           </mat-card-header>
-          <mat-form-field class="dropHeight pad-left-md pad-right-md pad-top-sm">
+          <mat-form-field class="dropHeight pad-left-md pad-right-md pad-top-sm" appearance="outline">
             <mat-select placeholder="Keep listed for" formControlName="expirationDate">
               <mat-option *ngFor="let day of days" [value]="day.value">
                 {{day.viewValue}}
