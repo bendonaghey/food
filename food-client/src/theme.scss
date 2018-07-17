@@ -3,109 +3,113 @@
 @import '~material-design-icons/iconfont/material-icons.css';
 @import '~font-awesome/css/font-awesome.min.css';
 @include mat-core();
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+@import url('https://fonts.googleapis.com/css?family=Knewave');
+@import url('https://fonts.googleapis.com/css?family=Pacifico');
+@import url('https://fonts.googleapis.com/css?family=Satisfy');
 
-$clean:  #A7D2CB;
-$purple: #8A4D76;
-$salmon: #C98474;
-$butter: #F2D388;
+$clean: #a7d2cb;
+$purple: #8a4d76;
+$salmon: #c98474;
+$butter: #f2d388;
 
 $md-primary: (
-    50 : #f4faf9,
-    100 : #e5f2ef,
-    200 : #d3e9e5,
-    300 : #c1e0db,
-    400 : #b4d9d3,
-    500 : #a7d2cb,
-    600 : #9fcdc6,
-    700 : #96c7be,
-    800 : #8cc1b8,
-    900 : #7cb6ac,
-    A100 : #ffffff,
-    A200 : #ffffff,
-    A400 : #d5fff8,
-    A700 : #bcfff3,
-    contrast: (
-        50 : #000000,
-        100 : #000000,
-        200 : #000000,
-        300 : #000000,
-        400 : #000000,
-        500 : #000000,
-        600 : #000000,
-        700 : #000000,
-        800 : #000000,
-        900 : #ffffff,
-        A100 : #000000,
-        A200 : #000000,
-        A400 : #000000,
-        A700 : #000000,
-    )
+  50: #f4faf9,
+  100: #e5f2ef,
+  200: #d3e9e5,
+  300: #c1e0db,
+  400: #b4d9d3,
+  500: #a7d2cb,
+  600: #9fcdc6,
+  700: #96c7be,
+  800: #8cc1b8,
+  900: #7cb6ac,
+  A100: #ffffff,
+  A200: #ffffff,
+  A400: #d5fff8,
+  A700: #bcfff3,
+  contrast: (
+    50: #000000,
+    100: #000000,
+    200: #000000,
+    300: #000000,
+    400: #000000,
+    500: #000000,
+    600: #000000,
+    700: #000000,
+    800: #000000,
+    900: #ffffff,
+    A100: #000000,
+    A200: #000000,
+    A400: #000000,
+    A700: #000000
+  )
 );
 
 $md-accent: (
-    50 : #f1eaef,
-    100 : #dccad6,
-    200 : #c5a6bb,
-    300 : #ad829f,
-    400 : #9c688b,
-    500 : #8a4d76,
-    600 : #82466e,
-    700 : #773d63,
-    800 : #6d3459,
-    900 : #5a2546,
-    A100 : #ff9fd9,
-    A200 : #ff6cc5,
-    A400 : #ff39b1,
-    A700 : #ff1fa7,
-    contrast: (
-        50 : #000000,
-        100 : #000000,
-        200 : #000000,
-        300 : #000000,
-        400 : #ffffff,
-        500 : #ffffff,
-        600 : #ffffff,
-        700 : #ffffff,
-        800 : #ffffff,
-        900 : #ffffff,
-        A100 : #000000,
-        A200 : #000000,
-        A400 : #000000,
-        A700 : #ffffff,
-    )
+  50: #f1eaef,
+  100: #dccad6,
+  200: #c5a6bb,
+  300: #ad829f,
+  400: #9c688b,
+  500: #8a4d76,
+  600: #82466e,
+  700: #773d63,
+  800: #6d3459,
+  900: #5a2546,
+  A100: #ff9fd9,
+  A200: #ff6cc5,
+  A400: #ff39b1,
+  A700: #ff1fa7,
+  contrast: (
+    50: #000000,
+    100: #000000,
+    200: #000000,
+    300: #000000,
+    400: #ffffff,
+    500: #ffffff,
+    600: #ffffff,
+    700: #ffffff,
+    800: #ffffff,
+    900: #ffffff,
+    A100: #000000,
+    A200: #000000,
+    A400: #000000,
+    A700: #ffffff
+  )
 );
 
 $md-butter: (
-    50 : #fdfaf1,
-    100 : #fbf2db,
-    200 : #f9e9c4,
-    300 : #f6e0ac,
-    400 : #f4da9a,
-    500 : #f2d388,
-    600 : #f0ce80,
-    700 : #eec875,
-    800 : #ecc26b,
-    900 : #e8b758,
-    A100 : #ffffff,
-    A200 : #ffffff,
-    A400 : #fff6e6,
-    A700 : #ffedcd,
-    contrast: (
-        50 : #000000,
-        100 : #000000,
-        200 : #000000,
-        300 : #000000,
-        400 : #000000,
-        500 : #000000,
-        600 : #000000,
-        700 : #000000,
-        800 : #000000,
-        900 : #000000,
-        A100 : #000000,
-        A200 : #000000,
-        A400 : #000000,
-        A700 : #000000,
-    )
+  50: #fdfaf1,
+  100: #fbf2db,
+  200: #f9e9c4,
+  300: #f6e0ac,
+  400: #f4da9a,
+  500: #f2d388,
+  600: #f0ce80,
+  700: #eec875,
+  800: #ecc26b,
+  900: #e8b758,
+  A100: #ffffff,
+  A200: #ffffff,
+  A400: #fff6e6,
+  A700: #ffedcd,
+  contrast: (
+    50: #000000,
+    100: #000000,
+    200: #000000,
+    300: #000000,
+    400: #000000,
+    500: #000000,
+    600: #000000,
+    700: #000000,
+    800: #000000,
+    900: #000000,
+    A100: #000000,
+    A200: #000000,
+    A400: #000000,
+    A700: #000000
+  )
 );
 
 $primary: mat-palette($md-primary, 900);
