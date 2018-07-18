@@ -7,7 +7,7 @@ import {
   Validators
 } from '@angular/forms';
 import { FirebaseService } from '../../authentication/services/firebase.service';
-import { filter } from 'rxjs/operators';
+import { filter, map } from 'rxjs/operators';
 import { combineLatest } from 'rxjs';
 
 @Component({
@@ -44,6 +44,7 @@ export class RegistrationDialogComponent implements OnInit {
     this.userState$ = this.firebaseService.userState$.pipe(
       filter(res => res !== null)
     );
+
     combineLatest(this.authState$, this.userState$).subscribe(() => {
       this.dialogRef.close();
     });

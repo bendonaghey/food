@@ -1,14 +1,10 @@
-.cursor {
-  cursor: pointer;
-}
-
-ul {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, 450px);
-  grid-gap: 1rem;
-  justify-content: center;
-  align-content: flex-start;
-}
+// ul {
+//   display: grid;
+//   grid-template-columns: repeat(auto-fill, 450px);
+//   grid-gap: 1rem;
+//   justify-content: center;
+//   align-content: flex-start;
+// }
 :host app-card {
   display: flex;
   align-items: center;

@@ -1,15 +1,60 @@
 :host mat-card {
-  min-width: 450px;
-  min-height: 350px;
-  max-width: 450px;
-  color: black;
-}
-
-.mat-card-image {
   width: 450px;
-  height: 350px;
 }
 
-:host /deep/.mat-card:not([class*='mat-elevation-z']) {
-  border-radius: 5px;
+.main-image {
+  width: 100%;
+  height: 30vh;
+  object-fit: cover;
+}
+
+.item {
+  overflow: hidden;
+  height: 30vh;
+}
+.item img {
+  -moz-transition: all 0.5s;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+}
+.item:hover img {
+  -moz-transform: scale(1.1);
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
+}
+
+.card-badge-likes {
+  cursor: pointer;
+  position: absolute;
+  width: 72px;
+  top: 10px;
+  background-color: #6d3457;
+  left: 10px;
+  color: #dadada;
+  text-align: center;
+  padding: 5px;
+  border-radius: 26px;
+  font-size: 13px;
+  transition: background-color 1000ms ease-out;
+}
+
+.card-badge-likes:hover {
+  background-color: #a46c8e;
+}
+
+.card-badge-location {
+  background-color: #6d3457;
+  color: #dadada;
+  text-align: center;
+  border-radius: 26px;
+  font-size: 13px;
+  height: 29px;
+  background-color: lightgray;
+  color: #4a4a4a;
+}
+
+.avatar {
+  border-radius: 100%;
+  width: 60px;
+  height: 60px;
 }
