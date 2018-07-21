@@ -14,6 +14,7 @@ export class UserProfileComponent implements OnInit {
   public url: string;
   public userId: string;
   public isDisabled = false;
+  public isDisplayed = false;
   public currentUser;
 
   public userProfileForm: FormGroup;
@@ -62,13 +63,13 @@ export class UserProfileComponent implements OnInit {
     this.userProfileForm
       .get('telNo')
       [!this.isDisabled ? 'enable' : 'disable']();
-    this.userProfileForm
-      .get('password')
-      [!this.isDisabled ? 'enable' : 'disable']();
-    this.userProfileForm
-      .get('confirmPassword')
-      [!this.isDisabled ? 'enable' : 'disable']();
-    this.isDisabled = !this.isDisabled;
+    // this.userProfileForm
+    //   .get('password')
+    //   [!this.isDisabled ? 'enable' : 'disable']();
+    // this.userProfileForm
+    //   .get('confirmPassword')
+    //   [!this.isDisabled ? 'enable' : 'disable']();
+    // this.isDisabled = !this.isDisabled;
   }
 
   toggleBottomPanel(): void {
@@ -155,9 +156,7 @@ export class UserProfileComponent implements OnInit {
     });
   }
 
-  private updateFields(UserService: any) {
-    
-  }
+  //private updateFields(UserService: any) {}
 
   private setFormValues(currentUser: any) {
     this.emailAddress.setValue(this.currentUser.email);
@@ -170,5 +169,15 @@ export class UserProfileComponent implements OnInit {
     this.address2.setValue(this.currentUser.address.address2);
     this.address3.setValue(this.currentUser.address.address3);
     this.postCode.setValue(this.currentUser.address.postcode);
-    }
+  }
+
+  private displayPassword(displayPassword): void {
+    this.userProfileForm
+      .get('password')
+      [!this.isDisplayed ? 'show' : 'hidden']();
+    this.userProfileForm
+      .get('confirmPassword')
+      [!this.isDisplayed ? 'show' : 'hidden']();
+    this.isDisplayed = !this.isDisplayed;
+  }
 }

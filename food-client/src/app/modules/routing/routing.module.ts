@@ -12,7 +12,7 @@ export const routes: Routes = [
   { path: 'posts/:id', component: ViewPostComponent },
   { path: 'add-post', component: AddPostComponent },
   { path: 'home', component: HomeComponent },
-  { path: 'profile', component: UserProfileComponent},
+  { path: 'profile', component: UserProfileComponent },
   { path: '**', redirectTo: 'posts', pathMatch: 'full' }
 ];
 

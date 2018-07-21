@@ -8,10 +8,14 @@
           <div class="push-top-md">
             <img src="http://via.placeholder.com/200x250" style="margin:20px" alt="Image">
           </div>
+
           <div layout="row" align="center">
-            <mat-icon class="material-icons" align="pad-right-md">thumb_up</mat-icon>
-            <mat-icon class="material-icons" align="pad-right-md">comment</mat-icon>
+            <div flex>
+              <mat-icon class="material-icons" align="pad-right-md">thumb_up</mat-icon>
+              <mat-icon class="material-icons" align="pad-right-md">comment</mat-icon>
+            </div>
           </div>
+
 
           <mat-card class="topPanel">
             <mat-card-header>
@@ -67,6 +71,14 @@
             <mat-card-header>
               <mat-card-title flex>Password</mat-card-title>
             </mat-card-header>
+
+            <div flex align="left">
+              <button class="push-bottom-md push-top-md" mat-raised-button color="accent" margin="20" (click)=" displayPassword()">
+                Change Password
+              </button>
+            </div>
+
+            <!-- <div ng-show> -->
             <mat-form-field class="pad-left-md pad-right-md" appearance="outline">
               <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
               <input type="text" formControlName="password" [type]="hide ? 'password' : 'text'" matInput>
@@ -78,6 +90,7 @@
               <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
               <input type="text" formControlName="confirmPassword" [type]="hide ? 'password' : 'text'" matInput>
             </mat-form-field>
+            <!-- </div ng-show> -->
           </mat-card>
 
           <mat-card class="bottomPanel">
