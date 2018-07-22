@@ -9,14 +9,12 @@ import { UserService } from '../services/user-services/user.service';
 })
 export class StatsComponent implements OnInit {
   users = 0;
-  posts = 0;
+  posts = 1;
   pickups = 225;
 
   constructor(private postService: PostService) {}
 
   ngOnInit() {
-    this.postService.getAll().subscribe(res => {
-      this.posts = res.length;
-    });
+
   }
 }

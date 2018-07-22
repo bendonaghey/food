@@ -8,7 +8,7 @@
 
 
   <div class="item" (click)="viewPost(card)">
-    <img class="main-image" mat-card-image src="../../assets/food2.jpg" alt="Image">
+    <img class="main-image" mat-card-image src="{{card.imageUrl}}" alt="Image">
   </div>
 
   <mat-card-header>{{ card.title }}</mat-card-header>

@@ -1,6 +1,7 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { FirebaseAuthenticationService } from '../firebase/authentication/firebase-authentication.service';
+import { UserService } from '../services/user-services/user.service';
 
 @Component({
   selector: 'app-header',
@@ -15,9 +16,13 @@ export class HeaderComponent implements OnInit {
   changePosition = 100;
   user: any;
 
-  constructor(private router: Router, private firebaseAuthenticationservice: FirebaseAuthenticationService) {
+  constructor(private router: Router, private firebaseAuthenticationservice: FirebaseAuthenticationService,
+             private userService: UserService) {
     this.firebaseAuthenticationservice.authState().subscribe(user => {
       this.user = user;
+      if (user) {
+        this.userService.user = user.uid;
+      }
     });
   }
 

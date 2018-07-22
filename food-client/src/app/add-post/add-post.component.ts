@@ -1,17 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  FormBuilder,
-  FormGroup,
-  Validators,
-  FormControl
-} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { PostService } from '../services/post-services/post.service';
 import { Post } from '../models/post.model';
-// import 'firebase/auth';
-import * as firebase from 'firebase/app';
 import { UserService } from '../services/user-services/user.service';
 import { Router } from '@angular/router';
-
+import { FirebaseStorageService } from '../firebase/storage/firebase-storage.service';
+import { finalize } from 'rxjs/operators';
+import { AngularFireStorageReference } from '../../../node_modules/angularfire2/storage';
+import { FirebaseFirestoreService } from '../firebase/firestore/firebase-firestore.service';
+import { FirebaseAuthenticationService } from '../firebase/authentication/firebase-authentication.service';
 export interface Day {
   value: string;
   viewValue: string;
@@ -36,6 +33,8 @@ export class AddPostComponent implements OnInit {
   public pickUpTime: FormControl;
   public expirationDate: FormControl;
 
+  public imageFile: File;
+
   // !Probably not right
   days: Day[] = [
     { value: 'day-1', viewValue: '1 Day' },
@@ -45,9 +44,10 @@ export class AddPostComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private router: Router,
-    private postService: PostService,
-    private userService: UserService
+    private firebaseStorageService: FirebaseStorageService,
+    private firebaseFirestoreService: FirebaseFirestoreService,
+    private firebaseAuthenticationService: FirebaseAuthenticationService,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -60,20 +60,50 @@ export class AddPostComponent implements OnInit {
       fileReader.readAsDataURL(file.target.files[0]);
       fileReader.onload = (event: Event) => {
         this.url = fileReader.result;
+        this.imageFile = file.target.files[0];
       };
     }
   }
 
   addPost(): void {
-    const user = firebase.auth().currentUser;
+    const fileRef = this.firebaseStorageService.getFileRef(`post-images/${this.imageFile.name}`);
+    const uploadTask = this.firebaseStorageService.uploadImage(this.imageFile);
 
-    this.postService
-      .createPost(user.email, this.addPostForm.value, this.url)
-      .subscribe(res => {
-        this.post = res;
+    uploadTask.percentageChanges().subscribe(percent => {
+      console.log(percent);
+    });
+
+    uploadTask.snapshotChanges().pipe(finalize(() => this.onUploadComplete(fileRef))).subscribe();
+  }
+
+  private onUploadComplete(fileRef: AngularFireStorageReference) {
+    fileRef.getDownloadURL().subscribe(url => {
+      this.firebaseFirestoreService.addPostToUser(this.buildPost(url)).then(res => {
+        this.firebaseFirestoreService.addPost(this.buildPost(url)).then((docRef) => {
+          docRef.get().then(doc => {
+            this.viewPost(doc.id);
+          });
+        }, error => {
+          console.log('create post error ', error.message);
+        });
       });
+    });
+  }
 
-    this.router.navigate(['posts']);
+  private viewPost(id: string) {
+    this.router.navigate(['posts/', id]);
+  }
+
+  private buildPost(imageUrl: string): Post {
+    return {
+      title: this.title.value,
+      description: this.description.value,
+      pickUpTime: this.pickUpTime.value,
+      datePosted: 'datenow',
+      active: true,
+      expirationDate: this.expirationDate.value,
+      imageUrl: imageUrl
+    };
   }
 
   private buildForm(): void {

@@ -9,7 +9,7 @@ import { User } from '../../models/user.model';
 export class UserService {
   private headers: HttpHeaders;
   private BASE_URL: String = 'http://localhost:8190/api';
-  _user: User;
+  private userId: string;
 
   constructor(private http: HttpClient) {
     this.headers = new HttpHeaders().set('Content-Type', 'application/json');
@@ -36,10 +36,10 @@ export class UserService {
   }
 
   get user() {
-    return this._user;
+    return this.userId;
   }
 
-  set user(user: User) {
-    this._user = user;
+  set user(user: string) {
+    this.userId = user;
   }
 }

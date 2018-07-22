@@ -9,7 +9,13 @@ import { FirebaseAuthenticationService } from '../../firebase/authentication/fir
 export class UserOptionsComponent implements OnInit {
   constructor(private firebaseAuthenticationService: FirebaseAuthenticationService) {}
 
-  ngOnInit() {}
+  email: string;
+
+  ngOnInit() {
+    this.firebaseAuthenticationService.authState().subscribe(user => {
+      user ? this.email = user.email : this.email = null;
+    });
+  }
 
 
   logout() {

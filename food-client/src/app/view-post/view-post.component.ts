@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Post } from '../models/post.model';
 import { ActivatedRoute } from '@angular/router';
 import { PostService } from '../services/post-services/post.service';
+import { FirebaseFirestoreService } from '../firebase/firestore/firebase-firestore.service';
 
 @Component({
   selector: 'app-view-post',
@@ -13,14 +14,12 @@ export class ViewPostComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private postService: PostService
+    private firebaseFirestoreService: FirebaseFirestoreService
   ) {}
 
   ngOnInit() {
-    this.postService
-      .getPostById(this.route.snapshot.params.id)
-      .subscribe(res => {
-        this.post = res;
-      });
+    this.firebaseFirestoreService.getPost(this.route.snapshot.params.id).ref.get().then(res => {
+      this.post = <Post>res.data();
+    });
   }
 }
