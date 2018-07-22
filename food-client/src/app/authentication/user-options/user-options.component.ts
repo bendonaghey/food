@@ -11,6 +11,7 @@ export class UserOptionsComponent implements OnInit {
 
   ngOnInit() {}
 
+
   logout() {
     this.firebaseAuthenticationService.signout();
   }

@@ -2,10 +2,10 @@ import { Post } from './post.model';
 
 export interface User {
   email: string;
+  bio: string;
   username: string;
-  forename: string;
-  surname: string;
+  firstname: string;
+  lastname: string;
   dob: string;
-  address: string;
   posts: Post[];
 }

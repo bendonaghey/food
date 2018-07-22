@@ -23,6 +23,18 @@ export class UserService {
     return this.http.post<User>(`${this.BASE_URL}/signup`, {username, email}, {headers: this.headers});
   }
 
+  generateUser(username: string, email: string): User {
+    return {
+      email: email,
+      username: username,
+      bio: '',
+      dob: '',
+      firstname: '',
+      lastname: '',
+      posts: []
+    };
+  }
+
   get user() {
     return this._user;
   }

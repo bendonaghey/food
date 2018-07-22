@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef, MatTabChangeEvent } from '@angular/material';
-import {FormBuilder, FormGroup, FormControl, Validators} from '@angular/forms';
+import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
+import { FirebaseFirestoreService } from '../../firebase/firestore/firebase-firestore.service';
 import { FirebaseAuthenticationService } from '../../firebase/authentication/firebase-authentication.service';
 
 @Component({
@@ -20,7 +21,8 @@ export class RegistrationDialogComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private dialogRef: MatDialogRef<RegistrationDialogComponent>,
-    private firebaseAuthenticationService: FirebaseAuthenticationService
+    private firebaseAuthenticationService: FirebaseAuthenticationService,
+    private firebaseFirestoreService: FirebaseFirestoreService
   ) {}
 
   ngOnInit() {
@@ -38,7 +40,11 @@ export class RegistrationDialogComponent implements OnInit {
 
   signup(): void {
     this.firebaseAuthenticationService.signup(this.signupEmail.value, this.signupPassword.value).then(res => {
-      this.dialogRef.close();
+      this.firebaseFirestoreService.createUser(res.user.uid, this.username.value, this.signupEmail.value).then(() => {
+        this.dialogRef.close();
+      }, error => {
+        console.warn('firestor error', error.message);
+      });
     }, error => {
       console.warn('sign up error', error.message);
     });
@@ -64,9 +70,5 @@ export class RegistrationDialogComponent implements OnInit {
       signupEmail: this.signupEmail,
       signupPassword: this.signupPassword
     });
-  }
-
-  public tabChanged(tabChangeEvent: MatTabChangeEvent): void {
-    console.log(tabChangeEvent);
   }
 }
