@@ -1,7 +1,6 @@
 import { Component, OnInit, HostListener } from '@angular/core';
-import { UserService } from '../services/user-services/user.service';
-import { FirebaseService } from '../authentication/services/firebase.service';
 import { Router, NavigationEnd } from '@angular/router';
+import { FirebaseAuthenticationService } from '../firebase/authentication/firebase-authentication.service';
 
 @Component({
   selector: 'app-header',
@@ -10,25 +9,15 @@ import { Router, NavigationEnd } from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
   isScrolled = false;
-
   isHome = true;
-
   currentPosition = 0;
   startPosition = 0;
   changePosition = 100;
+  user: any;
 
-  userEmail: string;
-
-  constructor(
-    private firebaseService: FirebaseService,
-    private userService: UserService,
-    private router: Router
-  ) {
-    this.firebaseService.authState$.subscribe(res => {
-      this.userEmail = res;
-      if (this.userEmail) {
-        this.getUserDetails();
-      }
+  constructor(private router: Router, private firebaseAuthenticationservice: FirebaseAuthenticationService) {
+    this.firebaseAuthenticationservice.authState().subscribe(user => {
+      this.user = user;
     });
   }
 
@@ -44,16 +33,6 @@ export class HeaderComponent implements OnInit {
     });
   }
 
-  logout() {
-    this.firebaseService.logout();
-  }
-
-  isUserLoggedIn(): boolean {
-    return this.userEmail !== null;
-  }
-
-  setRoute() {}
-
   @HostListener('window:scroll', ['$event'])
   updateHeader($event) {
     this.currentPosition =
@@ -64,11 +43,5 @@ export class HeaderComponent implements OnInit {
     } else {
       this.isScrolled = false;
     }
-  }
-
-  private getUserDetails() {
-    this.userService.getUserByEmail(this.userEmail).subscribe(res => {
-      this.userService.user = res;
-    });
   }
 }

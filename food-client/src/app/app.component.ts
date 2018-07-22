@@ -1,7 +1,4 @@
-import { Component, HostListener, HostBinding, OnInit } from '@angular/core';
-import { FirebaseService } from './authentication/services/firebase.service';
-import { filter, tap } from 'rxjs/operators';
-import { UserService } from './services/user-services/user.service';
+import { Component, HostListener } from '@angular/core';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -16,25 +13,7 @@ export class AppComponent {
 
   userEmail: string;
 
-  constructor(
-    private firebaseService: FirebaseService,
-    private userService: UserService
-  ) {
-    this.firebaseService.authState$.subscribe(res => {
-      this.userEmail = res;
-      if (this.userEmail) {
-        this.getUserDetails();
-      }
-    });
-  }
-
-  logout() {
-    this.firebaseService.logout();
-  }
-
-  isUserLoggedIn(): boolean {
-    return this.userEmail !== null;
-  }
+  constructor() {}
 
   @HostListener('window:scroll', ['$event'])
   updateHeader($event) {
@@ -46,11 +25,5 @@ export class AppComponent {
     } else {
       this.isScrolled = false;
     }
-  }
-
-  private getUserDetails() {
-    this.userService.getUserByEmail(this.userEmail).subscribe(res => {
-      this.userService.user = res;
-    });
   }
 }

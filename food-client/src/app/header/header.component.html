@@ -7,6 +7,6 @@
     <button mat-button routerLink="/about" routerLinkActive="active-link" class="brand nav-option">ABOUT</button>
   </div>
   <span flex></span>
-  <app-registration *ngIf="!isUserLoggedIn()"></app-registration>
-  <app-user-options *ngIf="isUserLoggedIn()"></app-user-options>
+  <app-registration *ngIf="!user"></app-registration>
+  <app-user-options *ngIf="user"></app-user-options>
 </div>

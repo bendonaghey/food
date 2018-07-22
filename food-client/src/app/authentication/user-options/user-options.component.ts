@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FirebaseService } from '../services/firebase.service';
+import { FirebaseAuthenticationService } from '../../firebase/authentication/firebase-authentication.service';
 
 @Component({
   selector: 'app-user-options',
@@ -7,11 +7,11 @@ import { FirebaseService } from '../services/firebase.service';
   styleUrls: ['./user-options.component.scss']
 })
 export class UserOptionsComponent implements OnInit {
-  constructor(private firebaseService: FirebaseService) {}
+  constructor(private firebaseAuthenticationService: FirebaseAuthenticationService) {}
 
   ngOnInit() {}
 
   logout() {
-    this.firebaseService.logout();
+    this.firebaseAuthenticationService.signout();
   }
 }

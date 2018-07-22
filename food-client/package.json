@@ -27,6 +27,7 @@
     "@angular/router": "^6.0.3",
     "@covalent/core": "2.0.0-beta.2",
     "angular-star-rating": "^4.0.0-beta.3",
+    "angularfire2": "^5.0.0-rc.11",
     "bulma": "^0.7.1",
     "core-js": "^2.5.4",
     "css-star-rating": "^1.2.4",
