@@ -15,28 +15,14 @@ export class PostService {
   }
 
   getAll(): Observable<Post[]> {
-    return this.http.get<Post[]>(`${this.BASE_URL}/posts`, {
-      headers: this.headers
-    });
+    return this.http.get<Post[]>(`${this.BASE_URL}/posts`, { headers: this.headers});
   }
 
   getPostById(id: number): Observable<Post> {
-    return this.http.get<Post>(`${this.BASE_URL}/posts/${id}`, {
-      headers: this.headers
-    });
+    return this.http.get<Post>(`${this.BASE_URL}/posts/${id}`, { headers: this.headers });
   }
 
   createPost(email: string, post: any, url: string): Observable<Post> {
-    return this.http.post<Post>(
-      `${this.BASE_URL}/add-post`,
-      {
-        email,
-        post,
-        url
-      },
-      {
-        headers: this.headers
-      }
-    );
+    return this.http.post<Post>(`${this.BASE_URL}/add-post`, { email, post, url }, { headers: this.headers });
   }
 }
