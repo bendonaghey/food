@@ -43,7 +43,7 @@ export class PostService {
   }
 
   getPost(id: string) {
-    this.postDocument = this.angularFirestore.collection('posts').doc(id)
+    this.postDocument = this.angularFirestore.collection('posts').doc(id);
     return this.postDocument.valueChanges();
   }
 
