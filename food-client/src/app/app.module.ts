@@ -22,6 +22,7 @@ import { HomeComponent } from './home/home.component';
 import { HeaderComponent } from './header/header.component';
 import { StarRatingModule } from 'angular-star-rating';
 import { FirebaseModule } from './firebase/firebase.module';
+import { UserAvatarComponent } from './card/components/user-avatar/user-avatar.component';
 @NgModule({
   declarations: [
     CardComponent,
@@ -36,7 +37,8 @@ import { FirebaseModule } from './firebase/firebase.module';
     RegistrationDialogComponent,
     StatsComponent,
     HomeComponent,
-    HeaderComponent
+    HeaderComponent,
+    UserAvatarComponent
   ],
   imports: [
     BrowserModule,

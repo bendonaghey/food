@@ -15,11 +15,16 @@
   <mat-card-content>
 
     <div layout="row">
-      <img class="avatar" src="../../assets/girl.jpg" alt="Image">
+
+
+      <!-- <img class="avatar" src="../../assets/girl.jpg" alt="Image">
       <div class="pad-left">
         <span class="pad-sm">Username</span>
         <star-rating [starType]="'svg'" [rating]="3" staticColor="default"></star-rating>
-      </div>
+      </div> -->
+      <app-user-avatar [userRef]="card.userRef"></app-user-avatar>
+
+
       <div flex></div>
       <div class="card-badge-location pad" layout="row" layout-align="center center">
         <mat-icon style="font-size: 19px; margin-right: 4px">pin_drop</mat-icon>

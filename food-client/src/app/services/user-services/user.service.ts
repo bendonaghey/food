@@ -15,6 +15,9 @@ export class UserService {
     this.headers = new HttpHeaders().set('Content-Type', 'application/json');
   }
 
+  updateUserPosts() {
+  }
+
   getUserByEmail(email: string): Observable<User> {
     return this.http.post<User>(`${this.BASE_URL}/login`, {email}, {headers: this.headers});
   }

@@ -45,6 +45,8 @@ export class AddPostComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private firebaseStorageService: FirebaseStorageService,
+    private userService: UserService,
+    private postService: PostService,
     private firebaseFirestoreService: FirebaseFirestoreService,
     private firebaseAuthenticationService: FirebaseAuthenticationService,
     private router: Router
@@ -78,15 +80,19 @@ export class AddPostComponent implements OnInit {
 
   private onUploadComplete(fileRef: AngularFireStorageReference) {
     fileRef.getDownloadURL().subscribe(url => {
-      this.firebaseFirestoreService.addPostToUser(this.buildPost(url)).then(res => {
-        this.firebaseFirestoreService.addPost(this.buildPost(url)).then((docRef) => {
-          docRef.get().then(doc => {
-            this.viewPost(doc.id);
-          });
-        }, error => {
-          console.log('create post error ', error.message);
-        });
+      this.postService.addPost(this.buildPost(url)).valueChanges().subscribe(() => {
+        this.router.navigate(['/posts']);
       });
+
+      // this.firebaseFirestoreService.addPostToUser(this.buildPost(url)).then(res => {
+      //   this.firebaseFirestoreService.addPost(this.buildPost(url)).then((docRef) => {
+      //     docRef.get().then(doc => {
+      //       this.viewPost(doc.id);
+      //     });
+      //   }, error => {
+      //     console.log('create post error ', error.message);
+      //   });
+      // });
     });
   }
 
@@ -99,10 +105,13 @@ export class AddPostComponent implements OnInit {
       title: this.title.value,
       description: this.description.value,
       pickUpTime: this.pickUpTime.value,
-      datePosted: 'datenow',
+      datePosted: Date.now().toString(),
       active: true,
       expirationDate: this.expirationDate.value,
-      imageUrl: imageUrl
+      imageUrl: imageUrl,
+      id: '',
+      userRef: '',
+
     };
   }
 

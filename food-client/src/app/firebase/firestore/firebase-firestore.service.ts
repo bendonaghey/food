@@ -18,6 +18,7 @@ export class FirebaseFirestoreService {
   }
 
   public addPost(post: Post): Promise<firebase.firestore.DocumentReference> {
+    // post.userid = this.userService.user;
     return this.fireStore.collection('posts').add(post);
   }
 
@@ -29,9 +30,6 @@ export class FirebaseFirestoreService {
         posts: posts
       });
     });
-    // return this.fireStore.collection('users').doc(this.userService.user).update({
-    //   posts: [post]
-    // });
   }
 
   public getPost(id: string): AngularFirestoreDocument<Post> {

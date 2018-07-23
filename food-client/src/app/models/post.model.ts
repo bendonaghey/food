@@ -6,4 +6,6 @@ export interface Post {
   active: boolean;
   expirationDate: string;
   imageUrl: string;
+  id?: string;
+  userRef?: any;
 }
