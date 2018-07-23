@@ -11,7 +11,7 @@ export class FirebaseStorageService {
 
   uploadImage(file: File): AngularFireUploadTask {
     const uid = this.angularFirestore.createId();
-    const ref = this.angularFireStorage.ref(`post-images/${uid}`);
+    const ref = this.angularFireStorage.ref(`post-images/${file.name}`);
     return ref.put(file);
   }
 
