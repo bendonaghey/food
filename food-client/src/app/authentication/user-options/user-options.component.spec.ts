@@ -3,23 +3,26 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { UserOptionsComponent } from './user-options.component';
 import { CovalentModule } from '../../modules/covalent/covalent.module';
 import { MaterialModule } from '../../modules/material/material.module';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { FirebaseModule } from '../../firebase/firebase.module';
+import { AuthenticationService } from '../authentication.service';
+import { UserService } from '../../services/user-services/user.service';
+import { of } from '../../../../node_modules/rxjs';
 
 describe('UserOptionsComponent', () => {
   let component: UserOptionsComponent;
   let fixture: ComponentFixture<UserOptionsComponent>;
-
+  let mockAuthenticationService: any;
+  let mockUserService: any;
   beforeEach(async(() => {
+    mockAuthenticationService = jasmine.createSpyObj('authenticationService', ['signout']);
+    mockUserService = jasmine.createSpyObj('userService', ['user']);
+    mockUserService.user.and.returnValue(of({email: 'test'}));
     TestBed.configureTestingModule({
-      imports: [CovalentModule, MaterialModule, HttpClientTestingModule],
+      imports: [CovalentModule, MaterialModule, FirebaseModule],
       declarations: [ UserOptionsComponent ],
       providers: [
-        { provide: 'apiKey', useValue: 'test' },
-        { provide: 'authDomain', useValue: 'test' },
-        { provide: 'databaseURL', useValue: 'test' },
-        { provide: 'projectId', useValue: 'test' },
-        { provide: 'storageBucket', useValue: 'test' },
-        { provide: 'messagingSenderId', useValue: 'test' }
+        {provide: AuthenticationService, useValue: mockAuthenticationService },
+        {provide: UserService, useValue: mockUserService },
       ]
     })
     .compileComponents();

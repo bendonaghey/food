@@ -3,6 +3,7 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 import { CardListComponent } from './card-list.component';
 import { HttpClientModule } from '@angular/common/http';
+import { FirebaseModule } from '../firebase/firebase.module';
 
 describe('CardListComponent', () => {
   let component: CardListComponent;
@@ -11,7 +12,7 @@ describe('CardListComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [CardListComponent],
-      imports: [HttpClientModule],
+      imports: [HttpClientModule, FirebaseModule],
       schemas: [CUSTOM_ELEMENTS_SCHEMA]
     }).compileComponents();
   }));

@@ -8,6 +8,7 @@ import { MaterialModule } from '../modules/material/material.module';
 import { HttpClientTestingModule } from '../../../node_modules/@angular/common/http/testing';
 import { Router } from '../../../node_modules/@angular/router';
 import { of } from '../../../node_modules/rxjs';
+import { FirebaseModule } from '../firebase/firebase.module';
 
 describe('HeaderComponent', () => {
   let component: HeaderComponent;
@@ -19,7 +20,7 @@ describe('HeaderComponent', () => {
     };
 
     TestBed.configureTestingModule({
-      imports: [CovalentModule, MaterialModule, HttpClientTestingModule],
+      imports: [CovalentModule, MaterialModule, HttpClientTestingModule, FirebaseModule],
       declarations: [
         HeaderComponent,
         RegistrationComponent,

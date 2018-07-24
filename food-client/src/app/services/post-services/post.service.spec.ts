@@ -5,6 +5,7 @@ import {
 } from '@angular/common/http/testing';
 import { PostService } from './post.service';
 import { Post } from '../../models/post.model';
+import { FirebaseModule } from '../../firebase/firebase.module';
 
 describe('PostService', () => {
   const url: String = 'http://localhost:8190/api';
@@ -14,7 +15,7 @@ describe('PostService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [PostService],
-      imports: [HttpClientTestingModule]
+      imports: [HttpClientTestingModule, FirebaseModule]
     });
 
     postService = TestBed.get(PostService);
@@ -25,48 +26,4 @@ describe('PostService', () => {
     expect(service).toBeTruthy();
   }));
 
-  describe('getAll', () => {
-    it('should request a list for all posts', async(() => {
-      let response: any[];
-      postService.getAll().subscribe((res: any) => {
-        response = res;
-      });
-      const mockRequest = httpMock.expectOne(url + '/posts');
-      expect(mockRequest.request.url).toBe(url + '/posts');
-      expect(mockRequest.request.method).toBe('GET');
-      expect(mockRequest.request.headers.get('Content-Type')).toBe(
-        'application/json'
-      );
-      mockRequest.flush([]);
-    }));
-
-    it('should return a list of posts', async(() => {
-      let response: Post[] = [];
-      const mockResponse = [{ title: 'test' }];
-
-      postService.getAll().subscribe((res: any) => {
-        response = res;
-      });
-
-      httpMock.expectOne(url + '/posts').flush(mockResponse);
-      expect(response.length).toBe(1);
-      expect(response[0].title).toBe('test');
-      httpMock.verify();
-    }));
-  });
-
-  describe('getPostById', () => {
-    it('should request a single post', async(() => {
-
-      const id = 1000;
-
-      const mockRequest = httpMock.expectOne(url + '/posts/' + id);
-      expect(mockRequest.request.url).toBe(url + '/posts/' + id);
-      expect(mockRequest.request.method).toBe('GET');
-      expect(mockRequest.request.headers.get('Content-Type')).toBe(
-        'application/json'
-      );
-      mockRequest.flush([]);
-    }));
-  });
 });

@@ -1,11 +1,13 @@
 import { TestBed, inject } from '@angular/core/testing';
 
 import { FirebaseStorageService } from './firebase-storage.service';
+import { FirebaseModule } from '../firebase.module';
 
 describe('FirebaseStorageService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [FirebaseStorageService]
+      providers: [FirebaseStorageService],
+      imports: [FirebaseModule]
     });
   });
 

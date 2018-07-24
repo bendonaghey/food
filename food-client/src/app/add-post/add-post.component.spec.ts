@@ -11,6 +11,8 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { PostsComponent } from '../posts/posts.component';
 import { ViewPostComponent } from '../view-post/view-post.component';
 import { HomeComponent } from '../home/home.component';
+import { AngularFireStorageModule, AngularFireStorage } from '../../../node_modules/angularfire2/storage';
+import { FirebaseModule } from '../firebase/firebase.module';
 
 describe('AddPostComponent', () => {
   let component: AddPostComponent;
@@ -31,9 +33,12 @@ describe('AddPostComponent', () => {
         MaterialModule,
         BrowserAnimationsModule,
         RoutingModule,
-        RouterTestingModule.withRoutes(routes)
+        RouterTestingModule.withRoutes(routes),
+        FirebaseModule
       ],
-      schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA]
+      schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
+      providers: [
+      ]
     }).compileComponents();
   }));
 
