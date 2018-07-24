@@ -1,7 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { PostService } from '../services/post-services/post.service';
-import { UserService } from '../services/user-services/user.service';
-
 @Component({
   selector: 'app-stats',
   templateUrl: './stats.component.html',
@@ -12,7 +9,7 @@ export class StatsComponent implements OnInit {
   posts = 1;
   pickups = 225;
 
-  constructor(private postService: PostService) {}
+  constructor() {}
 
   ngOnInit() {
 

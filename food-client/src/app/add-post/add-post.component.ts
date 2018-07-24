@@ -32,6 +32,7 @@ export class AddPostComponent implements OnInit, OnDestroy {
   public expirationDate: FormControl;
 
   public imageFile: File;
+  public uploadPercent: number;
 
   private destroy$ = new Subject<any>();
 
@@ -76,7 +77,7 @@ export class AddPostComponent implements OnInit, OnDestroy {
     uploadTask.percentageChanges().pipe(
       takeUntil(this.destroy$)
     ).subscribe(percent => {
-      console.log(percent);
+      this.uploadPercent = percent;
     });
 
     uploadTask.snapshotChanges().pipe(takeUntil(this.destroy$),

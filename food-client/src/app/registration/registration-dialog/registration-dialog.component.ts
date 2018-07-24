@@ -30,7 +30,7 @@ export class RegistrationDialogComponent implements OnInit {
     this.buildSignupForm();
   }
 
-  login(): void {
+  public login(): void {
     this.authenticationService.login(this.loginEmail.value, this.loginPassword.value).then(res => {
       this.dialogRef.close();
     }, error => {
@@ -38,7 +38,7 @@ export class RegistrationDialogComponent implements OnInit {
     });
   }
 
-  signup(): void {
+  public signup(): void {
     this.authenticationService.signup(this.signupEmail.value, this.signupPassword.value).then(res => {
       this.userService.createUser(res.user.uid, this.username.value, this.signupEmail.value).then(() => {
         this.dialogRef.close();

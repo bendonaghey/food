@@ -9,13 +9,13 @@ export class FirebaseStorageService {
 
   constructor(private angularFireStorage: AngularFireStorage, private angularFirestore: AngularFirestore) { }
 
-  uploadImage(file: File): AngularFireUploadTask {
+  public uploadImage(file: File): AngularFireUploadTask {
     const uid = this.angularFirestore.createId();
     const ref = this.angularFireStorage.ref(`post-images/${file.name}`);
     return ref.put(file);
   }
 
-  getFileRef(path: string) {
+  public getFileRef(path: string) {
     return this.angularFireStorage.ref(path);
   }
 }

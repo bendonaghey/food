@@ -13,7 +13,7 @@ export class UserOptionsComponent implements OnInit, OnDestroy {
 
   constructor(private authenticationService: AuthenticationService, private userService: UserService) {}
 
-  email: string;
+  public email: string;
   private destroy$ = new Subject<any>();
 
 
@@ -21,7 +21,6 @@ export class UserOptionsComponent implements OnInit, OnDestroy {
     this.userService.user().pipe(
       takeUntil(this.destroy$)
     ).subscribe(res => {
-      console.log(res);
       this.email = res.email;
     });
   }
@@ -31,7 +30,7 @@ export class UserOptionsComponent implements OnInit, OnDestroy {
     this.destroy$.complete();
   }
 
-  logout() {
+  public logout() {
     this.authenticationService.signout();
   }
 }

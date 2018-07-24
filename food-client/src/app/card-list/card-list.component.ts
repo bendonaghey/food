@@ -10,8 +10,8 @@ import { Observable } from '../../../node_modules/rxjs';
 })
 export class CardListComponent implements OnInit {
   public cards: Post[] = [];
-
   public posts: Observable<Post[]>;
+
   constructor(private postService: PostService) {}
 
   ngOnInit() {

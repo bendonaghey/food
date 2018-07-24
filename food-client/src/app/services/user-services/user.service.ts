@@ -21,7 +21,7 @@ export class UserService {
     return userRef.set(this.generateUser(id, username, email));
   }
 
-  generateUser(id: string, username: string, email: string): User {
+  private generateUser(id: string, username: string, email: string): User {
     return {
       email: email,
       username: username,

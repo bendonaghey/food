@@ -8,13 +8,12 @@ import { PostService } from '../services/post-services/post.service';
   styleUrls: ['./posts.component.scss']
 })
 export class PostsComponent implements OnInit {
-  constructor(private router: Router, private postService: PostService) {}
+  constructor(private router: Router) {}
 
   ngOnInit() {
   }
 
   addPost() {
-    // this.postService.addPost();
     this.router.navigate(['posts/add']);
   }
 }

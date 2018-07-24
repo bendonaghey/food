@@ -12,7 +12,7 @@ export class RegistrationComponent implements OnInit {
 
   ngOnInit() {}
 
-  openDialog(): void {
+  public openDialog(): void {
     // !Fix
     const dialogRef = this.dialog.open(RegistrationDialogComponent, {
       width: '450px'

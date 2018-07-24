@@ -9,7 +9,6 @@ export class AuthenticationService {
 
   constructor(private angularFireAuth: AngularFireAuth) { }
 
-
   public state(): Observable<firebase.User> {
     return this.angularFireAuth.authState;
   }
