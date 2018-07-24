@@ -30,7 +30,6 @@ describe('RegistrationDialogComponent', () => {
       declarations: [RegistrationDialogComponent],
       imports: [FormsModule, ReactiveFormsModule],
       providers: [
-        RegistrationComponent,
         { provide: MAT_DIALOG_DATA, useValue: mockDialogData },
         { provide: MatDialogRef, useValue: mockDialogRef },
         { provide: AuthenticationService, useValue: mockAuthenticationService },
