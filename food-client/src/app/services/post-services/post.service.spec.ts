@@ -57,11 +57,9 @@ describe('PostService', () => {
 
   describe('getPostById', () => {
     it('should request a single post', async(() => {
-      let response: any[];
+
       const id = 1000;
-      postService.getPostById(id).subscribe((res: any) => {
-        response = res;
-      });
+
       const mockRequest = httpMock.expectOne(url + '/posts/' + id);
       expect(mockRequest.request.url).toBe(url + '/posts/' + id);
       expect(mockRequest.request.method).toBe('GET');
@@ -69,20 +67,6 @@ describe('PostService', () => {
         'application/json'
       );
       mockRequest.flush([]);
-    }));
-
-    it('should return a single post', async(() => {
-      let response: Post;
-      const id = 1000;
-      const mockResponse = <Post>{ title: '1000' };
-
-      postService.getPostById(id).subscribe((res: any) => {
-        response = res;
-      });
-
-      httpMock.expectOne(url + '/posts/' + id).flush(mockResponse);
-      expect(response).toBe(mockResponse);
-      httpMock.verify();
     }));
   });
 });

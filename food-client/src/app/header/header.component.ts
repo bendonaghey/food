@@ -1,20 +1,23 @@
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, OnInit, HostListener, OnDestroy } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
-import { UserService } from '../services/user-services/user.service';
 import { AuthenticationService } from '../authentication/authentication.service';
+import { Subject } from '../../../node_modules/rxjs';
+import { takeUntil } from '../../../node_modules/rxjs/operators';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, OnDestroy {
   isScrolled = false;
   isHome = true;
   currentPosition = 0;
   startPosition = 0;
   changePosition = 100;
   user: any;
+
+  private destroy$ = new Subject<any>();
 
   constructor(private router: Router, private authenticationService: AuthenticationService) {
     this.authenticationService.state().subscribe(user => {
@@ -23,7 +26,9 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.router.events.subscribe(res => {
+    this.router.events.pipe(
+      takeUntil(this.destroy$)
+    ).subscribe(res => {
       if (res instanceof NavigationEnd) {
         if (res.url === '/home' || res.url === '/') {
           this.isHome = true;
@@ -32,6 +37,11 @@ export class HeaderComponent implements OnInit {
         }
       }
     });
+  }
+
+  ngOnDestroy() {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 
   @HostListener('window:scroll', ['$event'])

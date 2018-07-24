@@ -1,14 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { PostService } from '../services/post-services/post.service';
 import { Post } from '../models/post.model';
-import { UserService } from '../services/user-services/user.service';
 import { Router } from '@angular/router';
 import { FirebaseStorageService } from '../firebase/storage/firebase-storage.service';
-import { finalize } from 'rxjs/operators';
+import { finalize, takeUntil } from 'rxjs/operators';
 import { AngularFireStorageReference } from '../../../node_modules/angularfire2/storage';
-import { FirebaseFirestoreService } from '../firebase/firestore/firebase-firestore.service';
-import { FirebaseAuthenticationService } from '../firebase/authentication/firebase-authentication.service';
+import { Subject } from '../../../node_modules/rxjs';
 export interface Day {
   value: string;
   viewValue: string;
@@ -19,7 +17,7 @@ export interface Day {
   templateUrl: './add-post.component.html',
   styleUrls: ['./add-post.component.scss']
 })
-export class AddPostComponent implements OnInit {
+export class AddPostComponent implements OnInit, OnDestroy {
   public post: Post;
   public email: string;
   public postId: string;
@@ -35,6 +33,8 @@ export class AddPostComponent implements OnInit {
 
   public imageFile: File;
 
+  private destroy$ = new Subject<any>();
+
   // !Probably not right
   days: Day[] = [
     { value: 'day-1', viewValue: '1 Day' },
@@ -45,10 +45,7 @@ export class AddPostComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private firebaseStorageService: FirebaseStorageService,
-    private userService: UserService,
     private postService: PostService,
-    private firebaseFirestoreService: FirebaseFirestoreService,
-    private firebaseAuthenticationService: FirebaseAuthenticationService,
     private router: Router
   ) {}
 
@@ -56,7 +53,12 @@ export class AddPostComponent implements OnInit {
     this.buildForm();
   }
 
-  selectEvent(file): void {
+  ngOnDestroy() {
+    this.destroy$.next();
+    this.destroy$.complete();
+  }
+
+  public selectEvent(file): void {
     if (file.target.files && file.target.files[0]) {
       const fileReader: FileReader = new FileReader();
       fileReader.readAsDataURL(file.target.files[0]);
@@ -67,37 +69,32 @@ export class AddPostComponent implements OnInit {
     }
   }
 
-  addPost(): void {
+  public addPost(): void {
     const fileRef = this.firebaseStorageService.getFileRef(`post-images/${this.imageFile.name}`);
     const uploadTask = this.firebaseStorageService.uploadImage(this.imageFile);
 
-    uploadTask.percentageChanges().subscribe(percent => {
+    uploadTask.percentageChanges().pipe(
+      takeUntil(this.destroy$)
+    ).subscribe(percent => {
       console.log(percent);
     });
 
-    uploadTask.snapshotChanges().pipe(finalize(() => this.onUploadComplete(fileRef))).subscribe();
+    uploadTask.snapshotChanges().pipe(takeUntil(this.destroy$),
+      finalize(() => this.onUploadComplete(fileRef))).pipe(
+        takeUntil(this.destroy$)
+      ).subscribe();
   }
 
   private onUploadComplete(fileRef: AngularFireStorageReference) {
-    fileRef.getDownloadURL().subscribe(url => {
-      this.postService.addPost(this.buildPost(url)).valueChanges().subscribe(() => {
+    fileRef.getDownloadURL().pipe(
+      takeUntil(this.destroy$)
+    ).subscribe(url => {
+      this.postService.addPost(this.buildPost(url)).valueChanges().pipe(
+        takeUntil(this.destroy$)
+      ).subscribe(() => {
         this.router.navigate(['/posts']);
       });
-
-      // this.firebaseFirestoreService.addPostToUser(this.buildPost(url)).then(res => {
-      //   this.firebaseFirestoreService.addPost(this.buildPost(url)).then((docRef) => {
-      //     docRef.get().then(doc => {
-      //       this.viewPost(doc.id);
-      //     });
-      //   }, error => {
-      //     console.log('create post error ', error.message);
-      //   });
-      // });
     });
-  }
-
-  private viewPost(id: string) {
-    this.router.navigate(['posts/', id]);
   }
 
   private buildPost(imageUrl: string): Post {
