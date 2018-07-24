@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FirebaseAuthenticationService } from '../../firebase/authentication/firebase-authentication.service';
+import { AuthenticationService } from '../authentication.service';
+import { UserService } from '../../services/user-services/user.service';
 
 @Component({
   selector: 'app-user-options',
@@ -7,18 +8,18 @@ import { FirebaseAuthenticationService } from '../../firebase/authentication/fir
   styleUrls: ['./user-options.component.scss']
 })
 export class UserOptionsComponent implements OnInit {
-  constructor(private firebaseAuthenticationService: FirebaseAuthenticationService) {}
+  constructor(private authenticationService: AuthenticationService, private userService: UserService) {}
 
   email: string;
 
   ngOnInit() {
-    this.firebaseAuthenticationService.authState().subscribe(user => {
-      user ? this.email = user.email : this.email = null;
+    this.userService.user().subscribe(res => {
+      console.log(res);
+      this.email = res.email;
     });
   }
 
-
   logout() {
-    this.firebaseAuthenticationService.signout();
+    this.authenticationService.signout();
   }
 }

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialogRef, MatTabChangeEvent } from '@angular/material';
+import { MatDialogRef } from '@angular/material';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
-import { FirebaseFirestoreService } from '../../firebase/firestore/firebase-firestore.service';
-import { FirebaseAuthenticationService } from '../../firebase/authentication/firebase-authentication.service';
+import { AuthenticationService } from '../../authentication/authentication.service';
+import { UserService } from '../../services/user-services/user.service';
 
 @Component({
   selector: 'app-registration-dialog',
@@ -21,8 +21,8 @@ export class RegistrationDialogComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private dialogRef: MatDialogRef<RegistrationDialogComponent>,
-    private firebaseAuthenticationService: FirebaseAuthenticationService,
-    private firebaseFirestoreService: FirebaseFirestoreService
+    private authenticationService: AuthenticationService,
+    private userService: UserService,
   ) {}
 
   ngOnInit() {
@@ -31,7 +31,7 @@ export class RegistrationDialogComponent implements OnInit {
   }
 
   login(): void {
-    this.firebaseAuthenticationService.login(this.loginEmail.value, this.loginPassword.value).then(res => {
+    this.authenticationService.login(this.loginEmail.value, this.loginPassword.value).then(res => {
       this.dialogRef.close();
     }, error => {
       console.warn('login error', error.message);
@@ -39,8 +39,8 @@ export class RegistrationDialogComponent implements OnInit {
   }
 
   signup(): void {
-    this.firebaseAuthenticationService.signup(this.signupEmail.value, this.signupPassword.value).then(res => {
-      this.firebaseFirestoreService.createUser(res.user.uid, this.username.value, this.signupEmail.value).then(() => {
+    this.authenticationService.signup(this.signupEmail.value, this.signupPassword.value).then(res => {
+      this.userService.createUser(res.user.uid, this.username.value, this.signupEmail.value).then(() => {
         this.dialogRef.close();
       }, error => {
         console.warn('firestor error', error.message);

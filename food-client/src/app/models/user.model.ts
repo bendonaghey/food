@@ -8,4 +8,5 @@ export interface User {
   lastname: string;
   dob: string;
   posts: Post[];
+  id?: string;
 }
