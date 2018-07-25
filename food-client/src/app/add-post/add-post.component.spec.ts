@@ -13,12 +13,19 @@ import { ViewPostComponent } from '../view-post/view-post.component';
 import { HomeComponent } from '../home/home.component';
 import { AngularFireStorageModule, AngularFireStorage } from '../../../node_modules/angularfire2/storage';
 import { FirebaseModule } from '../firebase/firebase.module';
+import { InjectableFileReader } from '../core/utilities/injectable-file-reader';
 
 describe('AddPostComponent', () => {
   let component: AddPostComponent;
   let fixture: ComponentFixture<AddPostComponent>;
-
+  let mockFileReader: any;
   beforeEach(async(() => {
+
+    mockFileReader = jasmine.createSpyObj('injectableFileReader', ['readAsDataURL', 'onload']);
+    mockFileReader.onload.and.callFake(() => {
+      return {};
+    });
+    mockFileReader.readAsDataURL.and.returnValue({});
     TestBed.configureTestingModule({
       declarations: [
         AddPostComponent,
@@ -38,6 +45,7 @@ describe('AddPostComponent', () => {
       ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
       providers: [
+        {provide: InjectableFileReader, useValue: mockFileReader}
       ]
     }).compileComponents();
   }));
@@ -51,5 +59,23 @@ describe('AddPostComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  describe('ngOnInit', () => {
+    it('should build the form', () => {
+      component.ngOnInit();
+      expect(component.addPostForm.controls['title']).toBeDefined();
+      expect(component.addPostForm.controls['description']).toBeDefined();
+      expect(component.addPostForm.controls['location']).toBeDefined();
+      expect(component.addPostForm.controls['pickUpTime']).toBeDefined();
+      expect(component.addPostForm.controls['expirationDate']).toBeDefined();
+    });
+  });
+
+  describe('selecteEvent', () => {
+    it('should read a file', () => {
+      const file: any = {target: {files: [<Blob>{}, <Blob>{}]}};
+      component.selectEvent(file);
+    });
   });
 });

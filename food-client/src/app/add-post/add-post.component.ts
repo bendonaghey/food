@@ -7,6 +7,7 @@ import { FirebaseStorageService } from '../firebase/storage/firebase-storage.ser
 import { finalize, takeUntil } from 'rxjs/operators';
 import { AngularFireStorageReference } from '../../../node_modules/angularfire2/storage';
 import { Subject } from '../../../node_modules/rxjs';
+import { InjectableFileReader } from '../core/utilities/injectable-file-reader';
 export interface Day {
   value: string;
   viewValue: string;
@@ -36,7 +37,6 @@ export class AddPostComponent implements OnInit, OnDestroy {
 
   private destroy$ = new Subject<any>();
 
-  // !Probably not right
   days: Day[] = [
     { value: 'day-1', viewValue: '1 Day' },
     { value: 'day-2', viewValue: '2 Days' },
@@ -47,7 +47,8 @@ export class AddPostComponent implements OnInit, OnDestroy {
     private formBuilder: FormBuilder,
     private firebaseStorageService: FirebaseStorageService,
     private postService: PostService,
-    private router: Router
+    private router: Router,
+    private injectableFileReader: InjectableFileReader
   ) {}
 
   ngOnInit() {
@@ -61,10 +62,10 @@ export class AddPostComponent implements OnInit, OnDestroy {
 
   public selectEvent(file): void {
     if (file.target.files && file.target.files[0]) {
-      const fileReader: FileReader = new FileReader();
-      fileReader.readAsDataURL(file.target.files[0]);
-      fileReader.onload = (event: Event) => {
-        this.url = fileReader.result;
+      const injectableFileReader: InjectableFileReader = new InjectableFileReader();
+      injectableFileReader.readAsDataURL(file.target.files[0]);
+      injectableFileReader.onload = (event: Event) => {
+        this.url = injectableFileReader.result;
         this.imageFile = file.target.files[0];
       };
     }
@@ -73,7 +74,6 @@ export class AddPostComponent implements OnInit, OnDestroy {
   public addPost(): void {
     const uid = this.firebaseStorageService.createImageId();
     const fileRef = this.firebaseStorageService.getFileRef(`post-images/${uid}/`);
-    // const fileRef = this.firebaseStorageService.getFileRef(`post-images/${this.imageFile.name}`);
     const uploadTask = this.firebaseStorageService.uploadImage(this.imageFile, uid);
 
     uploadTask.percentageChanges().pipe(
@@ -111,7 +111,6 @@ export class AddPostComponent implements OnInit, OnDestroy {
       imageUrl: imageUrl,
       id: '',
       userRef: '',
-
     };
   }
 
