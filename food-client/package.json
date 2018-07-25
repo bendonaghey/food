@@ -10,7 +10,8 @@
     "e2e": "ng e2e",
     "build:prod": "ng build --prod",
     "server": "cd ../ && cd food-service && npm start",
-    "all": "ng serve | npm run server"
+    "all": "ng serve | npm run server",
+    "test:coverage": "ng test --sourceMap=false --browsers=ChromeHeadless --code-coverage --watch=false"
   },
   "private": true,
   "dependencies": {

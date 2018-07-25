@@ -71,8 +71,10 @@ export class AddPostComponent implements OnInit, OnDestroy {
   }
 
   public addPost(): void {
-    const fileRef = this.firebaseStorageService.getFileRef(`post-images/${this.imageFile.name}`);
-    const uploadTask = this.firebaseStorageService.uploadImage(this.imageFile);
+    const uid = this.firebaseStorageService.createImageId();
+    const fileRef = this.firebaseStorageService.getFileRef(`post-images/${uid}/`);
+    // const fileRef = this.firebaseStorageService.getFileRef(`post-images/${this.imageFile.name}`);
+    const uploadTask = this.firebaseStorageService.uploadImage(this.imageFile, uid);
 
     uploadTask.percentageChanges().pipe(
       takeUntil(this.destroy$)
