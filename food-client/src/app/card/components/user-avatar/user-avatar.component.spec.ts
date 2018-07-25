@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed, fakeAsync } from '@angular/core/testing';
 
 import { UserAvatarComponent } from './user-avatar.component';
 import { StarRatingModule, StarRatingComponent, StarRatingConfigService } from '../../../../../node_modules/angular-star-rating';
@@ -24,9 +24,7 @@ describe('UserAvatarComponent', () => {
 
     mockUserRef = jasmine.createSpyObj('userRef', ['get']);
 
-    mockUserRef.get.and.returnValue({then: function() {} });
-
-
+    mockUserRef.get.and.returnValue({then: function() {return {user: ''}; } });
 
     fixture = TestBed.createComponent(UserAvatarComponent);
     component = fixture.componentInstance;
@@ -36,5 +34,12 @@ describe('UserAvatarComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  describe('ngOnInit', () => {
+    it('should get the user object', fakeAsync(() => {
+      component.ngOnInit();
+      expect(mockUserRef.get).toHaveBeenCalled();
+    }));
   });
 });

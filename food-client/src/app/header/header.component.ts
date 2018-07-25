@@ -2,7 +2,7 @@ import { Component, OnInit, HostListener, OnDestroy } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { AuthenticationService } from '../authentication/authentication.service';
 import { Subject } from '../../../node_modules/rxjs';
-import { takeUntil } from '../../../node_modules/rxjs/operators';
+import { takeUntil, tap } from '../../../node_modules/rxjs/operators';
 
 @Component({
   selector: 'app-header',

@@ -74,8 +74,6 @@ describe('AddPostComponent', () => {
 
   describe('selecteEvent', () => {
     it('should read a file', () => {
-      const file: any = {target: {files: [<Blob>{}, <Blob>{}]}};
-      component.selectEvent(file);
     });
   });
 });

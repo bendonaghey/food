@@ -37,4 +37,23 @@ describe('UserOptionsComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  describe('ngOnInit', () => {
+    it('should should subscribe to the userService.user', () => {
+      component.ngOnInit();
+      expect(mockUserService.user).toHaveBeenCalled();
+    });
+
+    it('should set the email address', () => {
+      component.ngOnInit();
+      expect(component.email).toBe('test');
+    });
+  });
+
+  describe('logout', () => {
+    it('should sign out using the authenticationService', () => {
+      component.logout();
+      expect(mockAuthenticationService.signout).toHaveBeenCalled();
+    });
+  });
 });
