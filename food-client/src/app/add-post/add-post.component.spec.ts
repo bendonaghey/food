@@ -11,7 +11,10 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { PostsComponent } from '../posts/posts.component';
 import { ViewPostComponent } from '../view-post/view-post.component';
 import { HomeComponent } from '../home/home.component';
-import { AngularFireStorageModule, AngularFireStorage } from '../../../node_modules/angularfire2/storage';
+import {
+  AngularFireStorageModule,
+  AngularFireStorage
+} from '../../../node_modules/angularfire2/storage';
 import { FirebaseModule } from '../firebase/firebase.module';
 import { InjectableFileReader } from '../core/utilities/injectable-file-reader';
 import { of } from 'rxjs';
@@ -41,7 +44,10 @@ describe('AddPostComponent', () => {
   let mockRouter: any;
 
   beforeEach(async(() => {
-    mockFileReader = jasmine.createSpyObj('injectableFileReader', ['readAsDataURL', 'onload']);
+    mockFileReader = jasmine.createSpyObj('injectableFileReader', [
+      'readAsDataURL',
+      'onload'
+    ]);
     mockFileReader.onload.and.callFake(() => {
       return {};
     });
@@ -51,11 +57,17 @@ describe('AddPostComponent', () => {
     mockFileRef = jasmine.createSpyObj('fileRef', ['getDownloadURL']);
     mockFileRef.getDownloadURL.and.returnValue(of('downloadurl.com'));
 
-    mockUploadTask = jasmine.createSpyObj('uploadTask', ['percentageChanges', 'snapshotChanges']);
+    mockUploadTask = jasmine.createSpyObj('uploadTask', [
+      'percentageChanges',
+      'snapshotChanges'
+    ]);
     mockUploadTask.percentageChanges.and.returnValue(of(100));
     mockUploadTask.snapshotChanges.and.returnValue(of({}));
 
-    mockFirebaseStorageService = jasmine.createSpyObj('firebaseStorageService', ['createImageId', 'getFileRef', 'uploadImage']);
+    mockFirebaseStorageService = jasmine.createSpyObj(
+      'firebaseStorageService',
+      ['createImageId', 'getFileRef', 'uploadImage']
+    );
     mockFirebaseStorageService.createImageId.and.returnValue('123123');
     mockFirebaseStorageService.getFileRef.and.returnValue(mockFileRef);
     mockFirebaseStorageService.uploadImage.and.returnValue(mockUploadTask);
@@ -93,10 +105,13 @@ describe('AddPostComponent', () => {
       ],
       schemas: [],
       providers: [
-        {provide: FirebaseStorageService, useValue: mockFirebaseStorageService},
-        {provide: PostService, useValue: mockPostService },
-        {provide: Router, useValue: mockRouter },
-        {provide: InjectableFileReader, useValue: mockFileReader},
+        {
+          provide: FirebaseStorageService,
+          useValue: mockFirebaseStorageService
+        },
+        { provide: PostService, useValue: mockPostService },
+        { provide: Router, useValue: mockRouter },
+        { provide: InjectableFileReader, useValue: mockFileReader }
       ]
     }).compileComponents();
   }));
@@ -130,6 +145,56 @@ describe('AddPostComponent', () => {
   });
 
   describe('addPost', () => {
+    describe('isValidPost', () => {
+      it('should be invalid with no image or input', () => {
+        component.addPostForm.controls['title'].setValue('');
+        component.addPostForm.controls['description'].setValue('');
+        component.addPostForm.controls['location'].setValue('');
+        component.addPostForm.controls['pickUpTime'].setValue('');
+        component.addPostForm.controls['expirationDate'].setValue('');
+        component.url = null;
+        expect(component.isValidPost()).toBeFalsy();
+      });
+
+      it('should be invalid with image and not input', () => {
+        component.addPostForm.controls['title'].setValue('');
+        component.addPostForm.controls['description'].setValue('');
+        component.addPostForm.controls['location'].setValue('');
+        component.addPostForm.controls['pickUpTime'].setValue('');
+        component.addPostForm.controls['expirationDate'].setValue('');
+        component.url = 'image url';
+        expect(component.isValidPost()).toBeFalsy();
+      });
+
+      it('should be invalid no image and input', () => {
+        component.addPostForm.controls['title'].setValue('test');
+        component.addPostForm.controls['description'].setValue('test');
+        component.addPostForm.controls['location'].setValue('test');
+        component.addPostForm.controls['pickUpTime'].setValue('test');
+        component.addPostForm.controls['expirationDate'].setValue('test');
+        component.url = null;
+        expect(component.isValidPost()).toBeFalsy();
+      });
+
+      it('should be valid with image and input', () => {
+        component.addPostForm.controls['title'].setValue('test');
+        component.addPostForm.controls['description'].setValue('test');
+        component.addPostForm.controls['location'].setValue('test');
+        component.addPostForm.controls['pickUpTime'].setValue('test');
+        component.addPostForm.controls['expirationDate'].setValue('test');
+        component.url = 'imageurl';
+        expect(component.isValidPost()).toBeTruthy();
+      });
+    });
+
+    describe('cancelEvent', () => {
+      it('should set url to null', () => {
+        component.url = 'image';
+        component.cancelEvent();
+        expect(component.url).toBe(null);
+      });
+    });
+
     it('should create a unique id', () => {
       component.addPost();
       expect(mockFirebaseStorageService.createImageId).toHaveBeenCalled();
@@ -137,13 +202,18 @@ describe('AddPostComponent', () => {
 
     it('should create a reference to the image file', () => {
       component.addPost();
-      expect(mockFirebaseStorageService.getFileRef).toHaveBeenCalledWith('post-images/123123/');
+      expect(mockFirebaseStorageService.getFileRef).toHaveBeenCalledWith(
+        'post-images/123123/'
+      );
     });
 
     it('should create an upload task', () => {
       component.imageFile = <File>{};
       component.addPost();
-      expect(mockFirebaseStorageService.uploadImage).toHaveBeenCalledWith(<File>{}, '123123');
+      expect(mockFirebaseStorageService.uploadImage).toHaveBeenCalledWith(
+        <File>{},
+        '123123'
+      );
     });
 
     it('should subscribe to the percentage changes of the image upload', () => {

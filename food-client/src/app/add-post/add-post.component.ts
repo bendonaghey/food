@@ -47,8 +47,7 @@ export class AddPostComponent implements OnInit, OnDestroy {
     private formBuilder: FormBuilder,
     private firebaseStorageService: FirebaseStorageService,
     private postService: PostService,
-    private router: Router,
-    private injectableFileReader: InjectableFileReader
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -62,13 +61,21 @@ export class AddPostComponent implements OnInit, OnDestroy {
 
   public selectEvent(file): void {
     if (file.target.files && file.target.files[0]) {
-      const injectableFileReader: InjectableFileReader = new InjectableFileReader();
-      injectableFileReader.readAsDataURL(file.target.files[0]);
-      injectableFileReader.onload = (event: Event) => {
-        this.url = injectableFileReader.result;
+      const fileReader: FileReader = new FileReader();
+      fileReader.readAsDataURL(file.target.files[0]);
+      fileReader.onload = (event: Event) => {
+        this.url = fileReader.result;
         this.imageFile = file.target.files[0];
       };
     }
+  }
+
+  public isValidPost(): boolean {
+    return this.addPostForm.valid && this.url !== null;
+  }
+
+  public cancelEvent() {
+    this.url = null;
   }
 
   public addPost(): void {

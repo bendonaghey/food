@@ -2,7 +2,7 @@
   <div layout="column">
     <span class="heading-title">Create Post</span>
     <div class="push-top-md push-bottom-md" layout="row" layout-align="center center">
-      <button mat-button (click)="addPost()">Add Post</button>
+      <button mat-button (click)="addPost()" [disabled]="!isValidPost()">Add Post</button>
     </div>
     <mat-divider></mat-divider>
   </div>
@@ -15,7 +15,7 @@
         <mat-card-header>
           <mat-card-title class="textSize">Upload photo</mat-card-title>
         </mat-card-header>
-        <td-file-upload class="push-left-sm push-right-sm" #fileInput (change)="selectEvent($event)" required>
+        <td-file-upload class="push-left-sm push-right-sm" #fileInput (cancel)="cancelEvent()" (change)="selectEvent($event)" required>
           <img *ngIf="url" [src]="url">
           <ng-template #selectFile td-file-input-label>
             <div class="col" align="center">
