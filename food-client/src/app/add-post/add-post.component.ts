@@ -60,14 +60,22 @@ export class AddPostComponent implements OnInit, OnDestroy {
   }
 
   public selectEvent(file): void {
-    if (file.target.files && file.target.files[0]) {
-      const fileReader: FileReader = new FileReader();
-      fileReader.readAsDataURL(file.target.files[0]);
+    console.log(file);
+       const fileReader: FileReader = new FileReader();
+      fileReader.readAsDataURL(file);
       fileReader.onload = (event: Event) => {
         this.url = fileReader.result;
-        this.imageFile = file.target.files[0];
+        this.imageFile = file;
       };
-    }
+
+    // if (file.target.files && file.target.files[0]) {
+    //   const fileReader: FileReader = new FileReader();
+    //   fileReader.readAsDataURL(file.target.files[0]);
+    //   fileReader.onload = (event: Event) => {
+    //     this.url = fileReader.result;
+    //     this.imageFile = file.target.files[0];
+    //   };
+    // }
   }
 
   public isValidPost(): boolean {
