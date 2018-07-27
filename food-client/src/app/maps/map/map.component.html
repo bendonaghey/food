@@ -1,0 +1,13 @@
+<div class="form-group">
+  <mat-form-field class="pad-left-md pad-right-md pad-top-sm">
+    <input placeholder="search for location" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control"
+      #search [formControl]="searchControl" matInput>
+  </mat-form-field>
+</div>
+<agm-map [latitude]="lat" [longitude]="lng" [zoom]="15" (mapClick)="onChooseLocation($event)">
+  <agm-marker [markerDraggable]="true" [latitude]="lat" [longitude]="lng">
+    <agm-info-window>
+      {{markerAddress}}
+    </agm-info-window>
+  </agm-marker>
+</agm-map>

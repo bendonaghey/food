@@ -22,6 +22,10 @@ import { StatsComponent } from './stats/stats.component';
 import { HomeComponent } from './home/home.component';
 import { HeaderComponent } from './header/header.component';
 import { StarRatingModule } from 'angular-star-rating';
+
+import { AgmCoreModule } from '@agm/core';
+import { MapComponent } from './maps/map/map.component';
+
 @NgModule({
   declarations: [
     CardComponent,
@@ -36,7 +40,8 @@ import { StarRatingModule } from 'angular-star-rating';
     RegistrationDialogComponent,
     StatsComponent,
     HomeComponent,
-    HeaderComponent
+    HeaderComponent,
+    MapComponent
   ],
   imports: [
     BrowserModule,
@@ -47,7 +52,11 @@ import { StarRatingModule } from 'angular-star-rating';
     RoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    StarRatingModule.forRoot()
+    StarRatingModule.forRoot(),
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyBbcXxN2Voh7WAm-pZK5OYqDxE8n0WucRA',
+      libraries: ['places']
+    })
   ],
   providers: [
     { provide: 'apiKey', useValue: environment.apiKey },
