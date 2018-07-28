@@ -8,7 +8,7 @@ import {
   OnInit,
   ViewChild
 } from '@angular/core';
-import { FormControl, FormBuilder, FormGroup } from '@angular/forms';
+import { FormControl } from '@angular/forms';
 import { MapsAPILoader } from '@agm/core';
 import { GoogleMapsService } from '../services/google-maps.service';
 
