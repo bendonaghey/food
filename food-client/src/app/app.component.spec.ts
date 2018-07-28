@@ -21,6 +21,8 @@ import { StatsComponent } from './stats/stats.component';
 import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
 import { StarRatingModule } from '../../node_modules/angular-star-rating';
+import { MapComponent } from './maps/map/map.component';
+import { AgmCoreModule } from '@agm/core';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -37,7 +39,8 @@ describe('AppComponent', () => {
         RegistrationComponent,
         StatsComponent,
         HomeComponent,
-        HeaderComponent
+        HeaderComponent,
+        MapComponent
       ],
       imports: [
         MaterialModule,
@@ -49,7 +52,8 @@ describe('AppComponent', () => {
         HttpClientModule,
         RoutingModule,
         RouterTestingModule.withRoutes(routes),
-        StarRatingModule.forRoot()
+        StarRatingModule.forRoot(),
+        AgmCoreModule
       ],
       providers: [
         { provide: 'apiKey', useValue: 'test' },
