@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '../../../node_modules/@angular/router';
+import { PostService } from '../services/post-services/post.service';
 
 @Component({
   selector: 'app-posts',
@@ -6,7 +8,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./posts.component.scss']
 })
 export class PostsComponent implements OnInit {
-  constructor() {}
+  constructor(private router: Router) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+  }
+
+  addPost() {
+    this.router.navigate(['posts/add']);
+  }
 }

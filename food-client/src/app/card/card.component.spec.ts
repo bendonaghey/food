@@ -23,12 +23,19 @@ describe('CardComponent', () => {
     fixture = TestBed.createComponent(CardComponent);
     component = fixture.componentInstance;
 
-    component.card = <Post>{};
+    component.card = <Post>{id: '123123'};
 
     fixture.detectChanges();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  describe('viewPost', () => {
+    it('should should route to selected post', () => {
+      component.viewPost(<Post>{id: '123123'});
+      expect(mockRouter.navigate).toHaveBeenCalledWith(['/posts', '123123']);
+    });
   });
 });

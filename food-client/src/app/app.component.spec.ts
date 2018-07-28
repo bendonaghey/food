@@ -21,10 +21,24 @@ import { StatsComponent } from './stats/stats.component';
 import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
 import { StarRatingModule } from '../../node_modules/angular-star-rating';
+import { AngularFireModule } from '../../node_modules/angularfire2';
+import { AngularFireAuthModule } from '../../node_modules/angularfire2/auth';
+import { AngularFireStorageModule } from '../../node_modules/angularfire2/storage';
+import { UserAvatarComponent } from './card/components/user-avatar/user-avatar.component';
+import { environment } from '../environments/environment';
 import { MapComponent } from './maps/map/map.component';
 import { AgmCoreModule } from '@agm/core';
 
 describe('AppComponent', () => {
+  const firebaseConfig = {
+    apiKey: 'test',
+    authDomain: 'test',
+    databaseURL: 'test',
+    projectId: 'test',
+    storageBucket: 'test',
+    messagingSenderId: 'test'
+  };
+
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
@@ -40,6 +54,7 @@ describe('AppComponent', () => {
         StatsComponent,
         HomeComponent,
         HeaderComponent,
+        UserAvatarComponent,
         MapComponent
       ],
       imports: [
@@ -53,15 +68,14 @@ describe('AppComponent', () => {
         RoutingModule,
         RouterTestingModule.withRoutes(routes),
         StarRatingModule.forRoot(),
+        AngularFireModule.initializeApp(firebaseConfig),
+        AngularFireAuthModule,
+        AngularFireStorageModule,
+        AngularFireStorageModule,
         AgmCoreModule
       ],
       providers: [
-        { provide: 'apiKey', useValue: 'test' },
-        { provide: 'authDomain', useValue: 'test' },
-        { provide: 'databaseURL', useValue: 'test' },
-        { provide: 'projectId', useValue: 'test' },
-        { provide: 'storageBucket', useValue: 'test' },
-        { provide: 'messagingSenderId', useValue: 'test' }
+        { provide: environment.firebase, useValue: firebaseConfig },
       ]
     }).compileComponents();
   }));

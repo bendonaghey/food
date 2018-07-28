@@ -4,7 +4,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { ViewPostComponent } from './view-post.component';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Observable, observable } from 'rxjs';
+import { Observable, observable, of } from 'rxjs';
+import { FirebaseModule } from '../firebase/firebase.module';
 
 describe('ViewPostComponent', () => {
   let component: ViewPostComponent;
@@ -13,11 +14,11 @@ describe('ViewPostComponent', () => {
 
   beforeEach(async(() => {
 
-    mockActivatedRoute = { snapshot: { params: { id: 1000 } } };
+    mockActivatedRoute = { paramMap: of('') };
 
     TestBed.configureTestingModule({
       declarations: [ViewPostComponent],
-      imports: [HttpClientModule],
+      imports: [HttpClientModule, FirebaseModule],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
       providers: [
         {provide: ActivatedRoute, useValue: mockActivatedRoute}

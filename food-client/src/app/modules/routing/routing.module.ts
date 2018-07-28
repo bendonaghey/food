@@ -8,8 +8,8 @@ import { HomeComponent } from '../../home/home.component';
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'posts', component: PostsComponent },
+  { path: 'posts/add', component: AddPostComponent },
   { path: 'posts/:id', component: ViewPostComponent },
-  { path: 'add-post', component: AddPostComponent },
   { path: 'home', component: HomeComponent },
   { path: '**', redirectTo: 'posts', pathMatch: 'full' }
 ];

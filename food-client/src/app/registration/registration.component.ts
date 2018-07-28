@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { RegistrationDialogComponent } from './registration-dialog/registration-dialog.component';
 
@@ -12,10 +12,10 @@ export class RegistrationComponent implements OnInit {
 
   ngOnInit() {}
 
-  openDialog(): void {
+  public openDialog(): void {
     // !Fix
     const dialogRef = this.dialog.open(RegistrationDialogComponent, {
-      width: '375px'
+      width: '450px'
     });
   }
 }

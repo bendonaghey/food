@@ -24,8 +24,8 @@ export class GoogleMapsService {
           if (error) {
             console.log(error);
           }
-          this.lat.next(55.009169);
-          this.lng.next(-7.306686);
+          // this.lat.next(55.009169);
+          // this.lng.next(-7.306686);
         },
         {
           enableHighAccuracy: true,
@@ -33,8 +33,8 @@ export class GoogleMapsService {
         }
       );
     } else {
-      this.lat.next(55.009169);
-      this.lng.next(-7.306686);
+      // this.lat.next(55.009169);
+      // this.lng.next(-7.306686);
     }
   }
   public getAddressFromMarker(lat: number, lng: number) {
@@ -45,6 +45,8 @@ export class GoogleMapsService {
       if (status === google.maps.GeocoderStatus.OK) {
         if (results[0]) {
           this.address.next(results[0].formatted_address);
+          this.lat.next(results[0].geometry.location.lat());
+          this.lng.next(results[0].geometry.location.lng());
         } else {
           alert('No results found');
         }

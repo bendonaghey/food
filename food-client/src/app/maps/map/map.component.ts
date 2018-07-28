@@ -71,8 +71,10 @@ export class MapComponent implements OnInit {
           }
           this.lat = place.geometry.location.lat();
           this.lng = place.geometry.location.lng();
-          this.markerAddress = place.name;
-          console.log(place);
+          this.markerAddress = place.formatted_address;
+          this.googleMapsService.address.next(this.markerAddress);
+          this.googleMapsService.lat.next(this.lat);
+          this.googleMapsService.lng.next(this.lng);
         });
       });
     });
