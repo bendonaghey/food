@@ -16,3 +16,16 @@ body {
   text-transform: uppercase;
   font-weight: 800;
 }
+
+.mat-form-field-appearance-outline .mat-form-field-outline-thick {
+  color: #a7d2cb;
+}
+
+.mat-form-field-appearance-outline.mat-form-field-invalid.mat-form-field-invalid
+  .mat-form-field-outline-thick {
+  color: rgb(232, 135, 135);
+}
+
+.mat-form-field.mat-form-field-invalid .mat-form-field-label {
+  color: rgb(232, 135, 135);
+}

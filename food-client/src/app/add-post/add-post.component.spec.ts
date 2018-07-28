@@ -190,7 +190,7 @@ describe('AddPostComponent', () => {
     describe('cancelEvent', () => {
       it('should set url to null', () => {
         component.url = 'image';
-        component.cancelEvent();
+        component.remove();
         expect(component.url).toBe(null);
       });
     });

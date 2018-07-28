@@ -1,5 +1,10 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  Validators,
+  FormControl
+} from '@angular/forms';
 import { PostService } from '../services/post-services/post.service';
 import { Post } from '../models/post.model';
 import { Router } from '@angular/router';
@@ -60,15 +65,14 @@ export class AddPostComponent implements OnInit, OnDestroy {
   }
 
   public selectEvent(file): void {
-    console.log(file);
-       const fileReader: FileReader = new FileReader();
-      fileReader.readAsDataURL(file);
-      fileReader.onload = (event: Event) => {
-        this.url = fileReader.result;
-        this.imageFile = file;
-      };
+    const fileReader: FileReader = new FileReader();
+    fileReader.readAsDataURL(file);
+    fileReader.onload = (event: Event) => {
+      this.url = fileReader.result;
+      this.imageFile = file;
+    };
 
-    // if (file.target.files && file.target.files[0]) {
+    // if (file.target.files && file.target.files 0]) {
     //   const fileReader: FileReader = new FileReader();
     //   fileReader.readAsDataURL(file.target.files[0]);
     //   fileReader.onload = (event: Event) => {
@@ -82,37 +86,50 @@ export class AddPostComponent implements OnInit, OnDestroy {
     return this.addPostForm.valid && this.url !== null;
   }
 
-  public cancelEvent() {
+  public remove() {
     this.url = null;
   }
 
   public addPost(): void {
     const uid = this.firebaseStorageService.createImageId();
-    const fileRef = this.firebaseStorageService.getFileRef(`post-images/${uid}/`);
-    const uploadTask = this.firebaseStorageService.uploadImage(this.imageFile, uid);
+    const fileRef = this.firebaseStorageService.getFileRef(
+      `post-images/${uid}/`
+    );
+    const uploadTask = this.firebaseStorageService.uploadImage(
+      this.imageFile,
+      uid
+    );
 
-    uploadTask.percentageChanges().pipe(
-      takeUntil(this.destroy$)
-    ).subscribe(percent => {
-      this.uploadPercent = percent;
-    });
+    uploadTask
+      .percentageChanges()
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(percent => {
+        this.uploadPercent = percent;
+      });
 
-    uploadTask.snapshotChanges().pipe(takeUntil(this.destroy$),
-      finalize(() => this.onUploadComplete(fileRef))).pipe(
-        takeUntil(this.destroy$)
-      ).subscribe();
+    uploadTask
+      .snapshotChanges()
+      .pipe(
+        takeUntil(this.destroy$),
+        finalize(() => this.onUploadComplete(fileRef))
+      )
+      .pipe(takeUntil(this.destroy$))
+      .subscribe();
   }
 
   private onUploadComplete(fileRef: AngularFireStorageReference) {
-    fileRef.getDownloadURL().pipe(
-      takeUntil(this.destroy$)
-    ).subscribe(url => {
-      this.postService.addPost(this.buildPost(url)).valueChanges().pipe(
-        takeUntil(this.destroy$)
-      ).subscribe(() => {
-        this.router.navigate(['/posts']);
+    fileRef
+      .getDownloadURL()
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(url => {
+        this.postService
+          .addPost(this.buildPost(url))
+          .valueChanges()
+          .pipe(takeUntil(this.destroy$))
+          .subscribe(() => {
+            this.router.navigate(['/posts']);
+          });
       });
-    });
   }
 
   private buildPost(imageUrl: string): Post {
@@ -125,7 +142,7 @@ export class AddPostComponent implements OnInit, OnDestroy {
       expirationDate: this.expirationDate.value,
       imageUrl: imageUrl,
       id: '',
-      userRef: '',
+      userRef: ''
     };
   }
 
