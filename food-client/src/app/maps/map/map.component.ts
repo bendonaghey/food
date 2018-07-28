@@ -1,3 +1,6 @@
+// Needed for typings
+/// <reference types="googlemaps" />;
+
 import {
   Component,
   ElementRef,
@@ -9,18 +12,16 @@ import { FormControl, FormBuilder, FormGroup } from '@angular/forms';
 import { MapsAPILoader } from '@agm/core';
 import { GoogleMapsService } from '../services/google-maps.service';
 
-declare var google: any;
-
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.scss']
 })
 export class MapComponent implements OnInit {
-  public markerAddress: string;
-  public zoom: number;
+  public markerAddress: any;
   public lat: number;
   public lng: number;
+  public zoom = 12;
 
   @ViewChild('search') public searchElementRef: ElementRef;
   public searchControl: FormControl;
@@ -31,25 +32,25 @@ export class MapComponent implements OnInit {
     private mapsAPILoader: MapsAPILoader
   ) {}
   ngOnInit() {
-    this.lat = 54.993706;
-    this.lng = -7.292497;
-    this.zoom = 14;
-    this.googleMapsService.getCurrentPosition(this.lat, this.lng);
+    this.googleMapsService.getCurrentPosition();
+    this.googleMapsService.lat.subscribe(res => {
+      this.lat = res;
+    });
+    this.googleMapsService.lng.subscribe(res => {
+      this.lng = res;
+    });
+    this.googleMapsService.address.subscribe(res => {
+      this.markerAddress = res;
+    });
 
     this.searchAddress();
   }
 
   public onChooseLocation(event) {
-    this.googleMapsService
-      .getAddressFromMarker(
-        (this.lat = event.coords.lat),
-        (this.lng = event.coords.lng)
-      )
-      .subscribe(res => {
-        console.log(res);
-
-        this.markerAddress = res;
-      });
+    this.googleMapsService.getAddressFromMarker(
+      (this.lat = event.coords.lat),
+      (this.lng = event.coords.lng)
+    );
   }
 
   public searchAddress() {
@@ -71,8 +72,13 @@ export class MapComponent implements OnInit {
           this.lat = place.geometry.location.lat();
           this.lng = place.geometry.location.lng();
           this.markerAddress = place.name;
+          console.log(place);
         });
       });
     });
+  }
+
+  public zoomChange(event) {
+    this.zoom = event;
   }
 }
