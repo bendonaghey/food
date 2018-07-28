@@ -26,6 +26,8 @@ import { AngularFireAuthModule } from '../../node_modules/angularfire2/auth';
 import { AngularFireStorageModule } from '../../node_modules/angularfire2/storage';
 import { UserAvatarComponent } from './card/components/user-avatar/user-avatar.component';
 import { environment } from '../environments/environment';
+import { MapComponent } from './maps/map/map.component';
+import { AgmCoreModule } from '@agm/core';
 
 describe('AppComponent', () => {
   const firebaseConfig = {
@@ -52,7 +54,8 @@ describe('AppComponent', () => {
         StatsComponent,
         HomeComponent,
         HeaderComponent,
-        UserAvatarComponent
+        UserAvatarComponent,
+        MapComponent
       ],
       imports: [
         MaterialModule,
@@ -68,7 +71,8 @@ describe('AppComponent', () => {
         AngularFireModule.initializeApp(firebaseConfig),
         AngularFireAuthModule,
         AngularFireStorageModule,
-        AngularFireStorageModule
+        AngularFireStorageModule,
+        AgmCoreModule
       ],
       providers: [
         { provide: environment.firebase, useValue: firebaseConfig },

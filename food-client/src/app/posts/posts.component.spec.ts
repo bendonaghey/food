@@ -10,6 +10,7 @@ import { RouterModule } from '../../../node_modules/@angular/router';
 import { RouterTestingModule } from '../../../node_modules/@angular/router/testing';
 import { FirebaseApp } from '../../../node_modules/angularfire2';
 import { FirebaseModule } from '../firebase/firebase.module';
+import { MapComponent } from '../maps/map/map.component';
 
 describe('PostsComponent', () => {
   let component: PostsComponent;

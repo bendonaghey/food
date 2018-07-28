@@ -8,4 +8,7 @@ export interface Post {
   imageUrl: string;
   id?: string;
   userRef?: any;
+  address: string;
+  lat: number;
+  lng: number;
 }

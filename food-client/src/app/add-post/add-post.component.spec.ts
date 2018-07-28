@@ -27,6 +27,9 @@ import { StarRatingModule } from 'angular-star-rating';
 import { StatsComponent } from '../stats/stats.component';
 import { CardComponent } from '../card/card.component';
 import { UserAvatarComponent } from '../card/components/user-avatar/user-avatar.component';
+import { MapComponent } from '../maps/map/map.component';
+import { GoogleMapsService } from '../maps/services/google-maps.service';
+import { MapsAPILoader } from '../../../node_modules/@agm/core';
 
 describe('AddPostComponent', () => {
   let component: AddPostComponent;
@@ -43,7 +46,13 @@ describe('AddPostComponent', () => {
 
   let mockRouter: any;
 
+  let mockGoogleMapsService: any;
+
+  let mockMapsAPILoader: any;
+
   beforeEach(async(() => {
+    mockMapsAPILoader = jasmine.createSpyObj('mapsAPILoader', ['load']);
+    mockMapsAPILoader.load.and.returnValue({then: () => {}});
     mockFileReader = jasmine.createSpyObj('injectableFileReader', [
       'readAsDataURL',
       'onload'
@@ -80,6 +89,13 @@ describe('AddPostComponent', () => {
 
     mockRouter = jasmine.createSpyObj('router', ['navigate']);
 
+    mockGoogleMapsService = {
+      lat: of(10),
+      lng: of(20),
+      address: of('123'),
+      getCurrentPosition: jasmine.createSpy('getCurrentPosition').and.returnValue('')
+    };
+
     TestBed.configureTestingModule({
       declarations: [
         AddPostComponent,
@@ -89,7 +105,8 @@ describe('AddPostComponent', () => {
         CardListComponent,
         StatsComponent,
         CardComponent,
-        UserAvatarComponent
+        UserAvatarComponent,
+        MapComponent
       ],
       imports: [
         HttpClientModule,
@@ -103,15 +120,17 @@ describe('AddPostComponent', () => {
         CovalentModule,
         StarRatingModule
       ],
-      schemas: [],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
       providers: [
+        { provide: MapsAPILoader, useValue: mockMapsAPILoader },
         {
           provide: FirebaseStorageService,
           useValue: mockFirebaseStorageService
         },
         { provide: PostService, useValue: mockPostService },
         { provide: Router, useValue: mockRouter },
-        { provide: InjectableFileReader, useValue: mockFileReader }
+        { provide: InjectableFileReader, useValue: mockFileReader },
+        { provide: GoogleMapsService, useValue: mockGoogleMapsService }
       ]
     }).compileComponents();
   }));

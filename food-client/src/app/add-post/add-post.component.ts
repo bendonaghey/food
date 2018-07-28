@@ -13,6 +13,7 @@ import { finalize, takeUntil } from 'rxjs/operators';
 import { AngularFireStorageReference } from '../../../node_modules/angularfire2/storage';
 import { Subject } from '../../../node_modules/rxjs';
 import { InjectableFileReader } from '../core/utilities/injectable-file-reader';
+import { GoogleMapsService } from '../maps/services/google-maps.service';
 export interface Day {
   value: string;
   viewValue: string;
@@ -29,17 +30,17 @@ export class AddPostComponent implements OnInit, OnDestroy {
   public postId: string;
   public url: string;
   public userId: string;
-
   public addPostForm: FormGroup;
   public title: FormControl;
   public description: FormControl;
   public location: FormControl;
+  public address: FormControl;
+  public lat: FormControl;
+  public lng: FormControl;
   public pickUpTime: FormControl;
   public expirationDate: FormControl;
-
   public imageFile: File;
   public uploadPercent: number;
-
   private destroy$ = new Subject<any>();
 
   days: Day[] = [
@@ -52,11 +53,21 @@ export class AddPostComponent implements OnInit, OnDestroy {
     private formBuilder: FormBuilder,
     private firebaseStorageService: FirebaseStorageService,
     private postService: PostService,
-    private router: Router
+    private router: Router,
+    private googleMapsService: GoogleMapsService
   ) {}
 
   ngOnInit() {
     this.buildForm();
+    this.googleMapsService.lat.subscribe(res => {
+      this.addPostForm.controls['lat'].setValue(res);
+    });
+    this.googleMapsService.lng.subscribe(res => {
+      this.addPostForm.controls['lng'].setValue(res);
+    });
+    this.googleMapsService.address.subscribe(res => {
+      this.addPostForm.controls['location'].setValue(res);
+    });
   }
 
   ngOnDestroy() {
@@ -71,15 +82,6 @@ export class AddPostComponent implements OnInit, OnDestroy {
       this.url = fileReader.result;
       this.imageFile = file;
     };
-
-    // if (file.target.files && file.target.files 0]) {
-    //   const fileReader: FileReader = new FileReader();
-    //   fileReader.readAsDataURL(file.target.files[0]);
-    //   fileReader.onload = (event: Event) => {
-    //     this.url = fileReader.result;
-    //     this.imageFile = file.target.files[0];
-    //   };
-    // }
   }
 
   public isValidPost(): boolean {
@@ -142,7 +144,10 @@ export class AddPostComponent implements OnInit, OnDestroy {
       expirationDate: this.expirationDate.value,
       imageUrl: imageUrl,
       id: '',
-      userRef: ''
+      userRef: '',
+      address: this.location.value,
+      lat: this.lat.value,
+      lng: this.lng.value
     };
   }
 
@@ -151,6 +156,9 @@ export class AddPostComponent implements OnInit, OnDestroy {
     this.description = new FormControl('');
     this.location = new FormControl('');
     this.pickUpTime = new FormControl('');
+    this.address = new FormControl('');
+    this.lat = new FormControl('');
+    this.lng = new FormControl('');
     this.expirationDate = new FormControl('day-3');
 
     this.addPostForm = this.formBuilder.group({
@@ -158,7 +166,10 @@ export class AddPostComponent implements OnInit, OnDestroy {
       description: this.description,
       location: this.location,
       pickUpTime: this.pickUpTime,
-      expirationDate: this.expirationDate
+      expirationDate: this.expirationDate,
+      address: this.address,
+      lat: this.lat,
+      lng: this.lng
     });
   }
 }
