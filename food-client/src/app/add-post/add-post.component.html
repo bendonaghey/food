@@ -53,11 +53,13 @@
         </div>
         <!--Location div-->
         <div flex>
-          <mat-card align="left">
+          <mat-card layout="row">
             <mat-card-header>
               <mat-card-title class="pad-bottom-sm">Location</mat-card-title>
             </mat-card-header>
-            <app-map></app-map>
+            <div flex="95">
+              <app-map></app-map>
+            </div>
             <mat-card-header>
               <mat-card-title>Pick-up times</mat-card-title>
             </mat-card-header>
