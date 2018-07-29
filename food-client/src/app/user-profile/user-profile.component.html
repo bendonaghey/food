@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" style = "padding-top: 140px">
   <div flex="20"></div>
   <div layout="row" align="center">
     <div flex>
@@ -9,15 +9,19 @@
             <img src="http://via.placeholder.com/200x250" style="margin:20px" alt="Image">
           </div>
 
-          <div layout="row" align="center">
-            <div flex>
+          <div layout="row" layout-align="center">
+            <div layout="column" style="padding-right: 7%">
               <mat-icon class="material-icons" title="Total Likes" align="pad-right-md">thumb_up</mat-icon>
-              <mat-icon class="material-icons" title="Total Posts" align="pad-right-md">comment</mat-icon>
+              <div>
+                1
+              </div>
             </div>
-          </div>
-          <div layout="row" align="center">
-            <div flex>
-              <mat-card-title>1 &nbsp; 3</mat-card-title>
+
+            <div layout="column">
+              <mat-icon class="material-icons" title="Posts Likes" align="pad-right-md">comment</mat-icon>
+              <div>
+                3
+              </div>
             </div>
           </div>
 
@@ -25,8 +29,8 @@
             <mat-card-header>
               <mat-card-title>Bio</mat-card-title>
               <span flex></span>
-              <button mat-button (click)="toggleTopPanel()">
-                <mat-icon class="material-icons" align="pad-right-md">create</mat-icon>
+              <button mat-icon-button (click)="toggleTopPanel()">
+                <mat-icon>create</mat-icon>
               </button>
             </mat-card-header>
             <mat-form-field class="pad-left-md pad-right-md" appearance="outline">
@@ -38,8 +42,8 @@
             <mat-card-header>
               <mat-card-title flex>Email</mat-card-title>
               <span flex></span>
-              <button mat-button (click)="toggleMidPanel()">
-                <mat-icon class="material-icons" align="pad-right-md" align="end">create</mat-icon>
+              <button mat-icon-button (click)="toggleMidPanel()">
+                <mat-icon>create</mat-icon>
               </button>
             </mat-card-header>
             <mat-form-field class="pad-left-md pad-right-md" appearance="outline">
@@ -52,7 +56,30 @@
             <mat-form-field class="pad-left-md pad-right-md" appearance="outline">
               <input type="text" formControlName="username" matInput>
             </mat-form-field>
-            <mat-card-header>
+
+            <div layout="row" layout-align="left">
+                <div flex="50" layout="column">
+                    <mat-card-header>
+                        <mat-card-title flex>First Name
+                        </mat-card-title>
+                      </mat-card-header>
+                      <mat-form-field class="pad-left-md pad-right-md" appearance="outline">
+                        <input type="text" formControlName="firstName" matInput>
+                      </mat-form-field>
+                </div>
+    
+                <div flex="50" layout="column">
+                    <mat-card-header>
+                        <mat-card-title flex>Last Name</mat-card-title>
+                      </mat-card-header>
+                      <mat-form-field class="pad-left-md pad-right-md" appearance="outline">
+                        <input type="text" formControlName="lastname" matInput>
+                      </mat-form-field>
+                </div>
+              </div>
+
+
+            <!-- <mat-card-header>
               <mat-card-title flex>First Name
               </mat-card-title>
             </mat-card-header>
@@ -64,7 +91,7 @@
             </mat-card-header>
             <mat-form-field class="pad-left-md pad-right-md" appearance="outline">
               <input type="text" formControlName="lastname" matInput>
-            </mat-form-field>
+            </mat-form-field> -->
             <mat-card-header>
               <mat-card-title flex>DOB</mat-card-title>
             </mat-card-header>
@@ -81,58 +108,25 @@
             </mat-form-field>
             <mat-card-header>
               <mat-card-title flex>Password</mat-card-title>
-              <div flex align="left">
-                <button class="push-bottom-md push-top-md" mat-raised-button color="accent" margin="20" (click)=" displayPassword()">
+              <div flex align="end">
+                <button class="push-bottom-md push-top-md" mat-raised-button color="accent" (click)=" displayPassword()">
                   Change Password
                 </button>
               </div>
             </mat-card-header>
-
-
-            <!-- <div ng-show> -->
-            <!-- <mat-form-field class="pad-left-md pad-right-md" appearance="outline">
-              <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
-              <input type="text" formControlName="password" [type]="hide ? 'password' : 'text'" matInput>
-            </mat-form-field>
-            <mat-card-header>
-              <mat-card-title flex>Confirm Password</mat-card-title>
-            </mat-card-header>
-            <mat-form-field class="pad-left-md pad-right-md" appearance="outline">
-              <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
-              <input type="text" formControlName="confirmPassword" [type]="hide ? 'password' : 'text'" matInput>
-            </mat-form-field>
-            </div ng-show> -->
           </mat-card>
 
           <mat-card class="bottomPanel">
             <mat-card-header>
               <mat-card-title flex>Address</mat-card-title>
               <span flex></span>
-              <button mat-button (click)="toggleBottomPanel()">
-                <mat-icon class="material-icons" align="pad-right-md" align="end">create</mat-icon>
+              <button mat-icon-button (click)="toggleBottomPanel()">
+                <mat-icon>create</mat-icon>
               </button>
             </mat-card-header>
             <mat-form-field class="pad-left-md pad-right-md" appearance="outline">
-              <input type="text" formControlName="address1" matInput>
+              <input type="text" formControlName="address" matInput>
             </mat-form-field>
-            <!-- <mat-card-header> -->
-            <!-- <mat-card-title flex>Address 2</mat-card-title>
-            </mat-card-header>
-            <mat-form-field class="pad-left-md pad-right-md" appearance="outline">
-              <input type="text" formControlName="address2" matInput>
-            </mat-form-field>
-            <mat-card-header>
-              <mat-card-title flex>Address 3</mat-card-title>
-            </mat-card-header>
-            <mat-form-field class="pad-left-md pad-right-md" appearance="outline">
-              <input type="text" formControlName="address3" matInput>
-            </mat-form-field>
-            <mat-card-header>
-              <mat-card-title flex>Postcode</mat-card-title>
-            </mat-card-header>
-            <mat-form-field class="pad-left-md pad-right-md" appearance="outline">
-              <input type="text" formControlName="postCode" matInput>
-            </mat-form-field> -->
           </mat-card>
         </div>
       </form>

@@ -14,7 +14,6 @@ export class UserProfileComponent implements OnInit {
   public url: string;
   public userId: string;
   public isDisabled = false;
-  //public isDisplayed = false;
   public currentUser;
 
   public userProfileForm: FormGroup;
@@ -22,14 +21,9 @@ export class UserProfileComponent implements OnInit {
   public username: FormControl;
   public firstName: FormControl;
   public lastname: FormControl;
-  //public password: FormControl;
-  //public confirmPassword: FormControl;
   public telNo: FormControl;
   public dob: MatDatepickerModule;
   public address: FormControl;
-  // public address2: FormControl;
-  // public address3: FormControl;
-  // public postCode: FormControl;
   public bio: FormControl;
   public totalPosts: FormControl;
 
@@ -67,28 +61,13 @@ export class UserProfileComponent implements OnInit {
     this.userProfileForm
       .get('telNo')
       [!this.isDisabled ? 'enable' : 'disable']();
-    // this.userProfileForm
-    //   .get('password')
-    //   [!this.isDisabled ? 'enable' : 'disable']();
-    // this.userProfileForm
-    //   .get('confirmPassword')
-    //   [!this.isDisabled ? 'enable' : 'disable']();
-    // this.isDisabled = !this.isDisabled;
+    this.isDisabled = !this.isDisabled;
   }
 
   toggleBottomPanel(): void {
     this.userProfileForm
       .get('address')
       [!this.isDisabled ? 'enable' : 'disable']();
-    // this.userProfileForm
-    //   .get('address2')
-    //   [!this.isDisabled ? 'enable' : 'disable']();
-    // this.userProfileForm
-    //   .get('address3')
-    //   [!this.isDisabled ? 'enable' : 'disable']();
-    // this.userProfileForm
-    //   .get('postCode')
-    //   [!this.isDisabled ? 'enable' : 'disable']();
     this.isDisabled = !this.isDisabled;
   }
 
@@ -122,50 +101,23 @@ export class UserProfileComponent implements OnInit {
       value: '',
       disabled: !this.isDisabled
     });
-    // this.password = new FormControl({
-    //   value: '',
-    //   disabled: !this.isDisabled
-    // });
-    // this.confirmPassword = new FormControl({
-    //   value: '',
-    //   disabled: !this.isDisabled
-    // });
     this.address = new FormControl({
       value: '',
       disabled: !this.isDisabled
     });
-    // this.address2 = new FormControl({
-    //   value: '',
-    //   disabled: !this.isDisabled
-    // });
-    // this.address3 = new FormControl({
-    //   value: '',
-    //   disabled: !this.isDisabled
-    // });
-    // this.postCode = new FormControl({
-    //   value: '',
-    //   disabled: !this.isDisabled
-    //});
 
     this.userProfileForm = this.formBuilder.group({
       emailAddress: this.emailAddress,
       username: this.username,
       firstName: this.firstName,
       lastname: this.lastname,
-      //password: this.password,
-      //confirmPassword: this.confirmPassword,
       telNo: this.telNo,
       dob: this.dob,
-      address1: this.address,
-      // address2: this.address2,
-      // address3: this.address3,
-      // postCode: this.postCode,
+      address: this.address,
       bio: this.bio,
       totalPosts: this.totalPosts
     });
   }
-
-  //private updateFields(UserService: any) {}
 
   private setFormValues(currentUser: any) {
     this.emailAddress.setValue(this.currentUser.email);
@@ -176,18 +128,5 @@ export class UserProfileComponent implements OnInit {
     //this.dob(this.currentUser.dob);
     this.telNo.setValue(this.currentUser.telNo);
     this.address.setValue(this.currentUser.address.address);
-    // this.address2.setValue(this.currentUser.address.address2);
-    // this.address3.setValue(this.currentUser.address.address3);
-    // this.postCode.setValue(this.currentUser.address.postcode);
   }
-
-  // private displayPassword(displayPassword): void {
-  //   this.userProfileForm
-  //     .get('password')
-  //     [!this.isDisplayed ? 'show' : 'hidden']();
-  //   this.userProfileForm
-  //     .get('confirmPassword')
-  //     [!this.isDisplayed ? 'show' : 'hidden']();
-  //   this.isDisplayed = !this.isDisplayed;
-  // }
 }

@@ -7,16 +7,5 @@ export interface User {
   firstname: string;
   lastname: string;
   dob: string;
-  address: {
-    doorNumber: string;
-    streetName: string;
-    postcode: string;
-    city: string;
-    county: string;
-  };
-  location: {
-    long: number;
-    lat: number;
-  };
   posts: Post[];
 }
