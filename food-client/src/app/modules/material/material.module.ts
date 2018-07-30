@@ -13,6 +13,9 @@ import {
   MatDialogModule,
   MatInputModule,
   MatToolbarModule,
+  MatChipsModule,
+  MatDatepickerModule,
+  MatNativeDateModule,
   MatFormFieldModule,
   MatOptionModule,
   MatSelectModule
@@ -32,6 +35,9 @@ const modules = [
   MatDialogModule,
   MatInputModule,
   MatToolbarModule,
+  MatChipsModule,
+  MatDatepickerModule,
+  MatNativeDateModule,
   MatFormFieldModule,
   MatOptionModule,
   MatSelectModule

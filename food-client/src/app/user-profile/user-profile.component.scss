@@ -1,0 +1,32 @@
+.mat-card-image {
+  max-width: 200px;
+  max-height: 250px;
+}
+
+.material-icons:hover {
+  color: black !important;
+}
+
+.submit {
+  color: white !important;
+}
+
+.dropHeight {
+  height: 75px;
+}
+
+:host mat-form-field {
+  width: 100%;
+}
+
+:host img {
+  max-height: 500px;
+  max-width: 650px;
+}
+
+:host /deep/ .mat-card-subtitle,
+.mat-card-content,
+.mat-card-header .mat-card-title {
+  font-size: 16px;
+}
+
