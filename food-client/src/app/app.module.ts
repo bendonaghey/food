@@ -13,7 +13,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { RoutingModule } from './modules/routing/routing.module';
 import { ViewPostComponent } from './view-post/view-post.component';
 import { PostsComponent } from './posts/posts.component';
-import { environment } from '../environments/environment';
 import { AddPostComponent } from './add-post/add-post.component';
 import { UserOptionsComponent } from './authentication/user-options/user-options.component';
 import { RegistrationComponent } from './registration/registration.component';
@@ -22,6 +21,10 @@ import { StatsComponent } from './stats/stats.component';
 import { HomeComponent } from './home/home.component';
 import { HeaderComponent } from './header/header.component';
 import { StarRatingModule } from 'angular-star-rating';
+import { FirebaseModule } from './firebase/firebase.module';
+import { UserAvatarComponent } from './card/components/user-avatar/user-avatar.component';
+import { AgmCoreModule } from '@agm/core';
+import { MapComponent } from './maps/map/map.component';
 @NgModule({
   declarations: [
     CardComponent,
@@ -36,7 +39,9 @@ import { StarRatingModule } from 'angular-star-rating';
     RegistrationDialogComponent,
     StatsComponent,
     HomeComponent,
-    HeaderComponent
+    UserAvatarComponent,
+    HeaderComponent,
+    MapComponent
   ],
   imports: [
     BrowserModule,
@@ -47,15 +52,14 @@ import { StarRatingModule } from 'angular-star-rating';
     RoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    StarRatingModule.forRoot()
+    FirebaseModule,
+    StarRatingModule.forRoot(),
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyBbcXxN2Voh7WAm-pZK5OYqDxE8n0WucRA',
+      libraries: ['places']
+    })
   ],
   providers: [
-    { provide: 'apiKey', useValue: environment.apiKey },
-    { provide: 'authDomain', useValue: environment.authDomain },
-    { provide: 'databaseURL', useValue: environment.databaseURL },
-    { provide: 'projectId', useValue: environment.projectId },
-    { provide: 'storageBucket', useValue: environment.storageBucket },
-    { provide: 'messagingSenderId', useValue: environment.messagingSenderId }
   ],
   entryComponents: [RegistrationDialogComponent],
   bootstrap: [AppComponent]

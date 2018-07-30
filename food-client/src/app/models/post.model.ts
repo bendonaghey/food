@@ -1,13 +1,14 @@
 export interface Post {
-  postId: string;
   title: string;
   description: string;
-  location: string;
   pickUpTime: string;
-  datePosted: number;
-  likes: number;
-  interest: number;
+  datePosted: string;
   active: boolean;
   expirationDate: string;
-  image: string;
+  imageUrl: string;
+  id?: string;
+  userRef?: any;
+  address: string;
+  lat: number;
+  lng: number;
 }

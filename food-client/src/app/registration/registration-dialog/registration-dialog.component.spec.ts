@@ -1,42 +1,28 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { RegistrationDialogComponent } from './registration-dialog.component';
-import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { RegistrationComponent } from '../registration.component';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { MaterialModule } from '../../modules/material/material.module';
+import { FirebaseModule } from '../../firebase/firebase.module';
+import { MatDialogRef } from '@angular/material';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('RegistrationDialogComponent', () => {
   let component: RegistrationDialogComponent;
   let fixture: ComponentFixture<RegistrationDialogComponent>;
-  let mockDialogData: any;
   let mockDialogRef: any;
-  mockDialogData = {};
-  mockDialogRef = jasmine.createSpyObj('dialog', [
-    'close',
-    'updatePosition',
-    'updateSize'
-  ]);
 
-  beforeEach(async(() => {
+  beforeEach(() => {
+    mockDialogRef = jasmine.createSpyObj('dialogRef', ['close', 'updatePosition', 'updateSize']);
     TestBed.configureTestingModule({
-      declarations: [RegistrationDialogComponent],
-      imports: [HttpClientModule, FormsModule, ReactiveFormsModule],
+      imports: [BrowserAnimationsModule, FormsModule, ReactiveFormsModule, MaterialModule, FirebaseModule],
+      declarations: [ RegistrationDialogComponent ],
       providers: [
-        RegistrationComponent,
-        { provide: MAT_DIALOG_DATA, useValue: mockDialogData },
         { provide: MatDialogRef, useValue: mockDialogRef },
-        { provide: 'apiKey', useValue: 'test' },
-        { provide: 'authDomain', useValue: 'test' },
-        { provide: 'databaseURL', useValue: 'test' },
-        { provide: 'projectId', useValue: 'test' },
-        { provide: 'storageBucket', useValue: 'test' },
-        { provide: 'messagingSenderId', useValue: 'test' }
-      ],
-      schemas: [CUSTOM_ELEMENTS_SCHEMA]
-    }).compileComponents();
-  }));
+      ]
+    })
+    .compileComponents();
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(RegistrationDialogComponent);

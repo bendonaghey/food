@@ -14,9 +14,7 @@ export class CardComponent implements OnInit {
 
   ngOnInit() {}
 
-  viewPost(post: Post) {
-    this.router.navigate(['/posts', post.postId]);
+  public viewPost(post: Post) {
+    this.router.navigate(['/posts', post.id]);
   }
-
-  likePost(post: Post) {}
 }

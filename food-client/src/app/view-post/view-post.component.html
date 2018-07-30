@@ -9,12 +9,12 @@
 
 <div class="container" layout="column" layout-align="center center" flex>
   <div class="push-top-md">
-    <img src="http://via.placeholder.com/200x250" alt="Image">
+    <img src="{{(post | async)?.imageUrl}}" width="300" alt="Image">
   </div>
   <mat-card class="card push-top-md" layout-fill flex>
     <div class="row" layout="row" layout="center">
       <mat-card-header>
-        <mat-card-title>{{post?.title}} {{post?.postId}}</mat-card-title>
+        <mat-card-title>{{(post | async)?.title}} {{(post | async)?.postId}}</mat-card-title>
       </mat-card-header>
     </div>
     <div class="row" layout="row">
@@ -24,7 +24,7 @@
       <div class="col" flex="50">
         <mat-card-content>
           <p>
-            {{post?.description}}
+            {{(post | async)?.description}}
           </p>
         </mat-card-content>
         <button mat-raised-button class="push-left-sm" color="accent">
