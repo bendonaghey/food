@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { MatDatepickerModule } from '@angular/material';
 import { UserService } from '../services/user-services/user.service';
-import { FirebaseService } from '../authentication/services/firebase.service';
 
 @Component({
   selector: 'app-user-profile',
@@ -29,17 +28,11 @@ export class UserProfileComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private firebaseService: FirebaseService,
     private userService: UserService
   ) {}
 
   ngOnInit() {
     this.buildForm();
-    const firebaseUser = this.firebaseService.getCurrentUser();
-    this.userService.getUserByEmail(firebaseUser.email).subscribe(res => {
-      this.currentUser = res;
-      this.setFormValues(this.currentUser);
-    });
   }
 
   toggleTopPanel(): void {
