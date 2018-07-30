@@ -1,33 +1,36 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { Observable } from 'rxjs';
 import { User } from '../../models/user.model';
+import { AngularFirestoreDocument, AngularFirestore } from '../../../../node_modules/angularfire2/firestore';
+import { AngularFireAuth } from '../../../../node_modules/angularfire2/auth';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
-  private headers: HttpHeaders;
-  private BASE_URL: String = 'http://localhost:8190/api';
-  _user: User;
+  private userDocument: AngularFirestoreDocument<User>;
+  constructor(private angularFireAuth: AngularFireAuth, private angularFirestore: AngularFirestore) { }
 
-  constructor(private http: HttpClient) {
-    this.headers = new HttpHeaders().set('Content-Type', 'application/json');
+  public user(): Observable<User> {
+    this.userDocument = this.angularFirestore.doc<User>(`users/${this.angularFireAuth.auth.currentUser.uid}`);
+    return this.userDocument.valueChanges();
   }
 
-  getUserByEmail(email: string): Observable<User> {
-    return this.http.post<User>(`${this.BASE_URL}/login`, {email}, {headers: this.headers});
+  public createUser(id: string, username: string, email: string) {
+    const userRef = this.angularFirestore.collection('users').doc(id).ref;
+    return userRef.set(this.generateUser(id, username, email));
   }
 
-  createUser(username: string, email: string) {
-    return this.http.post<User>(`${this.BASE_URL}/signup`, {username, email}, {headers: this.headers});
-  }
-
-  get user() {
-    return this._user;
-  }
-
-  set user(user: User) {
-    this._user = user;
+  private generateUser(id: string, username: string, email: string): User {
+    return {
+      email: email,
+      username: username,
+      bio: '',
+      dob: '',
+      firstname: '',
+      lastname: '',
+      posts: [],
+      id: id
+    };
   }
 }

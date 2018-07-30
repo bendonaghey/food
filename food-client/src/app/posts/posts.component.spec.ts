@@ -6,11 +6,15 @@ import { ToolbarComponent } from '../toolbar/toolbar.component';
 import { CardListComponent } from '../card-list/card-list.component';
 import { CardComponent } from '../card/card.component';
 import { HttpClientModule } from '@angular/common/http';
+import { RouterModule } from '../../../node_modules/@angular/router';
+import { RouterTestingModule } from '../../../node_modules/@angular/router/testing';
+import { FirebaseApp } from '../../../node_modules/angularfire2';
+import { FirebaseModule } from '../firebase/firebase.module';
+import { MapComponent } from '../maps/map/map.component';
 
 describe('PostsComponent', () => {
   let component: PostsComponent;
   let fixture: ComponentFixture<PostsComponent>;
-
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
@@ -19,7 +23,7 @@ describe('PostsComponent', () => {
         CardListComponent,
         CardComponent
       ],
-      imports: [HttpClientModule],
+      imports: [HttpClientModule, RouterTestingModule, FirebaseModule],
       schemas: [CUSTOM_ELEMENTS_SCHEMA]
     }).compileComponents();
   }));
