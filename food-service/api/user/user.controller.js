@@ -24,5 +24,19 @@ module.exports = {
     ) {
       res.send(newUser);
     });
+  },
+
+  updateProfile: function(req, res) {
+    userService.updateProfile(
+      req.body.email,
+      req.body.forename,
+      req.body.bio,
+      function(updateUser) {
+        console.log(req.body.email);
+        console.log(req.body.forename);
+        console.log(req.body.bio);
+        res.send(updateUser);
+      }
+    );
   }
 };

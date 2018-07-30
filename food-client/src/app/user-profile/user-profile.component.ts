@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
-import { MatDatepickerModule, MatNativeDateModule } from '@angular/material';
+import { MatDatepickerModule } from '@angular/material';
+import { UserService } from '../services/user-services/user.service';
 
 @Component({
   selector: 'app-user-profile',
@@ -11,68 +12,114 @@ export class UserProfileComponent implements OnInit {
   public postId: string;
   public url: string;
   public userId: string;
+  public isDisabled = false;
+  public currentUser;
 
   public userProfileForm: FormGroup;
   public emailAddress: FormControl;
+  public username: FormControl;
   public firstName: FormControl;
-  public surname: FormControl;
+  public lastname: FormControl;
   public telNo: FormControl;
   public dob: MatDatepickerModule;
-  public address1: FormControl;
-  public address2: FormControl;
-  public address3: FormControl;
-  public postCode: FormControl;
+  public address: FormControl;
   public bio: FormControl;
   public totalPosts: FormControl;
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    private userService: UserService
+  ) {}
 
   ngOnInit() {
     this.buildForm();
   }
 
-  addPost(): void {
-    // !Removed when getting logged in userId
-    this.userId = '1000';
-    this.postId = '10000';
-    // Tried pasting through an post object instead of all this
-    // this.post.title = this.title.value;
-    // this.post.description = this.description.value;
-    // this.post.location = this.location.value;
-    // this.post.pickUpTime = this.pickUpTime.value;
-    // this.post.datePosted = Date.now();
-    // this.post.likes = 0;
-    // this.post.interest = 0;
-    // this.post.active = true;
-    // this.post.expirationDate = this.expirationDate.value;
-    // this.post.image = this.url;
+  toggleTopPanel(): void {
+    this.userProfileForm.get('bio')[!this.isDisabled ? 'enable' : 'disable']();
+    this.isDisabled = !this.isDisabled;
+  }
+
+  toggleMidPanel(): void {
+    this.userProfileForm
+      .get('username')
+      [!this.isDisabled ? 'enable' : 'disable']();
+    this.userProfileForm
+      .get('firstName')
+      [!this.isDisabled ? 'enable' : 'disable']();
+    this.userProfileForm
+      .get('lastname')
+      [!this.isDisabled ? 'enable' : 'disable']();
+    // this.userProfileForm.get('dob')[!this.isDisabled ? 'enable' : 'disable']();
+    this.userProfileForm
+      .get('telNo')
+      [!this.isDisabled ? 'enable' : 'disable']();
+    this.isDisabled = !this.isDisabled;
+  }
+
+  toggleBottomPanel(): void {
+    this.userProfileForm
+      .get('address')
+      [!this.isDisabled ? 'enable' : 'disable']();
+    this.isDisabled = !this.isDisabled;
   }
 
   private buildForm(): void {
-    this.emailAddress = new FormControl('');
-    this.firstName = new FormControl('');
-    this.surname = new FormControl('');
-    this.telNo = new FormControl('');
+    this.bio = new FormControl({
+      value: '',
+      disabled: !this.isDisabled
+    });
+    this.emailAddress = new FormControl({
+      value: '',
+      disabled: !this.isDisabled
+    });
+    this.username = new FormControl({
+      value: '',
+      disabled: !this.isDisabled
+    });
+    this.firstName = new FormControl({
+      value: '',
+      disabled: !this.isDisabled
+    });
+    this.lastname = new FormControl({
+      value: '',
+      disabled: !this.isDisabled
+    });
+    // this.dob = new MatDatepickerModule({
+    //   disabled: !this.isDisabled
+    // });
     this.dob = new MatDatepickerModule();
-    this.address1 = new FormControl('');
-    this.address2 = new FormControl('');
-    this.address3 = new FormControl('');
-    this.postCode = new FormControl('');
-    this.bio = new FormControl('');
-    this.totalPosts = new FormControl('');
+
+    this.telNo = new FormControl({
+      value: '',
+      disabled: !this.isDisabled
+    });
+    this.address = new FormControl({
+      value: '',
+      disabled: !this.isDisabled
+    });
 
     this.userProfileForm = this.formBuilder.group({
       emailAddress: this.emailAddress,
+      username: this.username,
       firstName: this.firstName,
-      surname: this.surname,
+      lastname: this.lastname,
       telNo: this.telNo,
       dob: this.dob,
-      address1: this.address1,
-      address2: this.address2,
-      address3: this.address3,
-      postCode: this.postCode,
+      address: this.address,
       bio: this.bio,
       totalPosts: this.totalPosts
     });
+  }
+
+  private setFormValues(currentUser: any) {
+    this.emailAddress.setValue(this.currentUser.email);
+    this.bio.setValue(this.currentUser.bio);
+    this.username.setValue(this.currentUser.username);
+    this.firstName.setValue(this.currentUser.firstname);
+    this.lastname.setValue(this.currentUser.lastname);
+    //this.dob(this.currentUser.dob);
+    this.telNo.setValue(this.currentUser.telNo);
+    this.address.setValue(this.currentUser.address.address);
   }
 }

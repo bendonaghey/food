@@ -4,6 +4,7 @@ import { PostsComponent } from '../../posts/posts.component';
 import { ViewPostComponent } from '../../view-post/view-post.component';
 import { AddPostComponent } from '../../add-post/add-post.component';
 import { HomeComponent } from '../../home/home.component';
+import { UserProfileComponent } from '../../user-profile/user-profile.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -11,6 +12,7 @@ export const routes: Routes = [
   { path: 'posts/add', component: AddPostComponent },
   { path: 'posts/:id', component: ViewPostComponent },
   { path: 'home', component: HomeComponent },
+  { path: 'profile', component: UserProfileComponent },
   { path: '**', redirectTo: 'posts', pathMatch: 'full' }
 ];
 

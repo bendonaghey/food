@@ -17,6 +17,7 @@ import { AddPostComponent } from './add-post/add-post.component';
 import { UserOptionsComponent } from './authentication/user-options/user-options.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { RegistrationDialogComponent } from './registration/registration-dialog/registration-dialog.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
 import { StatsComponent } from './stats/stats.component';
 import { HomeComponent } from './home/home.component';
 import { HeaderComponent } from './header/header.component';
@@ -32,6 +33,7 @@ import { MapComponent } from './maps/map/map.component';
     AppComponent,
     ViewPostComponent,
     CardListComponent,
+    UserProfileComponent,
     PostsComponent,
     AddPostComponent,
     UserOptionsComponent,

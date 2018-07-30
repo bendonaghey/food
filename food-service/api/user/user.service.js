@@ -26,5 +26,18 @@ module.exports = {
     user.create(newUser, function(error, res) {
       callback(res);
     });
+  },
+
+  updateProfile: function(email, forename, bio, callback) {
+    user.findOneAndUpdate(
+      { email: email },
+      { forename: forename, bio: bio },
+      function(error, res) {
+        console.log(email);
+        console.log(forename);
+        console.log(res);
+        callback(res);
+      }
+    );
   }
 };

@@ -15,6 +15,7 @@ import {
   MatToolbarModule,
   MatChipsModule,
   MatDatepickerModule,
+  MatNativeDateModule,
   MatFormFieldModule,
   MatOptionModule,
   MatSelectModule
@@ -36,6 +37,7 @@ const modules = [
   MatToolbarModule,
   MatChipsModule,
   MatDatepickerModule,
+  MatNativeDateModule,
   MatFormFieldModule,
   MatOptionModule,
   MatSelectModule
