@@ -28,6 +28,7 @@ import { UserAvatarComponent } from './card/components/user-avatar/user-avatar.c
 import { environment } from '../environments/environment';
 import { MapComponent } from './maps/map/map.component';
 import { AgmCoreModule } from '@agm/core';
+import { UserProfileComponent } from './user-profile/user-profile.component';
 
 describe('AppComponent', () => {
   const firebaseConfig = {
@@ -55,7 +56,8 @@ describe('AppComponent', () => {
         HomeComponent,
         HeaderComponent,
         UserAvatarComponent,
-        MapComponent
+        MapComponent,
+        UserProfileComponent
       ],
       imports: [
         MaterialModule,

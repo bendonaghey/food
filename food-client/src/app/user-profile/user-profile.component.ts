@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { MatDatepickerModule } from '@angular/material';
-import { UserService } from '../services/user-services/user.service';
 
 @Component({
   selector: 'app-user-profile',
@@ -26,10 +25,7 @@ export class UserProfileComponent implements OnInit {
   public bio: FormControl;
   public totalPosts: FormControl;
 
-  constructor(
-    private formBuilder: FormBuilder,
-    private userService: UserService
-  ) {}
+  constructor(private formBuilder: FormBuilder) {}
 
   ngOnInit() {
     this.buildForm();
@@ -41,64 +37,27 @@ export class UserProfileComponent implements OnInit {
   }
 
   toggleMidPanel(): void {
-    this.userProfileForm
-      .get('username')
-      [!this.isDisabled ? 'enable' : 'disable']();
-    this.userProfileForm
-      .get('firstName')
-      [!this.isDisabled ? 'enable' : 'disable']();
-    this.userProfileForm
-      .get('lastname')
-      [!this.isDisabled ? 'enable' : 'disable']();
-    // this.userProfileForm.get('dob')[!this.isDisabled ? 'enable' : 'disable']();
-    this.userProfileForm
-      .get('telNo')
-      [!this.isDisabled ? 'enable' : 'disable']();
+    this.userProfileForm.get('username')[!this.isDisabled ? 'enable' : 'disable']();
+    this.userProfileForm.get('firstName')[!this.isDisabled ? 'enable' : 'disable']();
+    this.userProfileForm.get('lastname')[!this.isDisabled ? 'enable' : 'disable']();
+    this.userProfileForm.get('telNo')[!this.isDisabled ? 'enable' : 'disable']();
     this.isDisabled = !this.isDisabled;
   }
 
   toggleBottomPanel(): void {
-    this.userProfileForm
-      .get('address')
-      [!this.isDisabled ? 'enable' : 'disable']();
+    this.userProfileForm.get('address')[!this.isDisabled ? 'enable' : 'disable']();
     this.isDisabled = !this.isDisabled;
   }
 
   private buildForm(): void {
-    this.bio = new FormControl({
-      value: '',
-      disabled: !this.isDisabled
-    });
-    this.emailAddress = new FormControl({
-      value: '',
-      disabled: !this.isDisabled
-    });
-    this.username = new FormControl({
-      value: '',
-      disabled: !this.isDisabled
-    });
-    this.firstName = new FormControl({
-      value: '',
-      disabled: !this.isDisabled
-    });
-    this.lastname = new FormControl({
-      value: '',
-      disabled: !this.isDisabled
-    });
-    // this.dob = new MatDatepickerModule({
-    //   disabled: !this.isDisabled
-    // });
+    this.bio = new FormControl({value: '', disabled: !this.isDisabled});
+    this.emailAddress = new FormControl({value: '', disabled: !this.isDisabled});
+    this.username = new FormControl({value: '', disabled: !this.isDisabled});
+    this.firstName = new FormControl({value: '', disabled: !this.isDisabled});
+    this.lastname = new FormControl({value: '', disabled: !this.isDisabled});
+    this.telNo = new FormControl({value: '', disabled: !this.isDisabled});
+    this.address = new FormControl({value: '', disabled: !this.isDisabled});
     this.dob = new MatDatepickerModule();
-
-    this.telNo = new FormControl({
-      value: '',
-      disabled: !this.isDisabled
-    });
-    this.address = new FormControl({
-      value: '',
-      disabled: !this.isDisabled
-    });
-
     this.userProfileForm = this.formBuilder.group({
       emailAddress: this.emailAddress,
       username: this.username,
@@ -118,7 +77,6 @@ export class UserProfileComponent implements OnInit {
     this.username.setValue(this.currentUser.username);
     this.firstName.setValue(this.currentUser.firstname);
     this.lastname.setValue(this.currentUser.lastname);
-    //this.dob(this.currentUser.dob);
     this.telNo.setValue(this.currentUser.telNo);
     this.address.setValue(this.currentUser.address.address);
   }

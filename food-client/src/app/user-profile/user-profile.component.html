@@ -1,4 +1,4 @@
-<div class="container" style = "padding-top: 140px">
+<div class="container" style="padding-top: 140px">
   <div flex="20"></div>
   <div layout="row" align="center">
     <div flex>
@@ -58,40 +58,26 @@
             </mat-form-field>
 
             <div layout="row" layout-align="left">
-                <div flex="50" layout="column">
-                    <mat-card-header>
-                        <mat-card-title flex>First Name
-                        </mat-card-title>
-                      </mat-card-header>
-                      <mat-form-field class="pad-left-md pad-right-md" appearance="outline">
-                        <input type="text" formControlName="firstName" matInput>
-                      </mat-form-field>
-                </div>
-    
-                <div flex="50" layout="column">
-                    <mat-card-header>
-                        <mat-card-title flex>Last Name</mat-card-title>
-                      </mat-card-header>
-                      <mat-form-field class="pad-left-md pad-right-md" appearance="outline">
-                        <input type="text" formControlName="lastname" matInput>
-                      </mat-form-field>
-                </div>
+              <div flex="50" layout="column">
+                <mat-card-header>
+                  <mat-card-title flex>First Name
+                  </mat-card-title>
+                </mat-card-header>
+                <mat-form-field class="pad-left-md pad-right-md" appearance="outline">
+                  <input type="text" formControlName="firstName" matInput>
+                </mat-form-field>
               </div>
 
+              <div flex="50" layout="column">
+                <mat-card-header>
+                  <mat-card-title flex>Last Name</mat-card-title>
+                </mat-card-header>
+                <mat-form-field class="pad-left-md pad-right-md" appearance="outline">
+                  <input type="text" formControlName="lastname" matInput>
+                </mat-form-field>
+              </div>
+            </div>
 
-            <!-- <mat-card-header>
-              <mat-card-title flex>First Name
-              </mat-card-title>
-            </mat-card-header>
-            <mat-form-field class="pad-left-md pad-right-md" appearance="outline">
-              <input type="text" formControlName="firstName" matInput>
-            </mat-form-field>
-            <mat-card-header>
-              <mat-card-title flex>Last Name</mat-card-title>
-            </mat-card-header>
-            <mat-form-field class="pad-left-md pad-right-md" appearance="outline">
-              <input type="text" formControlName="lastname" matInput>
-            </mat-form-field> -->
             <mat-card-header>
               <mat-card-title flex>DOB</mat-card-title>
             </mat-card-header>
@@ -109,7 +95,7 @@
             <mat-card-header>
               <mat-card-title flex>Password</mat-card-title>
               <div flex align="end">
-                <button class="push-bottom-md push-top-md" mat-raised-button color="accent" (click)=" displayPassword()">
+                <button class="push-bottom-md push-top-md" mat-raised-button color="accent">
                   Change Password
                 </button>
               </div>
