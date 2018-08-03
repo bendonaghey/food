@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { MatDatepickerModule } from '@angular/material';
 import { UserService } from '../services/user-services/user.service';
+import { GoogleMapsService } from '../maps/services/google-maps.service';
 
 @Component({
   selector: 'app-user-profile',
@@ -25,14 +26,28 @@ export class UserProfileComponent implements OnInit {
   public address: FormControl;
   public bio: FormControl;
   public totalPosts: FormControl;
+  public lat: FormControl;
+  public lng: FormControl;
+  public location: FormControl;
 
   constructor(
     private formBuilder: FormBuilder,
-    private userService: UserService
+    private userService: UserService,
+    private googleMapsService: GoogleMapsService
   ) {}
 
   ngOnInit() {
     this.buildForm();
+
+    this.googleMapsService.lat.subscribe(res => {
+      this.userProfileForm.controls['lat'].setValue(res);
+    });
+    this.googleMapsService.lng.subscribe(res => {
+      this.userProfileForm.controls['lng'].setValue(res);
+    });
+    this.googleMapsService.address.subscribe(res => {
+      this.userProfileForm.controls['location'].setValue(res);
+    });
   }
 
   toggleTopPanel(): void {
@@ -98,6 +113,8 @@ export class UserProfileComponent implements OnInit {
       value: '',
       disabled: !this.isDisabled
     });
+    this.lat = new FormControl('');
+    this.lng = new FormControl('');
 
     this.userProfileForm = this.formBuilder.group({
       emailAddress: this.emailAddress,
@@ -107,6 +124,8 @@ export class UserProfileComponent implements OnInit {
       telNo: this.telNo,
       dob: this.dob,
       address: this.address,
+      lng: this.lng,
+      lat: this.lat,
       bio: this.bio,
       totalPosts: this.totalPosts
     });
