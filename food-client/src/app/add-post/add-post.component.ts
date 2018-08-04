@@ -59,15 +59,6 @@ export class AddPostComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.buildForm();
-    this.googleMapsService.lat.subscribe(res => {
-      this.addPostForm.controls['lat'].setValue(res);
-    });
-    this.googleMapsService.lng.subscribe(res => {
-      this.addPostForm.controls['lng'].setValue(res);
-    });
-    this.googleMapsService.address.subscribe(res => {
-      this.addPostForm.controls['location'].setValue(res);
-    });
   }
 
   ngOnDestroy() {
