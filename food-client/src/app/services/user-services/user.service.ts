@@ -1,7 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { User } from '../../models/user.model';
-import { AngularFirestoreDocument, AngularFirestore } from '../../../../node_modules/angularfire2/firestore';
+import {
+  AngularFirestoreDocument,
+  AngularFirestore
+} from '../../../../node_modules/angularfire2/firestore';
 import { AngularFireAuth } from '../../../../node_modules/angularfire2/auth';
 
 @Injectable({
@@ -9,16 +12,26 @@ import { AngularFireAuth } from '../../../../node_modules/angularfire2/auth';
 })
 export class UserService {
   private userDocument: AngularFirestoreDocument<User>;
-  constructor(private angularFireAuth: AngularFireAuth, private angularFirestore: AngularFirestore) { }
+  constructor(
+    private angularFireAuth: AngularFireAuth,
+    private angularFirestore: AngularFirestore
+  ) {}
 
   public user(): Observable<User> {
-    this.userDocument = this.angularFirestore.doc<User>(`users/${this.angularFireAuth.auth.currentUser.uid}`);
+    this.userDocument = this.angularFirestore.doc<User>(
+      `users/${this.angularFireAuth.auth.currentUser.uid}`
+    );
     return this.userDocument.valueChanges();
   }
 
   public createUser(id: string, username: string, email: string) {
     const userRef = this.angularFirestore.collection('users').doc(id).ref;
     return userRef.set(this.generateUser(id, username, email));
+  }
+
+  public updateUser(id, updatedUser: User) {
+    const userRef = this.angularFirestore.collection('users').doc(id).ref;
+    userRef.update(updatedUser);
   }
 
   private generateUser(id: string, username: string, email: string): User {

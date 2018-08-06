@@ -34,6 +34,12 @@ export class UserProfileComponent implements OnInit {
 
   ngOnInit() {
     this.buildForm();
+
+    this.userService.user().subscribe(res => {
+      // console.log(res);
+      // console.log(this.emailAddress.setValue(this.emailAddress));
+      console.log(this.userProfileForm.setValue(res));
+    });
   }
 
   toggleTopPanel(): void {
@@ -113,8 +119,8 @@ export class UserProfileComponent implements OnInit {
     });
   }
 
-  private setFormValues(currentUser: any) {
-    this.emailAddress.setValue(this.currentUser.email);
+  private setFormValues(userService: any) {
+    console.log(this.emailAddress.setValue(this.userService.user()));
     this.bio.setValue(this.currentUser.bio);
     this.username.setValue(this.currentUser.username);
     this.firstName.setValue(this.currentUser.firstname);
