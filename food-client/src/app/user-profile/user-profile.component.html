@@ -9,6 +9,10 @@
             <img src="http://via.placeholder.com/200x250" style="margin:20px" alt="Image">
           </div>
 
+          <button mat-button (click)="updateUser()">
+            Save
+          </button>
+
           <div layout="row" layout-align="center">
             <div layout="column" style="padding-right: 7%">
               <mat-icon class="material-icons" title="Total Likes" align="pad-right-md">thumb_up</mat-icon>
@@ -32,6 +36,7 @@
               <button mat-icon-button (click)="toggleTopPanel()">
                 <mat-icon>create</mat-icon>
               </button>
+
             </mat-card-header>
             <mat-form-field class="pad-left-md pad-right-md" appearance="outline">
               <textarea matInput formControlName="bio" matAutosizeMaxRows="10" matAutosizeMinRows="10" matTextareaAutosize placeholder="Insert bio"></textarea>

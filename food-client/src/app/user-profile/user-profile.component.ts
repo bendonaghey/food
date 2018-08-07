@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { MatDatepickerModule } from '@angular/material';
 import { UserService } from '../services/user-services/user.service';
+import { Post } from '../models/post.model';
+import { User } from '../models/user.model';
+import { TdChipsBase } from '../../../node_modules/@covalent/core';
 
 @Component({
   selector: 'app-user-profile',
@@ -11,7 +14,6 @@ import { UserService } from '../services/user-services/user.service';
 export class UserProfileComponent implements OnInit {
   public postId: string;
   public url: string;
-  public userId: string;
   public isDisabled = false;
   public currentUser;
 
@@ -27,6 +29,10 @@ export class UserProfileComponent implements OnInit {
   public totalPosts: FormControl;
   public location: FormControl;
 
+  private userPosts: Post[];
+  private userDob: any;
+  private userId: string;
+
   constructor(
     private formBuilder: FormBuilder,
     private userService: UserService
@@ -36,10 +42,23 @@ export class UserProfileComponent implements OnInit {
     this.buildForm();
 
     this.userService.user().subscribe(res => {
-      // console.log(res);
-      // console.log(this.emailAddress.setValue(this.emailAddress));
-      console.log(this.userProfileForm.setValue(res));
+      this.bio.setValue(res.bio);
+      this.emailAddress.setValue(res.email);
+      this.username.setValue(res.username);
+      this.firstName.setValue(res.firstname);
+      this.lastname.setValue(res.lastname);
+      //this.dob.setValue(res.dob);
+      //this.telNo.setValue(res.telNo);
+      //this.address.setValue(res.address);
+      this.userId = res.id;
+      this.userPosts = res.posts;
+      this.userDob = res.dob;
     });
+  }
+
+  updateUser(): void {
+    this.userService.updateUser(this.userId, this.generateUser());
+    this.disableFields();
   }
 
   toggleTopPanel(): void {
@@ -69,6 +88,19 @@ export class UserProfileComponent implements OnInit {
       .get('address')
       [!this.isDisabled ? 'enable' : 'disable']();
     this.isDisabled = !this.isDisabled;
+  }
+
+  private generateUser(): User {
+    return {
+      email: this.emailAddress.value,
+      username: this.username.value,
+      bio: this.bio.value,
+      dob: this.userDob,
+      firstname: this.firstName.value,
+      lastname: this.lastname.value,
+      posts: this.userPosts,
+      id: this.userId
+    };
   }
 
   private buildForm(): void {
@@ -119,14 +151,12 @@ export class UserProfileComponent implements OnInit {
     });
   }
 
-  private setFormValues(userService: any) {
-    console.log(this.emailAddress.setValue(this.userService.user()));
-    this.bio.setValue(this.currentUser.bio);
-    this.username.setValue(this.currentUser.username);
-    this.firstName.setValue(this.currentUser.firstname);
-    this.lastname.setValue(this.currentUser.lastname);
-    //this.dob(this.currentUser.dob);
-    this.telNo.setValue(this.currentUser.telNo);
-    this.address.setValue(this.currentUser.address.address);
+  private disableFields(): void {
+    this.bio.disable();
+    this.username.disable();
+    this.firstName.disable();
+    this.lastname.disable();
+    this.telNo.disable();
+    this.address.disable();
   }
 }
