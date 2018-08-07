@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
+import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatDatepickerModule } from '@angular/material';
 import { UserService } from '../services/user-services/user.service';
 import { Post } from '../models/post.model';
@@ -114,6 +114,7 @@ export class UserProfileComponent implements OnInit {
     });
     this.username = new FormControl({
       value: '',
+      Validators: [Validators.required, Validators.minLength(2)],
       disabled: !this.isDisabled
     });
     this.firstName = new FormControl({
