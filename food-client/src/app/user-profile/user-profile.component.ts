@@ -67,26 +67,15 @@ export class UserProfileComponent implements OnInit {
   }
 
   toggleMidPanel(): void {
-    this.userProfileForm
-      .get('username')
-      [!this.isDisabled ? 'enable' : 'disable']();
-    this.userProfileForm
-      .get('firstName')
-      [!this.isDisabled ? 'enable' : 'disable']();
-    this.userProfileForm
-      .get('lastname')
-      [!this.isDisabled ? 'enable' : 'disable']();
-    // this.userProfileForm.get('dob')[!this.isDisabled ? 'enable' : 'disable']();
-    this.userProfileForm
-      .get('telNo')
-      [!this.isDisabled ? 'enable' : 'disable']();
+    this.userProfileForm.get('username')[!this.isDisabled ? 'enable' : 'disable']();
+    this.userProfileForm.get('firstName')[!this.isDisabled ? 'enable' : 'disable']();
+    this.userProfileForm.get('lastname')[!this.isDisabled ? 'enable' : 'disable']();
+    this.userProfileForm.get('telNo')[!this.isDisabled ? 'enable' : 'disable']();
     this.isDisabled = !this.isDisabled;
   }
 
   toggleBottomPanel(): void {
-    this.userProfileForm
-      .get('address')
-      [!this.isDisabled ? 'enable' : 'disable']();
+    this.userProfileForm.get('address')[!this.isDisabled ? 'enable' : 'disable']();
     this.isDisabled = !this.isDisabled;
   }
 
@@ -129,16 +118,6 @@ export class UserProfileComponent implements OnInit {
     //   disabled: !this.isDisabled
     // });
     this.dob = new MatDatepickerModule();
-
-    this.telNo = new FormControl({
-      value: '',
-      disabled: !this.isDisabled
-    });
-    this.address = new FormControl({
-      value: '',
-      disabled: !this.isDisabled
-    });
-
     this.userProfileForm = this.formBuilder.group({
       emailAddress: this.emailAddress,
       username: this.username,

@@ -30,6 +30,7 @@ import { UserAvatarComponent } from '../card/components/user-avatar/user-avatar.
 import { MapComponent } from '../maps/map/map.component';
 import { GoogleMapsService } from '../maps/services/google-maps.service';
 import { MapsAPILoader } from '../../../node_modules/@agm/core';
+import { UserProfileComponent } from '../user-profile/user-profile.component';
 
 describe('AddPostComponent', () => {
   let component: AddPostComponent;
@@ -106,7 +107,8 @@ describe('AddPostComponent', () => {
         StatsComponent,
         CardComponent,
         UserAvatarComponent,
-        MapComponent
+        MapComponent,
+        UserProfileComponent
       ],
       imports: [
         HttpClientModule,
